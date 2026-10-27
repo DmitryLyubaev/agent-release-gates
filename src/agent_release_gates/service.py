@@ -178,7 +178,8 @@ class EvaluationService:
             items.append(item)
         if len(items) != (8 if split == "calibration" else 16):
             raise ValueError("REVIEW_SPLIT_SIZE")
-        destination = Path(output) if output else self.root / "reviews" / split
+        packet_key = digest({"runs": sorted(run_ids), "split": split, "rubric": self.rubric_digest})
+        destination = Path(output) if output else self.root / "reviews" / split / packet_key
         packet = export_packet(items, split, destination)
         bindings = {item.item_id: {"run_id": item.run_id} for item in items}
         self.repository.register_packet(packet, bindings)

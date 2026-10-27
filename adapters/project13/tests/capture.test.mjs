@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { captureCase } from '../capture.mjs';
@@ -73,4 +73,13 @@ test('candidate records a genuinely changed prompt identity', async () => {
   const baseline=await capture('r01');
   const candidate=await capture('r01',{subjectVersion:'candidate'});
   assert.notEqual(baseline.manifest.settings.prompt_digest,candidate.manifest.settings.prompt_digest);
+});
+
+test('compiled subject drift refuses before invocation', async () => {
+  const path=join(subjectRoot,'dist/domain/money.js');
+  const saved=await readFile(path);
+  try {
+    await writeFile(path,Buffer.concat([saved,Buffer.from('\n// drift\n')]));
+    await assert.rejects(capture('r01'), /COMPILED_SUBJECT_MISMATCH/);
+  } finally { await writeFile(path,saved); }
 });
