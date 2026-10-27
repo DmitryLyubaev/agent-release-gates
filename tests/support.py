@@ -168,6 +168,7 @@ def gate_input():
         judges = [
             {
                 "item_id": cid,
+                "item_digest": "e" * 64,
                 "run_id": f"run_{cid}",
                 "rubric_digest": "b" * 64,
                 "settings_digest": "c" * 64,
@@ -212,3 +213,42 @@ def gate_input():
         "evaluator_digest": "f" * 64,
         "policy_digest": "a" * 64,
     }
+
+
+def qualification_fixture():
+    from agent_release_gates.artifacts.manifest import load_dataset
+    from agent_release_gates.contracts.labels import HumanLabel
+    from agent_release_gates.contracts.scores import JudgeResult
+
+    manifest = load_dataset("datasets")
+    labels, results = [], []
+    template = gate_input()["candidate"]["cases"][0]["judges"][0]
+    for index, definition in enumerate(i for i in manifest.review_items if i.split == "heldout"):
+        accepted = index % 2 == 0
+        labels.append(
+            HumanLabel(
+                item_id=definition.item_id,
+                item_digest="e" * 64,
+                support="yes" if accepted else "no",
+                usefulness="yes" if accepted else "no",
+                note="" if accepted else "Unsupported",
+                reviewer="scripted-test",
+                labelled_at="2026-10-27T00:00:00Z",
+                rubric_digest="b" * 64,
+                provenance="scripted",
+            )
+        )
+        for repetition in [1, 2]:
+            results.append(
+                JudgeResult.model_validate(
+                    {
+                        **template,
+                        "item_id": definition.item_id,
+                        "run_id": f"run_{definition.case_id}",
+                        "repetition": repetition,
+                        "support": "yes" if accepted else "no",
+                        "usefulness": "yes" if accepted else "no",
+                    }
+                )
+            )
+    return labels, results, manifest

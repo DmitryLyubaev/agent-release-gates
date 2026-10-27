@@ -31,6 +31,7 @@ class ExactResult(StrictModel):
 
 class JudgeResult(StrictModel):
     item_id: Identifier
+    item_digest: Digest
     run_id: Identifier
     rubric_digest: Digest
     settings_digest: Digest
