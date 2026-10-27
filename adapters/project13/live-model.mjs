@@ -1,7 +1,7 @@
 import { budgetOperation, recordedFetch } from './provider.mjs';
 
 export function createLiveModel(options) {
-  const {subject,approval,ledgerPath,pythonExecutable,transport,identity,investigationId,stage,apiKey=process.env.ANTHROPIC_API_KEY}=options;
+  const {subject,approval,ledgerPath,pythonExecutable,transport,identity,investigationId,stage,receiptRoot,apiKey=process.env.ANTHROPIC_API_KEY}=options;
   if(!approval)throw new Error('LIVE_MODE_NOT_CONFIGURED');
   if(!approval.allowed_stages?.includes(stage))throw new Error('STAGE_NOT_APPROVED');
   if(!apiKey)throw new Error('ANTHROPIC_KEY_REQUIRED');
@@ -15,7 +15,7 @@ export function createLiveModel(options) {
     },
     settle(id,usage,requestId){return budgetOperation(worker,'settle',{reservation_id:id,usage,request_id:requestId});},
   };
-  const adapter=subject.createAnthropicModel({apiKey,budget,transport:(url,init)=>recordedFetch({url,init,kind:'subject',reservationId,receipts,apiKey,transport})});
+  const adapter=subject.createAnthropicModel({apiKey,budget,transport:(url,init)=>recordedFetch({url,init,kind:'subject',reservationId,receipts,apiKey,transport,receiptRoot,projectRoot:approval.config.project_root})});
   return {
     identity,adapter,receipts,
     usageSummary() {

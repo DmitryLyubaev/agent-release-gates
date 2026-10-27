@@ -16,12 +16,12 @@ from agent_release_gates.contracts.scores import (
 )
 from agent_release_gates.evaluation.exact import check_exact
 from agent_release_gates.evaluation.gate import decide_release
-from agent_release_gates.evaluation.judge import JudgePort, judge_saved_item
+from agent_release_gates.evaluation.judge import JudgePort, LiveJudgePort, judge_saved_item
 from agent_release_gates.review.packet import export_packet
 
 
 class EvaluationService:
-    def __init__(self, repository, artifact_root: Path, judge: JudgePort):
+    def __init__(self, repository, artifact_root: Path, judge: JudgePort | LiveJudgePort):
         self.repository = repository
         self.root = Path(artifact_root).resolve()
         self.root.mkdir(parents=True, exist_ok=True)
@@ -143,7 +143,8 @@ class EvaluationService:
             manifest_digest=self.dataset_record.id,
             evaluator_digest=self.evaluator_digest,
             policy_digest=self.policy_digest,
-            usage_complete=all(b.manifest.usage.state != "unknown" for b in bundles),
+            usage_complete=all(b.manifest.usage.state != "unknown" for b in bundles)
+            and all(j.usage.state != "unknown" for c in cases for j in c.judges),
             cases=cases,
         )
         record = self.repository.save_evaluation(version)
@@ -227,7 +228,7 @@ class EvaluationService:
         if packet.split == "calibration":
             return {
                 "study_id": study_id,
-                "mode": "scripted",
+                "mode": self.judge.mode,
                 "judgments": [r.model_dump(mode="json") for r in results],
             }
         qualification = self.repository.save_qualification(label_revision_id, results, self.dataset)

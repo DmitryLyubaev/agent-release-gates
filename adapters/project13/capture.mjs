@@ -22,7 +22,7 @@ export async function captureCase({subjectRoot,caseDefinition,script,subjectVers
   const emit = (kind,payload) => events.push({seq:events.length+1,at:new Date().toISOString(),kind,payload:structuredClone(payload)});
   const systemPrompt=subject.LIVE_IDENTITY.systemPrompt+(subjectVersion==='candidate'?'\nDistinguish observed facts from possible causes, and give one evidence-bound next step.':'');
   const identity = {...(mode==='live'?subject.LIVE_IDENTITY:subject.FAKE_IDENTITY), systemPrompt,modelVersion:mode==='live'?approval.config.model:'scripted-v1',promptVersion:subjectVersion};
-  const live=mode==='live'?createLiveModel({subject,approval,ledgerPath,pythonExecutable,apiKey,transport,identity,investigationId:investigationId??`${approval.config.study_id}:${caseDefinition.case_id}:${subjectVersion}`,stage:stage??caseDefinition.split}):null;
+  const live=mode==='live'?createLiveModel({subject,approval,ledgerPath,pythonExecutable,apiKey,transport,identity,receiptRoot:join(outputRoot,'provider-receipts'),investigationId:investigationId??`${approval.config.study_id}:${caseDefinition.case_id}:${subjectVersion}`,stage:stage??caseDefinition.split}):null;
   const fake = live?.adapter ?? subject.createFakeModel(script ?? scriptedCase(fixture,caseDefinition.scenario));
   const working = await mkdtemp(join(tmpdir(),'subject-run-'));
   const store = subject.openStore(working);

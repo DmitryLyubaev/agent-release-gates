@@ -4,7 +4,7 @@ from typing import Literal, Protocol
 from agent_release_gates.artifacts.store import digest
 from agent_release_gates.contracts.artifacts import StrictModel, Usage
 from agent_release_gates.contracts.labels import ReviewItem
-from agent_release_gates.contracts.scores import JudgeResult
+from agent_release_gates.contracts.scores import JudgeAttempt, JudgeResult
 
 
 class JudgeResponse(StrictModel):
@@ -19,6 +19,13 @@ class JudgePort(Protocol):
     settings_digest: str
 
     def evaluate(self, payload: dict) -> dict: ...
+
+
+class LiveJudgePort(Protocol):
+    mode: str
+    settings_digest: str
+
+    def evaluate_attempt(self, payload: dict, *, attempt_key: str) -> JudgeAttempt: ...
 
 
 class ScriptedJudge:
@@ -39,7 +46,45 @@ class ScriptedJudge:
         return value
 
 
-def judge_saved_item(item: ReviewItem, judge: JudgePort, repetition: int) -> JudgeResult:
+def judge_saved_item(item: ReviewItem, judge: JudgePort | LiveJudgePort, repetition: int) -> JudgeResult:
+    if judge.mode == "live":
+        attempt = judge.evaluate_attempt(
+            {**item.visible(), "rubric_digest": item.rubric_digest},
+            attempt_key="judge:"
+            + digest(
+                {
+                    "item": item.visible(),
+                    "run": item.run_id,
+                    "settings": judge.settings_digest,
+                    "repetition": repetition,
+                }
+            ),
+        )
+        response = (
+            JudgeResponse.model_validate(attempt.response)
+            if attempt.response and not attempt.error_code
+            else JudgeResponse(
+                support="unclear",
+                usefulness="unknown",
+                evidence_ids=[],
+                reason="JUDGE_UNAVAILABLE_OR_INVALID",
+            )
+        )
+        return JudgeResult(
+            item_id=item.item_id,
+            item_digest=digest(item.visible()),
+            run_id=item.run_id,
+            rubric_digest=item.rubric_digest,
+            settings_digest=judge.settings_digest,
+            repetition=repetition,
+            **response.model_dump(),
+            state="scored" if attempt.response and not attempt.error_code else "abstained",
+            mode="live",
+            usage=attempt.usage,
+            started_at=attempt.started_at,
+            ended_at=attempt.ended_at,
+            receipt_digest=attempt.receipt_digest,
+        )
     if judge.mode != "scripted":
         raise ValueError("LIVE_MODE_NOT_CONFIGURED")
     start = datetime.now(UTC)

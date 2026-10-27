@@ -45,11 +45,22 @@ class JudgeResult(StrictModel):
     usage: Usage
     started_at: datetime
     ended_at: datetime
+    receipt_digest: Digest | None = Field(default=None, exclude_if=lambda value: value is None)
     _utc = field_validator("started_at", "ended_at", mode="before")(utc)
 
     @property
     def accepts(self) -> bool:
         return self.state == "scored" and self.support == "yes" and self.usefulness == "yes"
+
+
+class JudgeAttempt(StrictModel):
+    response: dict | None
+    usage: Usage
+    started_at: datetime
+    ended_at: datetime
+    receipt_digest: Digest
+    error_code: str | None
+    _utc = field_validator("started_at", "ended_at", mode="before")(utc)
 
 
 class QualificationResult(StrictModel):

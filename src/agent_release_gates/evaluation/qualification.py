@@ -70,6 +70,10 @@ def qualify(
         return result("inconclusive")
     if any(r.item_digest != by_label[r.item_id].item_digest for r in results):
         return result("inconclusive")
+    if any(
+        r.usage.state == "unknown" or (r.mode == "live" and not r.receipt_digest) for r in results
+    ):
+        return result("inconclusive")
     acceptable = {i for i, l in by_label.items() if l.accepts}
     negative = set(expected) - acceptable
     dangerous = {i for i, l in by_label.items() if expected[i].dangerous and l.support != "yes"}

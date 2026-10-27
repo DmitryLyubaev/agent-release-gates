@@ -49,3 +49,65 @@ def reserve(value, key="case-1-turn-0", **overrides):
     }
     arguments.update(overrides)
     return value.reserve(**arguments)
+
+
+def judge_transport(response=None, fail=False):
+    """Exercise the actual Node worker and ledger; replace only HTTPS."""
+    import json
+    import os
+    import subprocess
+
+    def send(request):
+        program = """
+import {judgeMessage} from './adapters/project13/provider.mjs';
+globalThis.fetch=()=>{throw new Error('NETWORK_FORBIDDEN');};
+let text='';for await(const part of process.stdin)text+=part;
+const raw=JSON.parse(text);
+const transport=async()=>{
+  if(raw.fixture_fail)throw new Error('credential-value-that-must-not-escape');
+  return new Response(JSON.stringify(raw.fixture_response),{status:200,headers:{'request-id':'req_judge_test'}});
+};
+try{const value=await judgeMessage({...raw,transport,apiKey:'test-judge-secret'});process.stdout.write(JSON.stringify({ok:true,value}));}
+catch{process.stdout.write(JSON.stringify({ok:false,error:'ATTEMPT_REFUSED'}));}
+"""
+        result = subprocess.run(
+            ["node", "--input-type=module", "-e", program],
+            check=False,
+            input=json.dumps({**request, "fixture_response": response, "fixture_fail": fail}),
+            capture_output=True,
+            text=True,
+            timeout=45,
+            env=os.environ,
+        )
+        assert result.returncode == 0, result.stderr
+        return json.loads(result.stdout)
+
+    return send
+
+
+def judge_reply(**overrides):
+    import json
+
+    result = {
+        "id": "msg_judge_test",
+        "type": "message",
+        "role": "assistant",
+        "model": "claude-sonnet-5-5",
+        "stop_reason": "end_turn",
+        "usage": {"input_tokens": 100, "output_tokens": 10},
+        "content": [
+            {
+                "type": "text",
+                "text": json.dumps(
+                    {
+                        "support": "yes",
+                        "usefulness": "yes",
+                        "evidence_ids": ["source_1"],
+                        "reason": "Supported by source_1.",
+                    }
+                ),
+            }
+        ],
+    }
+    result.update(overrides)
+    return result

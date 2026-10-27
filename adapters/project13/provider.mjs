@@ -1,5 +1,8 @@
 import { spawnSync } from 'node:child_process';
 import { resolve, delimiter } from 'node:path';
+import { relative, isAbsolute, join, dirname, basename } from 'node:path';
+import { mkdirSync,realpathSync,existsSync,openSync,writeFileSync,fsyncSync,closeSync,renameSync } from 'node:fs';
+import { randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 
 export const ENDPOINT='https://api.anthropic.com/v1/messages';
@@ -41,13 +44,29 @@ export function validateRequest(body,kind) {
   if(Buffer.byteLength(JSON.stringify(body))>262144)throw new Error('PROVIDER_INPUT_LIMIT');
 }
 
-export async function recordedFetch({url,init,kind,reservationId,receipts,apiKey,transport=fetch}) {
+export async function recordedFetch({url,init,kind,reservationId,receipts,apiKey,transport=fetch,receiptRoot,projectRoot}) {
   if(url!==ENDPOINT || init.method!=='POST')throw new Error('PROVIDER_ENDPOINT');
   const request=JSON.parse(init.body); validateRequest(request,kind);
   const clean=value=>JSON.parse(JSON.stringify(redact(value)).replaceAll(apiKey,'[REDACTED]'));
   const receipt={reservation_id:reservationId,request:clean(request),response:null,request_id:null,error:null,started_at:new Date().toISOString(),ended_at:null};
   receipts.push(receipt);
+  const persist=()=>{
+    if(!receiptRoot)return;
+    const base=realpathSync.native(projectRoot);
+    let ancestor=resolve(receiptRoot);const missing=[];
+    while(!existsSync(ancestor)){missing.unshift(basename(ancestor));ancestor=dirname(ancestor);}
+    const target=resolve(realpathSync.native(ancestor),...missing);
+    if(relative(base,target).startsWith('..')||isAbsolute(relative(base,target)))throw new Error('RECEIPT_PATH');
+    mkdirSync(target,{recursive:true});
+    const actual=realpathSync.native(target);
+    if(relative(base,actual).startsWith('..')||isAbsolute(relative(base,actual)))throw new Error('RECEIPT_PATH');
+    const temporary=join(actual,`${reservationId}.${randomUUID()}.tmp`);
+    const fd=openSync(temporary,'wx');
+    try{writeFileSync(fd,JSON.stringify(receipt));fsyncSync(fd);}finally{closeSync(fd);}
+    renameSync(temporary,join(actual,`${reservationId}.json`));
+  };
   try {
+    persist();
     const signal=init.signal?AbortSignal.any([init.signal,AbortSignal.timeout(30000)]):AbortSignal.timeout(30000);
     const response=await transport(ENDPOINT,{...init,redirect:'error',signal});
     const reader=response.body?.getReader(); if(!reader)throw new Error('NO_RESPONSE_BODY');
@@ -64,9 +83,11 @@ export async function recordedFetch({url,init,kind,reservationId,receipts,apiKey
     const requestId=String(response.headers.get('request-id')??body.id??'unavailable');
     receipt.request_id=/^[A-Za-z0-9_-]{1,200}$/.test(requestId)?requestId:'unavailable';
     receipt.ended_at=new Date().toISOString();
+    persist();
     return new Response(text,{status:response.status,headers:{'request-id':receipt.request_id}});
   } catch {
     receipt.error='PROVIDER_UNCERTAIN';receipt.ended_at=new Date().toISOString();
+    try{persist();}catch{/* never dispatch when the receipt cannot be persisted */}
     throw new Error('PROVIDER_UNCERTAIN');
   }
 }
@@ -78,10 +99,11 @@ export async function judgeMessage(options) {
   const reservationId=budgetOperation(options,'reserve',{attempt_key:attemptKey,kind:'judge',investigation_id:null,metadata:{stage,request_digest:options.requestDigest}});
   const receipts=[];
   try {
-    const response=await recordedFetch({url:ENDPOINT,init:{method:'POST',body:JSON.stringify(body),headers:{'content-type':'application/json','anthropic-version':'2023-06-01','x-api-key':apiKey}},kind:'judge',reservationId,receipts,apiKey,transport});
+    const response=await recordedFetch({url:ENDPOINT,init:{method:'POST',body:JSON.stringify(body),headers:{'content-type':'application/json','anthropic-version':'2023-06-01','x-api-key':apiKey}},kind:'judge',reservationId,receipts,apiKey,transport,receiptRoot:options.receiptRoot??join(approval.config.project_root,'artifacts/live',approval.config.study_id,'provider'),projectRoot:approval.config.project_root});
     const raw=JSON.parse(await response.text());
     if(!response.ok)throw new Error('PROVIDER_RESPONSE');
     budgetOperation(options,'settle',{reservation_id:reservationId,usage:raw.usage,request_id:receipts[0].request_id});
+    if(raw.model!==approval.config.model)receipts[0].error='PROVIDER_MODEL_MISMATCH';
   }catch{if(receipts[0])receipts[0].error=receipts[0].error??'PROVIDER_INVALID_OR_UNPRICED';}
   return {receipts,summary:budgetOperation(options,'summary'),reservation_id:reservationId,model:approval.config.model};
 }
