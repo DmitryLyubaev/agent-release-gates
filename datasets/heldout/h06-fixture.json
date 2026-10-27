@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "id": "h06",
+  "sources": [
+    {
+      "id": "h06_pos",
+      "version": 1,
+      "batchId": "b_h06",
+      "receiptId": "receipt_h06",
+      "source": "pos",
+      "currency": "AUD",
+      "basis": "exclusive",
+      "rateBps": 1000,
+      "subtotalMinor": "2370",
+      "taxMinor": "238",
+      "grossMinor": "2608",
+      "lines": null,
+      "notes": "Synthetic source record."
+    },
+    {
+      "id": "h06_accounting",
+      "version": 1,
+      "batchId": "b_h06",
+      "receiptId": "receipt_h06",
+      "source": "accounting",
+      "currency": "AUD",
+      "basis": "exclusive",
+      "rateBps": 1000,
+      "subtotalMinor": "2370",
+      "taxMinor": "237",
+      "grossMinor": "2607",
+      "lines": null,
+      "notes": "Synthetic source record."
+    }
+  ],
+  "policies": [
+    {
+      "id": "h06_pos_policy",
+      "version": 1,
+      "batchId": "b_h06",
+      "receiptIds": [
+        "receipt_h06"
+      ],
+      "source": "pos",
+      "rateBps": 1000,
+      "rounding": "per_item",
+      "text": "Invented tax-exclusive 10 percent profile; half up."
+    },
+    {
+      "id": "h06_accounting_policy",
+      "version": 1,
+      "batchId": "b_h06",
+      "receiptIds": [
+        "receipt_h06"
+      ],
+      "source": "accounting",
+      "rateBps": 1000,
+      "rounding": "per_receipt",
+      "text": "Invented tax-exclusive 10 percent profile; half up."
+    }
+  ]
+}

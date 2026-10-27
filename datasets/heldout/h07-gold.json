@@ -1,0 +1,81 @@
+{
+  "case_id": "h07",
+  "family_id": "h07",
+  "split": "heldout",
+  "category": "contradictory_evidence",
+  "difference_minor": "2",
+  "source_values": [
+    {
+      "id": "h07_pos",
+      "version": 1,
+      "batchId": "b_h07",
+      "receiptId": "receipt_h07",
+      "source": "pos",
+      "currency": "AUD",
+      "basis": "exclusive",
+      "rateBps": 1000,
+      "subtotalMinor": "2410",
+      "taxMinor": "242",
+      "grossMinor": "2653",
+      "lines": [
+        {
+          "id": "item_A",
+          "netMinor": "1205"
+        },
+        {
+          "id": "item_B",
+          "netMinor": "1205"
+        }
+      ],
+      "notes": "Synthetic source record."
+    },
+    {
+      "id": "h07_accounting",
+      "version": 1,
+      "batchId": "b_h07",
+      "receiptId": "receipt_h07",
+      "source": "accounting",
+      "currency": "AUD",
+      "basis": "exclusive",
+      "rateBps": 1000,
+      "subtotalMinor": "2410",
+      "taxMinor": "241",
+      "grossMinor": "2651",
+      "lines": [
+        {
+          "id": "item_A",
+          "netMinor": "1205"
+        },
+        {
+          "id": "item_B",
+          "netMinor": "1205"
+        }
+      ],
+      "notes": "Synthetic source record."
+    }
+  ],
+  "required_refs": [
+    {
+      "kind": "source",
+      "id": "h07_pos",
+      "version": 1
+    },
+    {
+      "kind": "source",
+      "id": "h07_accounting",
+      "version": 1
+    },
+    {
+      "kind": "policy",
+      "id": "h07_pos_policy",
+      "version": 1
+    },
+    {
+      "kind": "policy",
+      "id": "h07_accounting_policy",
+      "version": 1
+    }
+  ],
+  "review_sequence": "acknowledge",
+  "outcome": "open_unresolved"
+}

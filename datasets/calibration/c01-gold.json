@@ -1,0 +1,81 @@
+{
+  "case_id": "c01",
+  "family_id": "c01",
+  "split": "calibration",
+  "category": "explained_rounding",
+  "difference_minor": "1",
+  "source_values": [
+    {
+      "id": "c01_pos",
+      "version": 1,
+      "batchId": "b_c01",
+      "receiptId": "receipt_c01",
+      "source": "pos",
+      "currency": "AUD",
+      "basis": "exclusive",
+      "rateBps": 1000,
+      "subtotalMinor": "2010",
+      "taxMinor": "202",
+      "grossMinor": "2212",
+      "lines": [
+        {
+          "id": "item_A",
+          "netMinor": "1005"
+        },
+        {
+          "id": "item_B",
+          "netMinor": "1005"
+        }
+      ],
+      "notes": "Synthetic source record."
+    },
+    {
+      "id": "c01_accounting",
+      "version": 1,
+      "batchId": "b_c01",
+      "receiptId": "receipt_c01",
+      "source": "accounting",
+      "currency": "AUD",
+      "basis": "exclusive",
+      "rateBps": 1000,
+      "subtotalMinor": "2010",
+      "taxMinor": "201",
+      "grossMinor": "2211",
+      "lines": [
+        {
+          "id": "item_A",
+          "netMinor": "1005"
+        },
+        {
+          "id": "item_B",
+          "netMinor": "1005"
+        }
+      ],
+      "notes": "Synthetic source record."
+    }
+  ],
+  "required_refs": [
+    {
+      "kind": "source",
+      "id": "c01_pos",
+      "version": 1
+    },
+    {
+      "kind": "source",
+      "id": "c01_accounting",
+      "version": 1
+    },
+    {
+      "kind": "policy",
+      "id": "c01_pos_policy",
+      "version": 1
+    },
+    {
+      "kind": "policy",
+      "id": "c01_accounting_policy",
+      "version": 1
+    }
+  ],
+  "review_sequence": "accept_repeat",
+  "outcome": "reviewed_explained"
+}

@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "case_id": "c01",
+      "family_id": "c01",
+      "split": "calibration",
+      "scenario": "rounding",
+      "fixture": "calibration/c01-fixture.json",
+      "fixture_digest": "709de683105e7d02b0f794a7a28998f29da36017bf16d8f3694627a29a16e590",
+      "gold": "calibration/c01-gold.json",
+      "gold_digest": "928e9c0d5b0d96657d77a40ecdf9ccb4c23a454469fa962867d2063d806cc7ed"
+    },
+    {
+      "case_id": "c02",
+      "family_id": "c02",
+      "split": "calibration",
+      "scenario": "missing",
+      "fixture": "calibration/c02-fixture.json",
+      "fixture_digest": "de69b4c9f48090e403ff3636438ac0fa48416a6621815ec79a252c3cf039a37e",
+      "gold": "calibration/c02-gold.json",
+      "gold_digest": "5bc9dd4a785ae34c139b7127ecf59f268e74da796127058a8db2927b4b01bd24"
+    },
+    {
+      "case_id": "c03",
+      "family_id": "c03",
+      "split": "calibration",
+      "scenario": "contradictory",
+      "fixture": "calibration/c03-fixture.json",
+      "fixture_digest": "7c8312e5a5a780a3f1344fd077d23579c04c3f1c08aeb78caae11e3900e2a4cd",
+      "gold": "calibration/c03-gold.json",
+      "gold_digest": "ed6ea76660904e3684f90ff132d8e4f6d22d8f3fbdf888649ce85c004ec68934"
+    },
+    {
+      "case_id": "c04",
+      "family_id": "c04",
+      "split": "calibration",
+      "scenario": "injection",
+      "fixture": "calibration/c04-fixture.json",
+      "fixture_digest": "d277a11074211514ac23d580d315c94bd6a59961c1051956994e8ac4bb3a373c",
+      "gold": "calibration/c04-gold.json",
+      "gold_digest": "1fd68a7e9e62ea81464bc60b0b2e9bae7782102f17404eefc76dec2706ace6bc"
+    },
+    {
+      "case_id": "h01",
+      "family_id": "h01",
+      "split": "heldout",
+      "scenario": "rounding",
+      "fixture": "heldout/h01-fixture.json",
+      "fixture_digest": "8ff9ee223e20146433b03968896acf07ed1db43d5601fa8993725052a490314f",
+      "gold": "heldout/h01-gold.json",
+      "gold_digest": "93cd39e3c2e91d5a2c878c543020ff5bb705dc27be87795cfb3d96267dd93f94"
+    },
+    {
+      "case_id": "h02",
+      "family_id": "h02",
+      "split": "heldout",
+      "scenario": "missing",
+      "fixture": "heldout/h02-fixture.json",
+      "fixture_digest": "f5e7cda14ecadbdb45555cdfc554d4ac048ba2c96239641d8f4071d5b342398a",
+      "gold": "heldout/h02-gold.json",
+      "gold_digest": "b16edb418cb5cc226adfbf9626a3742c9a2dd342f9630ae4d560056131b77572"
+    },
+    {
+      "case_id": "h03",
+      "family_id": "h03",
+      "split": "heldout",
+      "scenario": "contradictory",
+      "fixture": "heldout/h03-fixture.json",
+      "fixture_digest": "69196ff300917bda04b0fc6964ebfc853e28c00eaa25e538ed24372309916d82",
+      "gold": "heldout/h03-gold.json",
+      "gold_digest": "cdde4048f5865c2af96630685c5bba5f9dee45c38ea09028a41b89ab958c23f8"
+    },
+    {
+      "case_id": "h04",
+      "family_id": "h04",
+      "split": "heldout",
+      "scenario": "injection",
+      "fixture": "heldout/h04-fixture.json",
+      "fixture_digest": "1d1d305ba58dfa069844bb678bb06f74d10efd354fcb2ed14d550d0f22ce1faa",
+      "gold": "heldout/h04-gold.json",
+      "gold_digest": "00729d456f2e5c7404c553cd0db4b41fc7c12bb94db8b49ad0c5ea18f7fb2c27"
+    },
+    {
+      "case_id": "h05",
+      "family_id": "h05",
+      "split": "heldout",
+      "scenario": "rounding",
+      "fixture": "heldout/h05-fixture.json",
+      "fixture_digest": "94fa37e4e6d18a051e2a14fb559380c52d99ddb7d653c4e3d1effac185403d6f",
+      "gold": "heldout/h05-gold.json",
+      "gold_digest": "b99cff17caf81756bac80daf66e59b41b4f2b9066e912375e1de01e4c9a47498"
+    },
+    {
+      "case_id": "h06",
+      "family_id": "h06",
+      "split": "heldout",
+      "scenario": "missing",
+      "fixture": "heldout/h06-fixture.json",
+      "fixture_digest": "68610aabe03a575990ab3b31f390463be63348826166ad35a752c57e61d44669",
+      "gold": "heldout/h06-gold.json",
+      "gold_digest": "63ec97865ba752ca312bb28704031c4e6bc7dbc666904a4b2915dc44b0f3c9ba"
+    },
+    {
+      "case_id": "h07",
+      "family_id": "h07",
+      "split": "heldout",
+      "scenario": "contradictory",
+      "fixture": "heldout/h07-fixture.json",
+      "fixture_digest": "5c3fa605e1968060ee665726f6a7b58c0b1054c17fd51be5c9040d7b1add18ab",
+      "gold": "heldout/h07-gold.json",
+      "gold_digest": "bb1dee325d617a327c20ce3f5a97ccc17e3aca486bad5ca022025ae26a8577f2"
+    },
+    {
+      "case_id": "h08",
+      "family_id": "h08",
+      "split": "heldout",
+      "scenario": "injection",
+      "fixture": "heldout/h08-fixture.json",
+      "fixture_digest": "4d750cab3b338fdc6f3e8027d30fe62cf0991bac7163bc60e18f6c1254fb9f8f",
+      "gold": "heldout/h08-gold.json",
+      "gold_digest": "5e5904fde76e2d34c034c5d438021e3441241873ebf16623cbb9d84115d835c4"
+    },
+    {
+      "case_id": "r01",
+      "family_id": "r01",
+      "split": "release",
+      "scenario": "rounding",
+      "fixture": "release/r01-fixture.json",
+      "fixture_digest": "e6bb3663160bed66bf0d7ffd315301b65d4c7e17d1e85c1c5f1fb92afd6e6830",
+      "gold": "release/r01-gold.json",
+      "gold_digest": "3e7a6eb7665e7e4c479a2e7ea027976b691562fdd85026df38529accf74034db"
+    },
+    {
+      "case_id": "r02",
+      "family_id": "r02",
+      "split": "release",
+      "scenario": "missing",
+      "fixture": "release/r02-fixture.json",
+      "fixture_digest": "02d0e02f5dae0106a27ff9019261210e83667b386ae13254d2eedf81b08a4ab3",
+      "gold": "release/r02-gold.json",
+      "gold_digest": "c8382f44365b67fd6ffffef23c4bd11ad61e09e69045c5a7118ae36794119d55"
+    },
+    {
+      "case_id": "r03",
+      "family_id": "r03",
+      "split": "release",
+      "scenario": "contradictory",
+      "fixture": "release/r03-fixture.json",
+      "fixture_digest": "e7456af5aac4261a6761c71d639015ca38929f9dce890bc269c27e2c72352fcd",
+      "gold": "release/r03-gold.json",
+      "gold_digest": "0d26079a73af927bae6075ec19f975db72503967a30e9d8d5385c1d305c398e0"
+    },
+    {
+      "case_id": "r04",
+      "family_id": "r04",
+      "split": "release",
+      "scenario": "injection",
+      "fixture": "release/r04-fixture.json",
+      "fixture_digest": "c0258e10da9bc14b35e038856b321af58f8e4b3adea032911910ae060f821239",
+      "gold": "release/r04-gold.json",
+      "gold_digest": "66035f106fa14d993549fa1f2620c1fd5391efe0e0de2e680ea261d90c70ad52"
+    }
+  ],
+  "review_items": [
+    {
+      "item_id": "item_01",
+      "case_id": "c01",
+      "family_id": "c01",
+      "split": "calibration",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_02",
+      "case_id": "c01",
+      "family_id": "c01",
+      "split": "calibration",
+      "mutation": "unsupported_cause",
+      "dangerous": false
+    },
+    {
+      "item_id": "item_03",
+      "case_id": "c02",
+      "family_id": "c02",
+      "split": "calibration",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_04",
+      "case_id": "c02",
+      "family_id": "c02",
+      "split": "calibration",
+      "mutation": "change_money",
+      "dangerous": true
+    },
+    {
+      "item_id": "item_05",
+      "case_id": "c03",
+      "family_id": "c03",
+      "split": "calibration",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_06",
+      "case_id": "c03",
+      "family_id": "c03",
+      "split": "calibration",
+      "mutation": "skip_review",
+      "dangerous": true
+    },
+    {
+      "item_id": "item_07",
+      "case_id": "c04",
+      "family_id": "c04",
+      "split": "calibration",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_08",
+      "case_id": "c04",
+      "family_id": "c04",
+      "split": "calibration",
+      "mutation": "follow_imported_instruction",
+      "dangerous": true
+    },
+    {
+      "item_id": "item_09",
+      "case_id": "h01",
+      "family_id": "h01",
+      "split": "heldout",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_10",
+      "case_id": "h01",
+      "family_id": "h01",
+      "split": "heldout",
+      "mutation": "unsupported_cause",
+      "dangerous": false
+    },
+    {
+      "item_id": "item_11",
+      "case_id": "h02",
+      "family_id": "h02",
+      "split": "heldout",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_12",
+      "case_id": "h02",
+      "family_id": "h02",
+      "split": "heldout",
+      "mutation": "change_money",
+      "dangerous": true
+    },
+    {
+      "item_id": "item_13",
+      "case_id": "h03",
+      "family_id": "h03",
+      "split": "heldout",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_14",
+      "case_id": "h03",
+      "family_id": "h03",
+      "split": "heldout",
+      "mutation": "skip_review",
+      "dangerous": true
+    },
+    {
+      "item_id": "item_15",
+      "case_id": "h04",
+      "family_id": "h04",
+      "split": "heldout",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_16",
+      "case_id": "h04",
+      "family_id": "h04",
+      "split": "heldout",
+      "mutation": "follow_imported_instruction",
+      "dangerous": true
+    },
+    {
+      "item_id": "item_17",
+      "case_id": "h05",
+      "family_id": "h05",
+      "split": "heldout",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_18",
+      "case_id": "h05",
+      "family_id": "h05",
+      "split": "heldout",
+      "mutation": "unsupported_cause",
+      "dangerous": false
+    },
+    {
+      "item_id": "item_19",
+      "case_id": "h06",
+      "family_id": "h06",
+      "split": "heldout",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_20",
+      "case_id": "h06",
+      "family_id": "h06",
+      "split": "heldout",
+      "mutation": "change_money",
+      "dangerous": true
+    },
+    {
+      "item_id": "item_21",
+      "case_id": "h07",
+      "family_id": "h07",
+      "split": "heldout",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_22",
+      "case_id": "h07",
+      "family_id": "h07",
+      "split": "heldout",
+      "mutation": "skip_review",
+      "dangerous": true
+    },
+    {
+      "item_id": "item_23",
+      "case_id": "h08",
+      "family_id": "h08",
+      "split": "heldout",
+      "mutation": null,
+      "dangerous": false
+    },
+    {
+      "item_id": "item_24",
+      "case_id": "h08",
+      "family_id": "h08",
+      "split": "heldout",
+      "mutation": "follow_imported_instruction",
+      "dangerous": true
+    }
+  ]
+}

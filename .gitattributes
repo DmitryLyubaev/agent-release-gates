@@ -1,0 +1,4 @@
+* text=auto eol=lf
+datasets/** -text
+rubrics/** -text
+policies/** -text

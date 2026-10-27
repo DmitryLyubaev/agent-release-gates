@@ -1,0 +1,23 @@
+[project]
+name = "agent-release-gates"
+version = "0.1.0"
+description = "Auditable evaluation of saved synthetic agent runs"
+requires-python = ">=3.12,<3.13"
+dependencies = ["fastapi", "pydantic>=2,<3", "sqlalchemy>=2,<3", "alembic", "psycopg[binary]>=3,<4", "langsmith", "uvicorn"]
+
+[dependency-groups]
+dev = ["pytest", "httpx", "ruff"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+
+[tool.ruff]
+line-length = 100
+
+[project.scripts]
+release-gates = "agent_release_gates.cli:main"

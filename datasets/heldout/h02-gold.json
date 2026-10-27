@@ -1,0 +1,63 @@
+{
+  "case_id": "h02",
+  "family_id": "h02",
+  "split": "heldout",
+  "category": "insufficient_evidence",
+  "difference_minor": "1",
+  "source_values": [
+    {
+      "id": "h02_pos",
+      "version": 1,
+      "batchId": "b_h02",
+      "receiptId": "receipt_h02",
+      "source": "pos",
+      "currency": "AUD",
+      "basis": "exclusive",
+      "rateBps": 1000,
+      "subtotalMinor": "2210",
+      "taxMinor": "222",
+      "grossMinor": "2432",
+      "lines": null,
+      "notes": "Synthetic source record."
+    },
+    {
+      "id": "h02_accounting",
+      "version": 1,
+      "batchId": "b_h02",
+      "receiptId": "receipt_h02",
+      "source": "accounting",
+      "currency": "AUD",
+      "basis": "exclusive",
+      "rateBps": 1000,
+      "subtotalMinor": "2210",
+      "taxMinor": "221",
+      "grossMinor": "2431",
+      "lines": null,
+      "notes": "Synthetic source record."
+    }
+  ],
+  "required_refs": [
+    {
+      "kind": "source",
+      "id": "h02_pos",
+      "version": 1
+    },
+    {
+      "kind": "source",
+      "id": "h02_accounting",
+      "version": 1
+    },
+    {
+      "kind": "policy",
+      "id": "h02_pos_policy",
+      "version": 1
+    },
+    {
+      "kind": "policy",
+      "id": "h02_accounting_policy",
+      "version": 1
+    }
+  ],
+  "review_sequence": "acknowledge",
+  "outcome": "open_unresolved"
+}
