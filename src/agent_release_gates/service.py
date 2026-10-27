@@ -149,6 +149,16 @@ class EvaluationService:
         record = self.repository.save_evaluation(version)
         return {"id": record.id, "evaluation": record.payload}
 
+    def langsmith_local(self, run_ids):
+        from agent_release_gates.langsmith.local import evaluate_local
+
+        def nonempty_explanation(outputs):
+            return {"key": "nonempty_explanation", "score": bool(outputs.get("explanation"))}
+
+        return evaluate_local(
+            [self._item(self.read_run(r)) for r in run_ids], nonempty_explanation
+        ).model_dump(mode="json")
+
     def review_packet(self, run_ids, split, output=None):
         definitions = [d for d in self.dataset.review_items if d.split == split]
         bundles = [self.read_run(r) for r in run_ids]

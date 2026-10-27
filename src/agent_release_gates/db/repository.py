@@ -304,6 +304,7 @@ class Repository:
                 text("SELECT pg_advisory_xact_lock(hashtext(:identity))"), {"identity": identity}
             )
             record = session.get(SyncRecord, identity)
+            claimed = record is None
             if record is None:
                 record = SyncRecord(id=identity, payload={"state": "reserved", "remote_ids": None})
                 session.add(record)
@@ -311,4 +312,4 @@ class Repository:
                 record.payload = {"state": "confirmed", "remote_ids": remote_ids}
             elif action == "unknown":
                 record.payload = {"state": "unknown", "remote_ids": record.payload["remote_ids"]}
-            return dict(record.payload)
+            return {**record.payload, "claimed": claimed}

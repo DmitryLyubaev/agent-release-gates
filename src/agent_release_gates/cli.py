@@ -14,7 +14,7 @@ def main():
     commands = parser.add_subparsers(dest="command", required=True)
     command = commands.add_parser("import-run")
     command.add_argument("file", type=Path)
-    for name in ["evaluate", "review-packet"]:
+    for name in ["evaluate", "review-packet", "langsmith-local"]:
         command = commands.add_parser(name)
         command.add_argument("--run-id", action="append", required=True)
         if name == "review-packet":
@@ -42,6 +42,8 @@ def main():
                 value = service.import_run(json.loads(args.file.read_bytes()))
             case "evaluate":
                 value = service.evaluate(args.run_id)
+            case "langsmith-local":
+                value = service.langsmith_local(args.run_id)
             case "review-packet":
                 value = service.review_packet(args.run_id, args.split, args.output)
             case "import-labels":
