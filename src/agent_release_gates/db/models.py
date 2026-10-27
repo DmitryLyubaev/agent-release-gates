@@ -28,6 +28,7 @@ class PacketRecord(Base):
     __tablename__ = "packets"
     id: Mapped[str] = mapped_column(String, primary_key=True)
     payload: Mapped[dict] = mapped_column(JSONB)
+    bindings: Mapped[dict] = mapped_column(JSONB)
 
 
 class LabelRevision(Base):
@@ -73,7 +74,9 @@ class DecisionRecord(Base):
     input_digest: Mapped[str] = mapped_column(String, unique=True)
     baseline_id: Mapped[str | None] = mapped_column(ForeignKey("evaluations.id"), nullable=True)
     candidate_id: Mapped[str] = mapped_column(ForeignKey("evaluations.id"))
-    qualification_id: Mapped[str] = mapped_column(ForeignKey("qualifications.id"))
+    qualification_id: Mapped[str | None] = mapped_column(
+        ForeignKey("qualifications.id"), nullable=True
+    )
     payload: Mapped[dict] = mapped_column(JSONB)
     inputs: Mapped[dict] = mapped_column(JSONB)
 
@@ -82,6 +85,9 @@ class StudyRecord(Base):
     __tablename__ = "study_freezes"
     id: Mapped[str] = mapped_column(String, primary_key=True)
     payload: Mapped[dict] = mapped_column(JSONB)
+    calibration_label_id: Mapped[str | None] = mapped_column(
+        ForeignKey("label_revisions.id"), nullable=True
+    )
 
 
 class SyncRecord(Base):

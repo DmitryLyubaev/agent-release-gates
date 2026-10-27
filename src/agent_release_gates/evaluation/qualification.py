@@ -12,6 +12,8 @@ class StudyFreeze:
     def revise(self, rubric_digest: str):
         if self.frozen:
             raise ValueError("STUDY_FROZEN")
+        if self.revisions and self.revisions[-1] == rubric_digest:
+            return
         if len(self.revisions) >= 2:
             raise ValueError("REVISION_LIMIT")
         self.revisions.append(rubric_digest)

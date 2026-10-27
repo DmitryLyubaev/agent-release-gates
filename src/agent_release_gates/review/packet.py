@@ -27,7 +27,12 @@ def export_packet(
         split=split,
         rubric_digest=items[0].rubric_digest,
         item_digests=item_digests,
-        packet_digest=digest(visible),
+        packet_digest=digest(
+            {
+                "visible": visible,
+                "runs": [(i.item_id, i.run_id, i.source_mode, i.rubric_digest) for i in items],
+            }
+        ),
         source_mode=items[0].source_mode,
     )
     output = Path(output)

@@ -97,12 +97,16 @@ class Repository:
         with self.sessions() as session:
             return list(session.scalars(select(RunRecord).order_by(RunRecord.id)))
 
-    def register_packet(self, packet: PacketManifest) -> PacketRecord:
+    def register_packet(self, packet: PacketManifest, bindings: dict | None = None) -> PacketRecord:
         with self.sessions.begin() as session:
             return put(
                 session,
                 PacketRecord,
-                {"id": packet.packet_digest, "payload": packet.model_dump(mode="json")},
+                {
+                    "id": packet.packet_digest,
+                    "payload": packet.model_dump(mode="json"),
+                    "bindings": bindings or {},
+                },
             )
 
     def get_packet(self, packet_id: str) -> PacketRecord:
@@ -237,7 +241,9 @@ class Repository:
         with self.sessions.begin() as session:
             qualification_id = digest(inputs.qualification.model_dump(mode="json"))
             if session.get(QualificationRecord, qualification_id) is None:
-                raise ValueError("QUALIFICATION_NOT_REGISTERED")
+                if inputs.qualification.status != "inconclusive":
+                    raise ValueError("QUALIFICATION_NOT_REGISTERED")
+                qualification_id = None
             baseline = self._save_evaluation(session, inputs.baseline) if inputs.baseline else None
             candidate = self._save_evaluation(session, inputs.candidate)
             return put(
@@ -261,7 +267,13 @@ class Repository:
                 raise KeyError("DECISION_NOT_FOUND")
             return record
 
-    def advance_study(self, study_id: str, identity_digest: str, holdout=False) -> StudyRecord:
+    def advance_study(
+        self,
+        study_id: str,
+        identity_digest: str,
+        holdout=False,
+        label_revision_id: str | None = None,
+    ) -> StudyRecord:
         with self.sessions.begin() as session:
             session.execute(
                 text("SELECT pg_advisory_xact_lock(hashtext(:identity))"), {"identity": study_id}
@@ -275,7 +287,16 @@ class Repository:
             else:
                 record = StudyRecord(id=study_id, payload=payload)
                 session.add(record)
+            if label_revision_id is not None:
+                record.calibration_label_id = label_revision_id
             return record
+
+    def get_study(self, study_id: str) -> StudyRecord:
+        with self.sessions() as session:
+            value = session.get(StudyRecord, study_id)
+            if value is None:
+                raise KeyError("STUDY_NOT_FOUND")
+            return value
 
     def sync_state(self, identity: str, action: str, remote_ids=None) -> dict:
         with self.sessions.begin() as session:
