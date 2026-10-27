@@ -47,5 +47,9 @@ def seeded_decision(repo):
             for judge in case["judges"]:
                 judge["run_id"] = run_id
         raw[key]["manifest_digest"] = artifact.manifest.dataset_digest
+        raw["target_identities"][key] = {
+            k: artifact.manifest.model_dump(mode="json")[k]
+            for k in ["subject_commit", "source_digest", "adapter_digest", "settings"]
+        }
     raw["manifest_digest"] = raw["candidate"]["manifest_digest"]
     return GateInput.model_validate(raw), revision

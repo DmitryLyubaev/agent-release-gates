@@ -7,7 +7,7 @@ from sqlalchemy.dialects.postgresql import insert
 from agent_release_gates.artifacts.store import digest, validate_bundle
 from agent_release_gates.contracts.artifacts import ArtifactBundle
 from agent_release_gates.contracts.datasets import DatasetManifest
-from agent_release_gates.contracts.decisions import Decision, GateInput
+from agent_release_gates.contracts.decisions import Decision, GateInput, TargetIdentity
 from agent_release_gates.contracts.labels import HumanLabel, PacketManifest
 from agent_release_gates.contracts.scores import JudgeResult, VersionEvaluation
 from agent_release_gates.evaluation.gate import decide_release
@@ -239,6 +239,20 @@ class Repository:
         if value != decide_release(inputs):
             raise ValueError("DECISION_INPUT_MISMATCH")
         with self.sessions.begin() as session:
+            for key, version in [("baseline", inputs.baseline), ("candidate", inputs.candidate)]:
+                if version is None or not version.cases:
+                    continue
+                run = session.get(RunRecord, version.cases[0].run_id)
+                if run is None:
+                    raise KeyError("RUN_NOT_FOUND")
+                target = TargetIdentity.model_validate(
+                    {
+                        k: run.payload[k]
+                        for k in ["subject_commit", "source_digest", "adapter_digest", "settings"]
+                    }
+                )
+                if inputs.target_identities.get(key) != target:
+                    raise ValueError("TARGET_IDENTITY_RECORD_MISMATCH")
             qualification_id = digest(inputs.qualification.model_dump(mode="json"))
             if session.get(QualificationRecord, qualification_id) is None:
                 if inputs.qualification.status != "inconclusive":

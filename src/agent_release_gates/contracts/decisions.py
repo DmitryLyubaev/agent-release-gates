@@ -1,7 +1,21 @@
-from typing import Literal
+from typing import Annotated, Literal
 
-from .artifacts import Digest, Identifier, StrictModel
+from pydantic import Field, StringConstraints, field_validator
+
+from .artifacts import ArtifactManifest, Digest, Identifier, StrictModel
 from .scores import QualificationResult, VersionEvaluation
+
+
+class TargetIdentity(StrictModel):
+    subject_commit: Annotated[str, StringConstraints(pattern=r"^[a-f0-9]{40}$")]
+    source_digest: Digest
+    adapter_digest: Digest
+    settings: dict[str, str]
+
+    @field_validator("settings")
+    @classmethod
+    def required(cls, value):
+        return ArtifactManifest.required_settings(value)
 
 
 class GateInput(StrictModel):
@@ -12,6 +26,10 @@ class GateInput(StrictModel):
     manifest_digest: Digest
     evaluator_digest: Digest
     policy_digest: Digest
+    comparison_issues: list[str] = Field(default_factory=list)
+    target_identities: dict[Literal["baseline", "candidate"], TargetIdentity] = Field(
+        default_factory=dict
+    )
 
 
 class Decision(StrictModel):

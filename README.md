@@ -4,6 +4,8 @@ A small Python service that evaluates saved synthetic agent runs and records why
 
 The current milestone is **offline**. The reconciliation workflow is real; model replies, judge verdicts and test labels are authored scripts. They intentionally encode the fixture exercises. No real-model accuracy, actual human agreement, hosted LangSmith operation or production adoption is established.
 
+The current corrected cohort is in `examples/scripted`. The first cohort is retained in `examples/historical-scripted-v1` with its known request-observation defect documented; it is not used by the current demonstration.
+
 ## Run locally
 
 Requirements: Python 3.12, uv 0.10.7, Node 24, Git and a working Docker engine with Compose.

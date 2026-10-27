@@ -248,6 +248,21 @@ class EvaluationService:
 
         baseline = load(baseline_id) if baseline_id else None
         candidate = load(candidate_id)
+
+        def target(version):
+            if version is None or not version.cases:
+                return {}
+            manifest = self.repository.get_run(version.cases[0].run_id).payload
+            return {
+                key: manifest[key]
+                for key in ["subject_commit", "source_digest", "adapter_digest", "settings"]
+            }
+
+        targets = {
+            key: value
+            for key, value in {"baseline": target(baseline), "candidate": target(candidate)}.items()
+            if value
+        }
         qualification = (
             QualificationResult.model_validate(
                 self.repository.get_qualification(qualification_id).payload
@@ -271,6 +286,7 @@ class EvaluationService:
             manifest_digest=self.dataset_record.id,
             evaluator_digest=self.evaluator_digest,
             policy_digest=self.policy_digest,
+            target_identities=targets,
         )
         decision = decide_release(inputs)
         record = self.repository.save_decision(decision, inputs)

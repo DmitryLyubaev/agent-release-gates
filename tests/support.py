@@ -100,8 +100,29 @@ def bundle(run_id="test-run", mode="scripted"):
             },
         }
     )
+    raw["manifest"]["settings"]["prompt_digest"] = "a" * 64
+    raw["documents"]["evidence"].update(batchId="batch", receiptId="receipt", digest="e" * 64)
+    for source in raw["documents"]["evidence"]["sources"]:
+        source.update(
+            batchId="batch",
+            receiptId="receipt",
+            source=source["id"],
+            currency="AUD",
+            basis="exclusive",
+            rateBps=1000,
+            subtotalMinor="2010",
+            taxMinor="202" if source["id"] == "pos" else "201",
+            lines=[{"id": "item_A", "netMinor": "1005"}, {"id": "item_B", "netMinor": "1005"}],
+        )
+    raw["documents"]["final_sources"] = deepcopy(raw["documents"]["evidence"]["sources"])
+    raw["documents"]["proposal"].update(
+        calculationIds=[], modelVersion="scripted-v1", promptVersion="baseline"
+    )
+    raw["documents"]["events"][0]["payload"].update(version=1, snapshotDigest="e" * 64)
+    raw["documents"]["events"][2]["payload"].update(snapshotDigest="e" * 64, invalidated=False)
     review = raw["documents"]["events"][1]["payload"]
     review["proposalVersion"] = 1
+    review["idempotencyKey"] = "review-1"
     raw["documents"]["events"].insert(
         2,
         {
@@ -198,6 +219,13 @@ def gate_input():
     candidate["subject_version"] = "candidate"
     return {
         "expected_case_ids": ["r01", "r02", "r03", "r04"],
+        "target_identities": {
+            key: {
+                k: bundle()["manifest"][k]
+                for k in ["subject_commit", "source_digest", "adapter_digest", "settings"]
+            }
+            for key in ["baseline", "candidate"]
+        },
         "baseline": version,
         "candidate": candidate,
         "qualification": {

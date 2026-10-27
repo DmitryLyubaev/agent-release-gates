@@ -75,6 +75,20 @@ class ArtifactManifest(StrictModel):
 
     _utc = field_validator("started_at", "ended_at", mode="before")(utc)
 
+    @field_validator("settings")
+    @classmethod
+    def required_settings(cls, value):
+        import re
+
+        if not {"model", "prompt", "prompt_digest", "tools"} <= set(value):
+            raise ValueError("TARGET_SETTINGS_REQUIRED")
+        if any(not v.strip() for v in value.values()):
+            raise ValueError("EMPTY_TARGET_SETTING")
+        for key in ["prompt_digest", "compiled_digest"]:
+            if key in value and not re.fullmatch("[a-f0-9]{64}", value[key]):
+                raise ValueError("SETTING_DIGEST_REQUIRED")
+        return value
+
     @model_validator(mode="after")
     def coherent(self):
         if self.ended_at < self.started_at:
@@ -83,6 +97,13 @@ class ArtifactManifest(StrictModel):
             raise ValueError("LIVE_USAGE_REQUIRED")
         if self.mode == "fault_control" and not (self.parent_digest and self.fault_recipe):
             raise ValueError("FAULT_PROVENANCE_REQUIRED")
+        if (
+            self.mode == "fault_control"
+            and self.settings.get("control_recipe") != self.fault_recipe
+        ):
+            raise ValueError("CONTROL_SETTING_MISMATCH")
+        if self.mode != "fault_control" and "control_recipe" in self.settings:
+            raise ValueError("CONTROL_SETTING_ON_NATURAL_RUN")
         return self
 
 
@@ -111,6 +132,15 @@ class TraceEvent(StrictModel):
 class ArtifactBundle(StrictModel):
     manifest: ArtifactManifest
     documents: dict[str, Any]
+
+    @model_validator(mode="after")
+    def consumed_documents(self):
+        from .documents import ConsumedDocuments, validate_event_payload
+
+        documents = ConsumedDocuments.model_validate(self.documents)
+        for event in documents.events:
+            validate_event_payload(event)
+        return self
 
 
 class ArtifactReceipt(StrictModel):

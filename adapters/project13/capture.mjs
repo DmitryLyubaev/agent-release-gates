@@ -16,7 +16,7 @@ export async function captureCase({subjectRoot,caseDefinition,script,subjectVers
   if (hash(fixtureBytes)!==caseDefinition.fixture_digest || hash(goldBytes)!==caseDefinition.gold_digest) throw new Error('CASE_DIGEST');
   const fixture = JSON.parse(fixtureBytes), gold = JSON.parse(goldBytes);
   const started_at = new Date().toISOString(), events = [], raw_proposals = [];
-  const emit = (kind,payload) => events.push({seq:events.length+1,at:new Date().toISOString(),kind,payload});
+  const emit = (kind,payload) => events.push({seq:events.length+1,at:new Date().toISOString(),kind,payload:structuredClone(payload)});
   const working = await mkdtemp(join(tmpdir(),'subject-run-'));
   const store = subject.openStore(working);
   const drain = observeAudit(store,emit);

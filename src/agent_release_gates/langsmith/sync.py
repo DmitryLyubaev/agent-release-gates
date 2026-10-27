@@ -165,7 +165,12 @@ def sync_experiment(payload: SyncPayload, sink, state) -> dict:
         return {"state": "pending", "remote_ids": None}
     try:
         existing = sink.reconcile(payload)
-        remote_ids = existing if existing is not None else sink.upload(payload)
+        if existing is None:
+            sink.upload(payload)
+            existing = sink.reconcile(payload)
+        if existing is None:
+            raise RuntimeError("REMOTE_RECORDS_NOT_CONFIRMED")
+        remote_ids = existing
     except Exception:  # noqa: BLE001 - remote outcome can be ambiguous; never retry the write here
         state.mark_unknown(identity)
         return {"state": "unknown", "remote_ids": None}
@@ -179,6 +184,23 @@ class SdkLangSmithSink:
     def __init__(self, client, approved_payload_digest: str | None = None):
         self.client = client
         self.approved_payload_digest = approved_payload_digest
+
+    @classmethod
+    def configured(cls, *, api_url, api_key, workspace_id, approved_payload_digest):
+        if not approved_payload_digest:
+            raise ValueError("HOSTED_NOT_CONFIGURED")
+        from langsmith import Client
+
+        client = Client(
+            api_url=api_url,
+            api_key=api_key,
+            workspace_id=workspace_id,
+            auto_batch_tracing=False,
+            tracing_sampling_rate=1.0,
+            omit_traced_runtime_info=True,
+            tracing_mode="langsmith",
+        )
+        return cls(client, approved_payload_digest)
 
     def _exists(self, reader, identity):
         try:
@@ -232,4 +254,7 @@ class SdkLangSmithSink:
                     feedback_id=feedback["id"],
                     stop_after_attempt=1,
                 )
+        flush = getattr(self.client, "flush", None)
+        if callable(flush):
+            flush()
         return {"experiment": payload.experiment_name, "runs": [r["id"] for r in payload.runs]}

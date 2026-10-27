@@ -1,5 +1,6 @@
 from agent_release_gates.artifacts.store import digest
 from agent_release_gates.contracts.decisions import Decision, GateInput
+from agent_release_gates.contracts.scores import CHECKS
 
 
 def decide_release(inputs: GateInput) -> Decision:
@@ -16,10 +17,29 @@ def decide_release(inputs: GateInput) -> Decision:
 
     if any("fail" in c.exact.checks.values() for c in candidate.cases):
         return result("reject", "EXACT_VIOLATION")
+    if inputs.comparison_issues:
+        return result("inconclusive", *inputs.comparison_issues)
     baseline = inputs.baseline
     expected = set(inputs.expected_case_ids)
     if baseline is None or len(expected) != 4 or len(inputs.expected_case_ids) != 4:
         return result("inconclusive", "BASELINE_OR_CASE_CONTRACT_MISSING")
+    if set(inputs.target_identities) != {"baseline", "candidate"}:
+        return result("inconclusive", "TARGET_IDENTITY_MISSING")
+
+    def fixed(identity, mode):
+        raw = identity.model_dump(mode="json")
+        raw["settings"] = {
+            k: v
+            for k, v in raw["settings"].items()
+            if k not in ["prompt", "prompt_digest"]
+            and not (mode == "fault_control" and k == "control_recipe")
+        }
+        return raw
+
+    if fixed(inputs.target_identities["baseline"], baseline.mode) != fixed(
+        inputs.target_identities["candidate"], candidate.mode
+    ):
+        return result("inconclusive", "COMPARISON_DIMENSION_NOT_ALLOWED")
     for version in [baseline, candidate]:
         if len(version.cases) != 4 or {c.case_id for c in version.cases} != expected:
             return result("inconclusive", "CASE_SET_INCOMPLETE")
@@ -31,6 +51,11 @@ def decide_release(inputs: GateInput) -> Decision:
             return result("inconclusive", "INCOMPARABLE_IDENTITIES")
         if not version.usage_complete:
             return result("inconclusive", "USAGE_UNRESOLVED")
+    if any(
+        set(c.exact.checks) != CHECKS or "missing" in c.exact.checks.values()
+        for c in baseline.cases
+    ):
+        return result("inconclusive", "BASELINE_EVIDENCE_INCOMPLETE")
     qualification = inputs.qualification
     if qualification.status != "pass":
         return result("inconclusive", "JUDGE_UNQUALIFIED")

@@ -4,7 +4,7 @@ Measured 27 October 2026. This is a bounded synthetic demonstration. The subject
 
 ## Observed results
 
-The committed cohort contains 20 natural scripted workflow captures and 20 explicit control derivatives. Twelve source families yield eight calibration and sixteen held-out review items; four separate release families compare baseline/candidate prompts. The candidate prompt adds a focused instruction to distinguish observed facts from possible causes and give an evidence-bound next step.
+The current cohort contains 20 natural scripted workflow captures and 20 explicit control derivatives, captured afresh after the review fixes. Twelve source families yield eight calibration and sixteen held-out review items; four separate release families compare baseline/candidate prompts. The candidate prompt adds a focused instruction to distinguish observed facts from possible causes and give an evidence-bound next step.
 
 The process demonstration observed the intended CLI results:
 
@@ -30,7 +30,13 @@ The first broad suite run was interrupted by a simultaneous database-container r
 
 ## Provenance and limits
 
-Committed sample capture adapter bytes are retained at `371106b`; manifests include the subject commit, actual adapter/source/settings/dataset digests and original capture times. Later changes add the compiled-output lock without rewriting historical sample bundles. New runs carry that additional compiled fingerprint. The subject is pinned to `774e4df2d1d05342623ef2b10c42ec69238877f5`; its original checkout, prior reports, fixtures and budget remain unchanged.
+The original cohort and its known request-snapshot defect are preserved under `examples/historical-scripted-v1`, with original adapter bytes retained at `371106b`. Current `examples/scripted` bundles were captured anew with immutable request frames and compiled-output fingerprints. Manifests retain actual adapter/source/settings/dataset digests and capture times. The subject is pinned to `774e4df2d1d05342623ef2b10c42ec69238877f5`; its original checkout, prior reports, fixtures and budget remain unchanged.
+
+## Independent review and fixes
+
+One fresh reviewer identified seven Important issues and no Critical or Minor issues. Each issue was reproduced before its correction: missing baseline evidence, inconsistent/unrelated review events, lifecycle failures hidden by truncation, mutable request frames, incomplete/uncompared target identity, malformed nested documents, and unverified hosted write confirmation. The single consolidated fix pass passed 95 Python tests and nine Node tests, with no skips. No second review or live-model/hosted call was performed.
+
+New regressions exercise the actual API/service and SDK boundary, including SDK sampling at zero and queued writes. A release now requires baseline evidence, matched review commands and complete declared target identities; invalid nested content is refused before persistence. Sync remains unresolved until expected remote records are reconciled. The corrected scripted process demonstration retains all four expected statuses and CLI exit codes.
 
 Hashes bind local inputs; they are not independent authenticity certificates. Exact checks cover the selected synthetic contract rather than universal financial correctness. Tool timestamps without a recorded start are instantaneous observations, not measured tool durations. Derived controls retain their parent capture provenance and are excluded from new-inference cost totals.
 

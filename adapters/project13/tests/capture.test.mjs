@@ -75,6 +75,13 @@ test('candidate records a genuinely changed prompt identity', async () => {
   assert.notEqual(baseline.manifest.settings.prompt_digest,candidate.manifest.settings.prompt_digest);
 });
 
+test('request frames are immutable snapshots without future replies', async () => {
+  const captured=await capture('r01');
+  const requests=captured.documents.events.filter(e=>e.kind==='model_request');
+  assert.deepEqual(requests.map(e=>e.payload.messages.length),[2,4,9,12]);
+  assert.deepEqual(requests[0].payload.messages.map(m=>m.role),['system','user']);
+});
+
 test('compiled subject drift refuses before invocation', async () => {
   const path=join(subjectRoot,'dist/domain/money.js');
   const saved=await readFile(path);
