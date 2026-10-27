@@ -20,7 +20,8 @@ export async function captureCase({subjectRoot,caseDefinition,script,subjectVers
   const working = await mkdtemp(join(tmpdir(),'subject-run-'));
   const store = subject.openStore(working);
   const drain = observeAudit(store,emit);
-  const identity = {...subject.FAKE_IDENTITY, modelVersion:'scripted-v1',promptVersion:subjectVersion};
+  const systemPrompt=subject.LIVE_IDENTITY.systemPrompt+(subjectVersion==='candidate'?'\nDistinguish observed facts from possible causes, and give one evidence-bound next step.':'');
+  const identity = {...subject.FAKE_IDENTITY, systemPrompt,modelVersion:'scripted-v1',promptVersion:subjectVersion};
   const fake = subject.createFakeModel(script ?? scriptedCase(fixture,caseDefinition.scenario));
   const model = {async next(input,signal) {
     drain(); emit('model_request', {turn:input.turn,messages:input.messages});

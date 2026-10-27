@@ -68,3 +68,9 @@ test('fault controls retain parent and separate semantic from exact faults', asy
   assert.notEqual(semantic.documents.proposal.explanation, original.documents.proposal.explanation);
   assert.notEqual(unsafe.documents.final_sources[0].grossMinor, original.documents.final_sources[0].grossMinor);
 });
+
+test('candidate records a genuinely changed prompt identity', async () => {
+  const baseline=await capture('r01');
+  const candidate=await capture('r01',{subjectVersion:'candidate'});
+  assert.notEqual(baseline.manifest.settings.prompt_digest,candidate.manifest.settings.prompt_digest);
+});

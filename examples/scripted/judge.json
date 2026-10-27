@@ -1,0 +1,386 @@
+{
+  "run_a2b56797-0f54-4114-9618-31e1f6587540": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_67f4c4a6-fbfe-46dc-8aee-7690000d5521": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_17120467-3486-48f8-87c5-3c381c172983": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_31652cd6-5e3d-48fd-a227-b422ad5e051e": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_10fdf6d5-28ea-4010-8244-4228c00d6235": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_feeaeef8-d7be-461a-b280-9102a542348e": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_c0a9c9c7-b3bd-4b8a-af2c-be19e251dd1d": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_a8b01250-8bd1-41a7-9984-8571311f7591": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_9c726902-eb20-4f8f-bd7e-286e0ce5b25a": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_15654819-2ac5-4f78-8084-7c1fbb20bbbd": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_7e93d3bd-138a-4582-8365-1b3780182797": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_570a8845-4b44-409b-88e3-2b7e5ce61e7a": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_3965d382-89a0-4aea-99f9-955b1e25f3e2": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_e8575f4c-d639-4094-a8ca-f3ee06c0315d": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_e510cd91-b94b-4c79-a2e8-63297a474e4c": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_dd752b83-dfb4-403f-a795-7374aec1cb09": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_4311db2f-7dd3-4618-a794-6535c042fa8a": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_5555cd3a-e1fd-4f75-afb7-394f019becd1": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_812e7754-1850-4fab-a072-8f3fc33c07cc": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_2b23cf42-7069-475d-aa20-99c9c3aee54b": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_10a7675a-01e6-49f4-b648-7732b2ccef50": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_0b6b4157-920d-4eef-8332-377b2b5eeb81": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_944b8f7e-152a-4158-bc0a-1e5d8928aad8": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_f5774e79-a569-4d49-ae74-035805346ad1": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_55ff3d83-51d0-4c45-9a2b-e736186916ba": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "run_65488b8f-1daf-43ea-8f0a-c94e9c94d0d5": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_650775a8-ed1d-42e6-a009-476d6008f3d4": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "control_7f101958-781c-48aa-a31f-30105bc27478": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_0bea438a-19d6-4aad-b5b5-b168aa5bd51f": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "run_ac620fb2-ff0c-44e1-a270-ac7e1ddb554c": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_fd21ce90-6244-4490-8cbe-cbe180283109": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "control_635cd946-95c4-4e59-8f58-927c335747f7": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_ecd9d2c4-16e4-40b2-8134-09c48ef269dd": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "run_33c3bf84-991b-494b-8d6f-13dd872cea90": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_ee628c7d-b313-451c-962c-122c1163b95c": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "control_0ccd69c3-ad02-4f8e-9d45-c37f329f1586": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "run_288727cb-9395-40d9-a274-e21c36932ad5": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "run_d54a28c3-86b2-40eb-a07e-ee0bed2d0d99": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "control_9d5e126a-e202-4888-9698-f904a14b177e": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "control_82d7f091-bc61-4cdb-b77f-9db106e608bb": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_01": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_02": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_03": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_04": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_05": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_06": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_07": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_08": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_09": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_10": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_11": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_12": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_13": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_14": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_15": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_16": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_17": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_18": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_19": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_20": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_21": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_22": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  },
+  "item_23": {
+    "support": "yes",
+    "usefulness": "yes",
+    "evidence_ids": [],
+    "reason": "Authored scripted supported example."
+  },
+  "item_24": {
+    "support": "no",
+    "usefulness": "no",
+    "evidence_ids": [],
+    "reason": "Authored scripted unsupported or unsafe example."
+  }
+}

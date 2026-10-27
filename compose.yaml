@@ -1,5 +1,22 @@
 name: agent-release-gates
 services:
+  api:
+    build: .
+    environment:
+      GATES_DATABASE_URL: postgresql+psycopg://gates:gates-local-only@db:5432/gates_test
+      GATES_ARTIFACT_ROOT: /data/artifacts
+    ports:
+      - "127.0.0.1:55416:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - gates-artifacts:/data/artifacts
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
   db:
     image: postgres:16@sha256:9e2cf6287f25c3151f4c9421ccce2b17f3e60061c111a29165e0d2cdd9ff0a97
     environment:
@@ -17,3 +34,4 @@ services:
       - gates-data:/var/lib/postgresql/data
 volumes:
   gates-data:
+  gates-artifacts:

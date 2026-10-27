@@ -1,0 +1,47 @@
+name: Offline checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.10.7'
+      - name: Install locked Python dependencies
+        run: uv sync --locked
+      - name: Prepare the pinned subject
+        run: |
+          git clone https://github.com/DmitryLyubaev/payments-reconciliation-assistant .local/subject
+          git -C .local/subject checkout --detach 774e4df2d1d05342623ef2b10c42ec69238877f5
+          npm --prefix .local/subject ci
+          npm --prefix .local/subject run build
+      - name: Start PostgreSQL
+        run: docker compose up -d --wait db
+      - name: Lint and unit/integration/acceptance tests
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+          node --test adapters/project13/tests/capture.test.mjs
+          uv run pytest -q
+      - name: Scripted process demonstration
+        run: bash scripts/demo.sh
+      - name: Container build and API smoke
+        run: |
+          docker compose build
+          docker compose up -d --wait api
+          uv run python scripts/container_smoke.py
+      - name: Stop project containers
+        if: always()
+        run: docker compose down

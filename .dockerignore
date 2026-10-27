@@ -1,0 +1,11 @@
+.git
+.venv
+.local
+.superpowers
+.pytest_cache
+.ruff_cache
+**/__pycache__
+artifacts
+.env
+examples
+tests
