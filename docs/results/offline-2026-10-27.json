@@ -1,0 +1,3930 @@
+{
+  "mode": "scripted_offline",
+  "human_labels": 0,
+  "scripted_labels": 24,
+  "paid_calls": 0,
+  "model_spend": "not_incurred",
+  "qualification": {
+    "status": "pass",
+    "metrics": [
+      {
+        "items": 16,
+        "agreement": 16,
+        "repetition": 1,
+        "abstentions": 0,
+        "true_accepts": 8,
+        "true_rejects": 8,
+        "false_accepts": 0,
+        "false_rejects": 0,
+        "human_acceptable": 8,
+        "false_accept_rate": 0.0,
+        "support_agreement": 16,
+        "human_unacceptable": 8,
+        "dangerous_negatives": 6,
+        "repeat_disagreement": 0,
+        "usefulness_agreement": 16,
+        "dangerous_false_accepts": 0
+      },
+      {
+        "items": 16,
+        "agreement": 16,
+        "repetition": 2,
+        "abstentions": 0,
+        "true_accepts": 8,
+        "true_rejects": 8,
+        "false_accepts": 0,
+        "false_rejects": 0,
+        "human_acceptable": 8,
+        "false_accept_rate": 0.0,
+        "support_agreement": 16,
+        "human_unacceptable": 8,
+        "dangerous_negatives": 6,
+        "repeat_disagreement": 0,
+        "usefulness_agreement": 16,
+        "dangerous_false_accepts": 0
+      }
+    ],
+    "study_mode": "scripted",
+    "label_digest": "e948dcd5e01962c4b977dbd11c88a2624c3cb0a82a5c895ca1a78241f8ed1d1e",
+    "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+    "evidence_digest": "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde",
+    "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+  },
+  "decisions": {
+    "pass": {
+      "id": "9dcf0edd-d4e5-5a6b-ad2a-e0a2259e6a39",
+      "decision": {
+        "status": "accept",
+        "input_digest": "e8e1dea7839b110bef9bfbb8cc9579c7941b52c9da6768a611cf0fa383dab40f",
+        "reason_codes": [
+          "ALL_RELEASE_CHECKS_PASSED"
+        ],
+        "evidence_digests": [
+          "39a6fde8644f15b1dc904ef53b9382d549a7b92fb1424ee09346a1ef04e7bb36",
+          "8fbd8ee0803c3892611248af67c9ea75f448f606bd76ed410a74322f28cc275f",
+          "3ee48e3fd5b50f55fe9265fac3f0414c02b88f25a3d92f66e37e48ffaa506ce9",
+          "2f780bf1b2815ece6232f2d29ee29038ec46fdbcd561f143cab335f06db7eca7",
+          "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde"
+        ]
+      },
+      "inputs": {
+        "baseline": {
+          "mode": "scripted",
+          "cases": [
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "item_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.203460Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.203460Z",
+                  "usefulness": "yes",
+                  "item_digest": "594277134a04f5637a6b84124c2538621ba5fd97504a1b3b25b64cf4110fd946",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "item_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.203460Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.203460Z",
+                  "usefulness": "yes",
+                  "item_digest": "594277134a04f5637a6b84124c2538621ba5fd97504a1b3b25b64cf4110fd946",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+              "case_id": "r01",
+              "artifact_digest": "048b6674b46063350a1b87f3174af368e871ffd9aa372c7cfe3a461bde4201fb"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "item_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.205455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.205455Z",
+                  "usefulness": "yes",
+                  "item_digest": "2698df39adbc5233b55ed3191ab388099faa99eadde9be46d1148e10977698c5",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "item_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.205455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.205455Z",
+                  "usefulness": "yes",
+                  "item_digest": "2698df39adbc5233b55ed3191ab388099faa99eadde9be46d1148e10977698c5",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+              "case_id": "r02",
+              "artifact_digest": "f759fe812e8765c478b008258c8407ae1185b78da350087f8beee3f4dd63468b"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "item_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.206455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.206455Z",
+                  "usefulness": "yes",
+                  "item_digest": "f619e9554deafd96fb70b5c405c626db7f89e7f0de24f5e1fd8b8da39b06f602",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "item_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.206455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.206455Z",
+                  "usefulness": "yes",
+                  "item_digest": "f619e9554deafd96fb70b5c405c626db7f89e7f0de24f5e1fd8b8da39b06f602",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+              "case_id": "r03",
+              "artifact_digest": "84346fef029e9d2b90b3a681a5c0676d2be76e4ef77321088a8fe6684d4b4843"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "item_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.208455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.207455Z",
+                  "usefulness": "yes",
+                  "item_digest": "75d3d157f679ef2fabfce20126939634ca518c455b58c5be1196681fb51d504b",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "item_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.208455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.208455Z",
+                  "usefulness": "yes",
+                  "item_digest": "75d3d157f679ef2fabfce20126939634ca518c455b58c5be1196681fb51d504b",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+              "case_id": "r04",
+              "artifact_digest": "92e7e5429bdd1fb74e6095b1122ac3978958bd49fe035446ee2aba313437facf"
+            }
+          ],
+          "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+          "usage_complete": true,
+          "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+          "subject_version": "baseline",
+          "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7"
+        },
+        "candidate": {
+          "mode": "scripted",
+          "cases": [
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_92326001-8795-40dd-b906-72aabd5c4af9",
+                  "item_id": "run_92326001-8795-40dd-b906-72aabd5c4af9",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.303456Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.303456Z",
+                  "usefulness": "yes",
+                  "item_digest": "475c50c65b1500dcf4529d5db6328dfc0d95e8e9ada6290f7ace4d9705c8ea52",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_92326001-8795-40dd-b906-72aabd5c4af9",
+                  "item_id": "run_92326001-8795-40dd-b906-72aabd5c4af9",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.303456Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.303456Z",
+                  "usefulness": "yes",
+                  "item_digest": "475c50c65b1500dcf4529d5db6328dfc0d95e8e9ada6290f7ace4d9705c8ea52",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_92326001-8795-40dd-b906-72aabd5c4af9",
+              "case_id": "r01",
+              "artifact_digest": "39a6fde8644f15b1dc904ef53b9382d549a7b92fb1424ee09346a1ef04e7bb36"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_c5554664-bf0f-40a8-9b60-4ce4b3125275",
+                  "item_id": "run_c5554664-bf0f-40a8-9b60-4ce4b3125275",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.306456Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.306456Z",
+                  "usefulness": "yes",
+                  "item_digest": "106e31149655a6f92cad6dba6a187dcaf2e260fc3bb8fd60abea478c8ecd4b77",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_c5554664-bf0f-40a8-9b60-4ce4b3125275",
+                  "item_id": "run_c5554664-bf0f-40a8-9b60-4ce4b3125275",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.306456Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.306456Z",
+                  "usefulness": "yes",
+                  "item_digest": "106e31149655a6f92cad6dba6a187dcaf2e260fc3bb8fd60abea478c8ecd4b77",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_c5554664-bf0f-40a8-9b60-4ce4b3125275",
+              "case_id": "r02",
+              "artifact_digest": "8fbd8ee0803c3892611248af67c9ea75f448f606bd76ed410a74322f28cc275f"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_0d7b096f-bec2-4ecc-bf57-67f182249a63",
+                  "item_id": "run_0d7b096f-bec2-4ecc-bf57-67f182249a63",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.308461Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.308461Z",
+                  "usefulness": "yes",
+                  "item_digest": "44a8fc981b496f6826ef3a6dc8026e1585544c7cb9c79ae94d5da1d068e012c8",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_0d7b096f-bec2-4ecc-bf57-67f182249a63",
+                  "item_id": "run_0d7b096f-bec2-4ecc-bf57-67f182249a63",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.308461Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.308461Z",
+                  "usefulness": "yes",
+                  "item_digest": "44a8fc981b496f6826ef3a6dc8026e1585544c7cb9c79ae94d5da1d068e012c8",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_0d7b096f-bec2-4ecc-bf57-67f182249a63",
+              "case_id": "r03",
+              "artifact_digest": "3ee48e3fd5b50f55fe9265fac3f0414c02b88f25a3d92f66e37e48ffaa506ce9"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_8f2de9ac-6f7b-478f-a3e2-ff9c2595456b",
+                  "item_id": "run_8f2de9ac-6f7b-478f-a3e2-ff9c2595456b",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.309460Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.309460Z",
+                  "usefulness": "yes",
+                  "item_digest": "b5221724b8c085e02f05f33494c27fc96bb41ce0390d008415200a48b87896b2",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_8f2de9ac-6f7b-478f-a3e2-ff9c2595456b",
+                  "item_id": "run_8f2de9ac-6f7b-478f-a3e2-ff9c2595456b",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.309460Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.309460Z",
+                  "usefulness": "yes",
+                  "item_digest": "b5221724b8c085e02f05f33494c27fc96bb41ce0390d008415200a48b87896b2",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_8f2de9ac-6f7b-478f-a3e2-ff9c2595456b",
+              "case_id": "r04",
+              "artifact_digest": "2f780bf1b2815ece6232f2d29ee29038ec46fdbcd561f143cab335f06db7eca7"
+            }
+          ],
+          "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+          "usage_complete": true,
+          "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+          "subject_version": "candidate",
+          "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7"
+        },
+        "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+        "qualification": {
+          "status": "pass",
+          "metrics": [
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 1,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            },
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 2,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            }
+          ],
+          "study_mode": "scripted",
+          "label_digest": "e948dcd5e01962c4b977dbd11c88a2624c3cb0a82a5c895ca1a78241f8ed1d1e",
+          "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+          "evidence_digest": "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde",
+          "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+        },
+        "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+        "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7",
+        "comparison_issues": [],
+        "expected_case_ids": [
+          "r01",
+          "r02",
+          "r03",
+          "r04"
+        ],
+        "target_identities": {
+          "baseline": {
+            "settings": {
+              "model": "scripted-v1",
+              "tools": "project13-locked",
+              "prompt": "baseline",
+              "prompt_digest": "1e166e690b15dd20fc296b757255d65945cf37d24d981032139a3fe53575c588",
+              "compiled_digest": "e22d415e0de0b747ad61cb7b61919171319bddbb87727f63212ded1d3c180b80"
+            },
+            "source_digest": "55535d671c12abbed6f86195432fcf1698d1a9f8ce42a1f36c57511e97ade924",
+            "adapter_digest": "03fa6e91674dd4b31dde55351ad041f3c529fd5f0c42447c1b309819bf2ebb79",
+            "subject_commit": "774e4df2d1d05342623ef2b10c42ec69238877f5"
+          },
+          "candidate": {
+            "settings": {
+              "model": "scripted-v1",
+              "tools": "project13-locked",
+              "prompt": "candidate",
+              "prompt_digest": "fb50ea2b627be83bbbca3283affaa28d05c43767020087e1844b97c8143d380b",
+              "compiled_digest": "e22d415e0de0b747ad61cb7b61919171319bddbb87727f63212ded1d3c180b80"
+            },
+            "source_digest": "55535d671c12abbed6f86195432fcf1698d1a9f8ce42a1f36c57511e97ade924",
+            "adapter_digest": "03fa6e91674dd4b31dde55351ad041f3c529fd5f0c42447c1b309819bf2ebb79",
+            "subject_commit": "774e4df2d1d05342623ef2b10c42ec69238877f5"
+          }
+        }
+      },
+      "metrics": {
+        "scope": "saved-run evaluation; scripted labels/judges are not human/live evidence",
+        "observations": [
+          {
+            "version": "baseline",
+            "case_id": "r01",
+            "family_id": "r01",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 105.0,
+            "source_interval_ms": 105.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r02",
+            "family_id": "r02",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 103.0,
+            "source_interval_ms": 103.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r03",
+            "family_id": "r03",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 91.0,
+            "source_interval_ms": 91.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r04",
+            "family_id": "r04",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 102.0,
+            "source_interval_ms": 102.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r01",
+            "family_id": "r01",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 132.0,
+            "source_interval_ms": 132.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r02",
+            "family_id": "r02",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 94.0,
+            "source_interval_ms": 94.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r03",
+            "family_id": "r03",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 108.0,
+            "source_interval_ms": 108.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r04",
+            "family_id": "r04",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 99.0,
+            "source_interval_ms": 99.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "natural_case_runs": 8,
+        "case_families": 4,
+        "qualification": {
+          "status": "pass",
+          "metrics": [
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 1,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            },
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 2,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            }
+          ],
+          "study_mode": "scripted",
+          "label_digest": "e948dcd5e01962c4b977dbd11c88a2624c3cb0a82a5c895ca1a78241f8ed1d1e",
+          "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+          "evidence_digest": "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde",
+          "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+        },
+        "derived_control_costs": "Parent capture usage is retained for provenance, excluded from new-inference totals.",
+        "known_agent_cost_nano_usd": 0,
+        "unknown_agent_charges": 0,
+        "reserved_agent_cost_nano_usd": 0
+      }
+    },
+    "exact_reject": {
+      "id": "6b28179e-ff01-56ec-b44d-c6a088b06d8b",
+      "decision": {
+        "status": "reject",
+        "input_digest": "9d719b3a14571c6c74a40db4a75b113d9e9ef88c34a74fccc04dd78702a32ba0",
+        "reason_codes": [
+          "EXACT_VIOLATION"
+        ],
+        "evidence_digests": [
+          "b75f8cf9848296f58545fc530f13fd46d7d04edd0557c9d1957b13d4791710c0",
+          "5925ac58afe05dba9b600a35701d36da45ca7d84b95d84244bf9da78b3dbf97e",
+          "5e5ea305025b919e032855e86f0e25c12d1b8a703e80e9a6012c6929855ae4a2",
+          "f468c27bd2359b82c2ee869ee31b7c74406c4c9353e24094aea5f94ff710106a",
+          "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde"
+        ]
+      },
+      "inputs": {
+        "baseline": {
+          "mode": "scripted",
+          "cases": [
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "item_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.203460Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.203460Z",
+                  "usefulness": "yes",
+                  "item_digest": "594277134a04f5637a6b84124c2538621ba5fd97504a1b3b25b64cf4110fd946",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "item_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.203460Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.203460Z",
+                  "usefulness": "yes",
+                  "item_digest": "594277134a04f5637a6b84124c2538621ba5fd97504a1b3b25b64cf4110fd946",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+              "case_id": "r01",
+              "artifact_digest": "048b6674b46063350a1b87f3174af368e871ffd9aa372c7cfe3a461bde4201fb"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "item_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.205455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.205455Z",
+                  "usefulness": "yes",
+                  "item_digest": "2698df39adbc5233b55ed3191ab388099faa99eadde9be46d1148e10977698c5",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "item_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.205455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.205455Z",
+                  "usefulness": "yes",
+                  "item_digest": "2698df39adbc5233b55ed3191ab388099faa99eadde9be46d1148e10977698c5",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+              "case_id": "r02",
+              "artifact_digest": "f759fe812e8765c478b008258c8407ae1185b78da350087f8beee3f4dd63468b"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "item_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.206455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.206455Z",
+                  "usefulness": "yes",
+                  "item_digest": "f619e9554deafd96fb70b5c405c626db7f89e7f0de24f5e1fd8b8da39b06f602",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "item_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.206455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.206455Z",
+                  "usefulness": "yes",
+                  "item_digest": "f619e9554deafd96fb70b5c405c626db7f89e7f0de24f5e1fd8b8da39b06f602",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+              "case_id": "r03",
+              "artifact_digest": "84346fef029e9d2b90b3a681a5c0676d2be76e4ef77321088a8fe6684d4b4843"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "item_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.208455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.207455Z",
+                  "usefulness": "yes",
+                  "item_digest": "75d3d157f679ef2fabfce20126939634ca518c455b58c5be1196681fb51d504b",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "item_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.208455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.208455Z",
+                  "usefulness": "yes",
+                  "item_digest": "75d3d157f679ef2fabfce20126939634ca518c455b58c5be1196681fb51d504b",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+              "case_id": "r04",
+              "artifact_digest": "92e7e5429bdd1fb74e6095b1122ac3978958bd49fe035446ee2aba313437facf"
+            }
+          ],
+          "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+          "usage_complete": true,
+          "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+          "subject_version": "baseline",
+          "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7"
+        },
+        "candidate": {
+          "mode": "fault_control",
+          "cases": [
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "fail",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_bd35a4f0-3a67-4f76-a414-d9e7b6c6fc18",
+                  "item_id": "control_bd35a4f0-3a67-4f76-a414-d9e7b6c6fc18",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.398699Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.398699Z",
+                  "usefulness": "no",
+                  "item_digest": "9e0dca0e754e2a25a3516698e7cd12cc87a743d47e0272c17f02b0f293af8888",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_bd35a4f0-3a67-4f76-a414-d9e7b6c6fc18",
+                  "item_id": "control_bd35a4f0-3a67-4f76-a414-d9e7b6c6fc18",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.398699Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.398699Z",
+                  "usefulness": "no",
+                  "item_digest": "9e0dca0e754e2a25a3516698e7cd12cc87a743d47e0272c17f02b0f293af8888",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "control_bd35a4f0-3a67-4f76-a414-d9e7b6c6fc18",
+              "case_id": "r01",
+              "artifact_digest": "b75f8cf9848296f58545fc530f13fd46d7d04edd0557c9d1957b13d4791710c0"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "fail",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_f8770a21-8359-4020-91df-3e4d03c52987",
+                  "item_id": "control_f8770a21-8359-4020-91df-3e4d03c52987",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.400698Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.400698Z",
+                  "usefulness": "no",
+                  "item_digest": "6b2d9d758b95bd71082d16bb81cd0b528f33e8098e054b6fbdd869145f6ca96f",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_f8770a21-8359-4020-91df-3e4d03c52987",
+                  "item_id": "control_f8770a21-8359-4020-91df-3e4d03c52987",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.400698Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.400698Z",
+                  "usefulness": "no",
+                  "item_digest": "6b2d9d758b95bd71082d16bb81cd0b528f33e8098e054b6fbdd869145f6ca96f",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "control_f8770a21-8359-4020-91df-3e4d03c52987",
+              "case_id": "r02",
+              "artifact_digest": "5925ac58afe05dba9b600a35701d36da45ca7d84b95d84244bf9da78b3dbf97e"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "fail",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_24f340a6-a26f-4858-8d35-e938bcf853c2",
+                  "item_id": "control_24f340a6-a26f-4858-8d35-e938bcf853c2",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.402698Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.402698Z",
+                  "usefulness": "no",
+                  "item_digest": "8d83678a89d53806fa62b9010461af8f0c790bd327970a7dd3a5b39b50675cb3",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_24f340a6-a26f-4858-8d35-e938bcf853c2",
+                  "item_id": "control_24f340a6-a26f-4858-8d35-e938bcf853c2",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.403702Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.403702Z",
+                  "usefulness": "no",
+                  "item_digest": "8d83678a89d53806fa62b9010461af8f0c790bd327970a7dd3a5b39b50675cb3",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "control_24f340a6-a26f-4858-8d35-e938bcf853c2",
+              "case_id": "r03",
+              "artifact_digest": "5e5ea305025b919e032855e86f0e25c12d1b8a703e80e9a6012c6929855ae4a2"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "fail",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_246281ce-3297-4cdb-b3d7-5ee643699b82",
+                  "item_id": "control_246281ce-3297-4cdb-b3d7-5ee643699b82",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.406698Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.405699Z",
+                  "usefulness": "no",
+                  "item_digest": "ece97f45660262c853aeca29b428863cf0192514b6e758e4a5d97d83a755939b",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_246281ce-3297-4cdb-b3d7-5ee643699b82",
+                  "item_id": "control_246281ce-3297-4cdb-b3d7-5ee643699b82",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.406698Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.406698Z",
+                  "usefulness": "no",
+                  "item_digest": "ece97f45660262c853aeca29b428863cf0192514b6e758e4a5d97d83a755939b",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "control_246281ce-3297-4cdb-b3d7-5ee643699b82",
+              "case_id": "r04",
+              "artifact_digest": "f468c27bd2359b82c2ee869ee31b7c74406c4c9353e24094aea5f94ff710106a"
+            }
+          ],
+          "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+          "usage_complete": true,
+          "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+          "subject_version": "candidate_change_money",
+          "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7"
+        },
+        "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+        "qualification": {
+          "status": "pass",
+          "metrics": [
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 1,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            },
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 2,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            }
+          ],
+          "study_mode": "scripted",
+          "label_digest": "e948dcd5e01962c4b977dbd11c88a2624c3cb0a82a5c895ca1a78241f8ed1d1e",
+          "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+          "evidence_digest": "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde",
+          "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+        },
+        "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+        "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7",
+        "comparison_issues": [],
+        "expected_case_ids": [
+          "r01",
+          "r02",
+          "r03",
+          "r04"
+        ],
+        "target_identities": {
+          "baseline": {
+            "settings": {
+              "model": "scripted-v1",
+              "tools": "project13-locked",
+              "prompt": "baseline",
+              "prompt_digest": "1e166e690b15dd20fc296b757255d65945cf37d24d981032139a3fe53575c588",
+              "compiled_digest": "e22d415e0de0b747ad61cb7b61919171319bddbb87727f63212ded1d3c180b80"
+            },
+            "source_digest": "55535d671c12abbed6f86195432fcf1698d1a9f8ce42a1f36c57511e97ade924",
+            "adapter_digest": "03fa6e91674dd4b31dde55351ad041f3c529fd5f0c42447c1b309819bf2ebb79",
+            "subject_commit": "774e4df2d1d05342623ef2b10c42ec69238877f5"
+          },
+          "candidate": {
+            "settings": {
+              "model": "scripted-v1",
+              "tools": "project13-locked",
+              "prompt": "candidate",
+              "prompt_digest": "fb50ea2b627be83bbbca3283affaa28d05c43767020087e1844b97c8143d380b",
+              "control_recipe": "change_money",
+              "compiled_digest": "e22d415e0de0b747ad61cb7b61919171319bddbb87727f63212ded1d3c180b80"
+            },
+            "source_digest": "55535d671c12abbed6f86195432fcf1698d1a9f8ce42a1f36c57511e97ade924",
+            "adapter_digest": "03fa6e91674dd4b31dde55351ad041f3c529fd5f0c42447c1b309819bf2ebb79",
+            "subject_commit": "774e4df2d1d05342623ef2b10c42ec69238877f5"
+          }
+        }
+      },
+      "metrics": {
+        "scope": "saved-run evaluation; scripted labels/judges are not human/live evidence",
+        "observations": [
+          {
+            "version": "baseline",
+            "case_id": "r01",
+            "family_id": "r01",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 105.0,
+            "source_interval_ms": 105.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r02",
+            "family_id": "r02",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 103.0,
+            "source_interval_ms": 103.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r03",
+            "family_id": "r03",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 91.0,
+            "source_interval_ms": 91.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r04",
+            "family_id": "r04",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 102.0,
+            "source_interval_ms": 102.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r01",
+            "family_id": "r01",
+            "mode": "fault_control",
+            "derived_control": true,
+            "agent_elapsed_ms": null,
+            "source_interval_ms": 132.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "fail",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r02",
+            "family_id": "r02",
+            "mode": "fault_control",
+            "derived_control": true,
+            "agent_elapsed_ms": null,
+            "source_interval_ms": 94.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "fail",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r03",
+            "family_id": "r03",
+            "mode": "fault_control",
+            "derived_control": true,
+            "agent_elapsed_ms": null,
+            "source_interval_ms": 108.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "fail",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r04",
+            "family_id": "r04",
+            "mode": "fault_control",
+            "derived_control": true,
+            "agent_elapsed_ms": null,
+            "source_interval_ms": 99.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "fail",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.9990000000000001,
+              0.0
+            ]
+          }
+        ],
+        "natural_case_runs": 4,
+        "case_families": 4,
+        "qualification": {
+          "status": "pass",
+          "metrics": [
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 1,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            },
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 2,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            }
+          ],
+          "study_mode": "scripted",
+          "label_digest": "e948dcd5e01962c4b977dbd11c88a2624c3cb0a82a5c895ca1a78241f8ed1d1e",
+          "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+          "evidence_digest": "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde",
+          "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+        },
+        "derived_control_costs": "Parent capture usage is retained for provenance, excluded from new-inference totals.",
+        "known_agent_cost_nano_usd": 0,
+        "unknown_agent_charges": 0,
+        "reserved_agent_cost_nano_usd": 0
+      }
+    },
+    "semantic_reject": {
+      "id": "2b4c4e6c-9fb0-50e2-adcf-d9aa05eb5263",
+      "decision": {
+        "status": "reject",
+        "input_digest": "e3f6e4829ab9d235be8c5880c443d84874134bc6f17ac3209da2cb0b023206c9",
+        "reason_codes": [
+          "SEMANTIC_VIOLATION"
+        ],
+        "evidence_digests": [
+          "7f4d59bbcefe1cb0c989a8e6289370ee36bb2baf683121accbfef1117e0bfe7e",
+          "a990a0a55893b7439c35acda08f41da6ce5801c92e6fed03c04e2f982d11b517",
+          "e47f7941b76eea0c1c7a2343de3af5899cb32ec7370180e0b91dec37794b4492",
+          "bebca32d17566903d6f49cb06029b4e80a2667a9ef7a212b1ae2744e16bfc38b",
+          "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde"
+        ]
+      },
+      "inputs": {
+        "baseline": {
+          "mode": "scripted",
+          "cases": [
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "item_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.203460Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.203460Z",
+                  "usefulness": "yes",
+                  "item_digest": "594277134a04f5637a6b84124c2538621ba5fd97504a1b3b25b64cf4110fd946",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "item_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.203460Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.203460Z",
+                  "usefulness": "yes",
+                  "item_digest": "594277134a04f5637a6b84124c2538621ba5fd97504a1b3b25b64cf4110fd946",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+              "case_id": "r01",
+              "artifact_digest": "048b6674b46063350a1b87f3174af368e871ffd9aa372c7cfe3a461bde4201fb"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "item_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.205455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.205455Z",
+                  "usefulness": "yes",
+                  "item_digest": "2698df39adbc5233b55ed3191ab388099faa99eadde9be46d1148e10977698c5",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "item_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.205455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.205455Z",
+                  "usefulness": "yes",
+                  "item_digest": "2698df39adbc5233b55ed3191ab388099faa99eadde9be46d1148e10977698c5",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+              "case_id": "r02",
+              "artifact_digest": "f759fe812e8765c478b008258c8407ae1185b78da350087f8beee3f4dd63468b"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "item_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.206455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.206455Z",
+                  "usefulness": "yes",
+                  "item_digest": "f619e9554deafd96fb70b5c405c626db7f89e7f0de24f5e1fd8b8da39b06f602",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "item_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.206455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.206455Z",
+                  "usefulness": "yes",
+                  "item_digest": "f619e9554deafd96fb70b5c405c626db7f89e7f0de24f5e1fd8b8da39b06f602",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+              "case_id": "r03",
+              "artifact_digest": "84346fef029e9d2b90b3a681a5c0676d2be76e4ef77321088a8fe6684d4b4843"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "item_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.208455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.207455Z",
+                  "usefulness": "yes",
+                  "item_digest": "75d3d157f679ef2fabfce20126939634ca518c455b58c5be1196681fb51d504b",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "item_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.208455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.208455Z",
+                  "usefulness": "yes",
+                  "item_digest": "75d3d157f679ef2fabfce20126939634ca518c455b58c5be1196681fb51d504b",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+              "case_id": "r04",
+              "artifact_digest": "92e7e5429bdd1fb74e6095b1122ac3978958bd49fe035446ee2aba313437facf"
+            }
+          ],
+          "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+          "usage_complete": true,
+          "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+          "subject_version": "baseline",
+          "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7"
+        },
+        "candidate": {
+          "mode": "fault_control",
+          "cases": [
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_ba4dc691-3022-4af9-9759-131e7781f9de",
+                  "item_id": "control_ba4dc691-3022-4af9-9759-131e7781f9de",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.491928Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.491928Z",
+                  "usefulness": "no",
+                  "item_digest": "d790cd4b46cf857da6a4591bcf9db193ad6633685e3ccb0d6b4f394a1e041ef7",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_ba4dc691-3022-4af9-9759-131e7781f9de",
+                  "item_id": "control_ba4dc691-3022-4af9-9759-131e7781f9de",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.492928Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.491928Z",
+                  "usefulness": "no",
+                  "item_digest": "d790cd4b46cf857da6a4591bcf9db193ad6633685e3ccb0d6b4f394a1e041ef7",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "control_ba4dc691-3022-4af9-9759-131e7781f9de",
+              "case_id": "r01",
+              "artifact_digest": "7f4d59bbcefe1cb0c989a8e6289370ee36bb2baf683121accbfef1117e0bfe7e"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_2a37e788-7e60-4441-a849-cad6c050a38d",
+                  "item_id": "control_2a37e788-7e60-4441-a849-cad6c050a38d",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.493929Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.493929Z",
+                  "usefulness": "no",
+                  "item_digest": "f98439a87e1c0d066dc36c9e5035cf78b2a253ba6107da265f3d8b166aab622e",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_2a37e788-7e60-4441-a849-cad6c050a38d",
+                  "item_id": "control_2a37e788-7e60-4441-a849-cad6c050a38d",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.493929Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.493929Z",
+                  "usefulness": "no",
+                  "item_digest": "f98439a87e1c0d066dc36c9e5035cf78b2a253ba6107da265f3d8b166aab622e",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "control_2a37e788-7e60-4441-a849-cad6c050a38d",
+              "case_id": "r02",
+              "artifact_digest": "a990a0a55893b7439c35acda08f41da6ce5801c92e6fed03c04e2f982d11b517"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_b4c3d4ff-f238-4960-9b94-7b385b8f8503",
+                  "item_id": "control_b4c3d4ff-f238-4960-9b94-7b385b8f8503",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.495927Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.494927Z",
+                  "usefulness": "no",
+                  "item_digest": "f4a220aea38ab25fc122bb24f3b26c7956ffae8b8c1dd8599002f696db7029bf",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_b4c3d4ff-f238-4960-9b94-7b385b8f8503",
+                  "item_id": "control_b4c3d4ff-f238-4960-9b94-7b385b8f8503",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.495927Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.495927Z",
+                  "usefulness": "no",
+                  "item_digest": "f4a220aea38ab25fc122bb24f3b26c7956ffae8b8c1dd8599002f696db7029bf",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "control_b4c3d4ff-f238-4960-9b94-7b385b8f8503",
+              "case_id": "r03",
+              "artifact_digest": "e47f7941b76eea0c1c7a2343de3af5899cb32ec7370180e0b91dec37794b4492"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_fbc4aed4-df18-4929-b916-f5ff8dab4e90",
+                  "item_id": "control_fbc4aed4-df18-4929-b916-f5ff8dab4e90",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.496927Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.496927Z",
+                  "usefulness": "no",
+                  "item_digest": "aea5ff74c55eb8f5f3177c85483f95968b23943e958424fd55bc755039f1f3b6",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted unsupported or unsafe example.",
+                  "run_id": "control_fbc4aed4-df18-4929-b916-f5ff8dab4e90",
+                  "item_id": "control_fbc4aed4-df18-4929-b916-f5ff8dab4e90",
+                  "support": "no",
+                  "ended_at": "2026-10-27T10:27:18.496927Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.496927Z",
+                  "usefulness": "no",
+                  "item_digest": "aea5ff74c55eb8f5f3177c85483f95968b23943e958424fd55bc755039f1f3b6",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "control_fbc4aed4-df18-4929-b916-f5ff8dab4e90",
+              "case_id": "r04",
+              "artifact_digest": "bebca32d17566903d6f49cb06029b4e80a2667a9ef7a212b1ae2744e16bfc38b"
+            }
+          ],
+          "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+          "usage_complete": true,
+          "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+          "subject_version": "candidate_unsupported_cause",
+          "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7"
+        },
+        "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+        "qualification": {
+          "status": "pass",
+          "metrics": [
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 1,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            },
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 2,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            }
+          ],
+          "study_mode": "scripted",
+          "label_digest": "e948dcd5e01962c4b977dbd11c88a2624c3cb0a82a5c895ca1a78241f8ed1d1e",
+          "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+          "evidence_digest": "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde",
+          "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+        },
+        "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+        "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7",
+        "comparison_issues": [],
+        "expected_case_ids": [
+          "r01",
+          "r02",
+          "r03",
+          "r04"
+        ],
+        "target_identities": {
+          "baseline": {
+            "settings": {
+              "model": "scripted-v1",
+              "tools": "project13-locked",
+              "prompt": "baseline",
+              "prompt_digest": "1e166e690b15dd20fc296b757255d65945cf37d24d981032139a3fe53575c588",
+              "compiled_digest": "e22d415e0de0b747ad61cb7b61919171319bddbb87727f63212ded1d3c180b80"
+            },
+            "source_digest": "55535d671c12abbed6f86195432fcf1698d1a9f8ce42a1f36c57511e97ade924",
+            "adapter_digest": "03fa6e91674dd4b31dde55351ad041f3c529fd5f0c42447c1b309819bf2ebb79",
+            "subject_commit": "774e4df2d1d05342623ef2b10c42ec69238877f5"
+          },
+          "candidate": {
+            "settings": {
+              "model": "scripted-v1",
+              "tools": "project13-locked",
+              "prompt": "candidate",
+              "prompt_digest": "fb50ea2b627be83bbbca3283affaa28d05c43767020087e1844b97c8143d380b",
+              "control_recipe": "unsupported_cause",
+              "compiled_digest": "e22d415e0de0b747ad61cb7b61919171319bddbb87727f63212ded1d3c180b80"
+            },
+            "source_digest": "55535d671c12abbed6f86195432fcf1698d1a9f8ce42a1f36c57511e97ade924",
+            "adapter_digest": "03fa6e91674dd4b31dde55351ad041f3c529fd5f0c42447c1b309819bf2ebb79",
+            "subject_commit": "774e4df2d1d05342623ef2b10c42ec69238877f5"
+          }
+        }
+      },
+      "metrics": {
+        "scope": "saved-run evaluation; scripted labels/judges are not human/live evidence",
+        "observations": [
+          {
+            "version": "baseline",
+            "case_id": "r01",
+            "family_id": "r01",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 105.0,
+            "source_interval_ms": 105.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r02",
+            "family_id": "r02",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 103.0,
+            "source_interval_ms": 103.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r03",
+            "family_id": "r03",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 91.0,
+            "source_interval_ms": 91.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r04",
+            "family_id": "r04",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 102.0,
+            "source_interval_ms": 102.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r01",
+            "family_id": "r01",
+            "mode": "fault_control",
+            "derived_control": true,
+            "agent_elapsed_ms": null,
+            "source_interval_ms": 132.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r02",
+            "family_id": "r02",
+            "mode": "fault_control",
+            "derived_control": true,
+            "agent_elapsed_ms": null,
+            "source_interval_ms": 94.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r03",
+            "family_id": "r03",
+            "mode": "fault_control",
+            "derived_control": true,
+            "agent_elapsed_ms": null,
+            "source_interval_ms": 108.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r04",
+            "family_id": "r04",
+            "mode": "fault_control",
+            "derived_control": true,
+            "agent_elapsed_ms": null,
+            "source_interval_ms": 99.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "natural_case_runs": 4,
+        "case_families": 4,
+        "qualification": {
+          "status": "pass",
+          "metrics": [
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 1,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            },
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 2,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            }
+          ],
+          "study_mode": "scripted",
+          "label_digest": "e948dcd5e01962c4b977dbd11c88a2624c3cb0a82a5c895ca1a78241f8ed1d1e",
+          "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+          "evidence_digest": "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde",
+          "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+        },
+        "derived_control_costs": "Parent capture usage is retained for provenance, excluded from new-inference totals.",
+        "known_agent_cost_nano_usd": 0,
+        "unknown_agent_charges": 0,
+        "reserved_agent_cost_nano_usd": 0
+      }
+    },
+    "incomplete": {
+      "id": "70c25356-14c6-5189-8b44-fcaa79257cd5",
+      "decision": {
+        "status": "inconclusive",
+        "input_digest": "93f5fea7df832ba14d5cf00d56ca43384bf3a931c746d85ef70b46179f8efa91",
+        "reason_codes": [
+          "CASE_SET_INCOMPLETE"
+        ],
+        "evidence_digests": [
+          "39a6fde8644f15b1dc904ef53b9382d549a7b92fb1424ee09346a1ef04e7bb36",
+          "8fbd8ee0803c3892611248af67c9ea75f448f606bd76ed410a74322f28cc275f",
+          "3ee48e3fd5b50f55fe9265fac3f0414c02b88f25a3d92f66e37e48ffaa506ce9",
+          "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde"
+        ]
+      },
+      "inputs": {
+        "baseline": {
+          "mode": "scripted",
+          "cases": [
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "item_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.203460Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.203460Z",
+                  "usefulness": "yes",
+                  "item_digest": "594277134a04f5637a6b84124c2538621ba5fd97504a1b3b25b64cf4110fd946",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "item_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.203460Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.203460Z",
+                  "usefulness": "yes",
+                  "item_digest": "594277134a04f5637a6b84124c2538621ba5fd97504a1b3b25b64cf4110fd946",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_252f6ea9-12ea-44ad-a99c-42c659f042d5",
+              "case_id": "r01",
+              "artifact_digest": "048b6674b46063350a1b87f3174af368e871ffd9aa372c7cfe3a461bde4201fb"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "item_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.205455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.205455Z",
+                  "usefulness": "yes",
+                  "item_digest": "2698df39adbc5233b55ed3191ab388099faa99eadde9be46d1148e10977698c5",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "item_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.205455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.205455Z",
+                  "usefulness": "yes",
+                  "item_digest": "2698df39adbc5233b55ed3191ab388099faa99eadde9be46d1148e10977698c5",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_e8606f09-9590-4662-a7c4-f1e098ec4ec2",
+              "case_id": "r02",
+              "artifact_digest": "f759fe812e8765c478b008258c8407ae1185b78da350087f8beee3f4dd63468b"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "item_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.206455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.206455Z",
+                  "usefulness": "yes",
+                  "item_digest": "f619e9554deafd96fb70b5c405c626db7f89e7f0de24f5e1fd8b8da39b06f602",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "item_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.206455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.206455Z",
+                  "usefulness": "yes",
+                  "item_digest": "f619e9554deafd96fb70b5c405c626db7f89e7f0de24f5e1fd8b8da39b06f602",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_da037108-8a6b-44cf-a631-2415d5135128",
+              "case_id": "r03",
+              "artifact_digest": "84346fef029e9d2b90b3a681a5c0676d2be76e4ef77321088a8fe6684d4b4843"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "item_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.208455Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.207455Z",
+                  "usefulness": "yes",
+                  "item_digest": "75d3d157f679ef2fabfce20126939634ca518c455b58c5be1196681fb51d504b",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "item_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.208455Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.208455Z",
+                  "usefulness": "yes",
+                  "item_digest": "75d3d157f679ef2fabfce20126939634ca518c455b58c5be1196681fb51d504b",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_5af02026-71f8-4390-9299-f789406845c4",
+              "case_id": "r04",
+              "artifact_digest": "92e7e5429bdd1fb74e6095b1122ac3978958bd49fe035446ee2aba313437facf"
+            }
+          ],
+          "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+          "usage_complete": true,
+          "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+          "subject_version": "baseline",
+          "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7"
+        },
+        "candidate": {
+          "mode": "scripted",
+          "cases": [
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_92326001-8795-40dd-b906-72aabd5c4af9",
+                  "item_id": "run_92326001-8795-40dd-b906-72aabd5c4af9",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.579020Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.579020Z",
+                  "usefulness": "yes",
+                  "item_digest": "475c50c65b1500dcf4529d5db6328dfc0d95e8e9ada6290f7ace4d9705c8ea52",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_92326001-8795-40dd-b906-72aabd5c4af9",
+                  "item_id": "run_92326001-8795-40dd-b906-72aabd5c4af9",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.580018Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.579020Z",
+                  "usefulness": "yes",
+                  "item_digest": "475c50c65b1500dcf4529d5db6328dfc0d95e8e9ada6290f7ace4d9705c8ea52",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_92326001-8795-40dd-b906-72aabd5c4af9",
+              "case_id": "r01",
+              "artifact_digest": "39a6fde8644f15b1dc904ef53b9382d549a7b92fb1424ee09346a1ef04e7bb36"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_c5554664-bf0f-40a8-9b60-4ce4b3125275",
+                  "item_id": "run_c5554664-bf0f-40a8-9b60-4ce4b3125275",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.581018Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.581018Z",
+                  "usefulness": "yes",
+                  "item_digest": "106e31149655a6f92cad6dba6a187dcaf2e260fc3bb8fd60abea478c8ecd4b77",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_c5554664-bf0f-40a8-9b60-4ce4b3125275",
+                  "item_id": "run_c5554664-bf0f-40a8-9b60-4ce4b3125275",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.581018Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.581018Z",
+                  "usefulness": "yes",
+                  "item_digest": "106e31149655a6f92cad6dba6a187dcaf2e260fc3bb8fd60abea478c8ecd4b77",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_c5554664-bf0f-40a8-9b60-4ce4b3125275",
+              "case_id": "r02",
+              "artifact_digest": "8fbd8ee0803c3892611248af67c9ea75f448f606bd76ed410a74322f28cc275f"
+            },
+            {
+              "exact": {
+                "checks": {
+                  "money": "pass",
+                  "outcome": "pass",
+                  "category": "pass",
+                  "complete": "pass",
+                  "originals": "pass",
+                  "references": "pass",
+                  "stale_review": "pass",
+                  "case_identity": "pass",
+                  "duplicate_review": "pass",
+                  "approval_boundary": "pass"
+                }
+              },
+              "judges": [
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_0d7b096f-bec2-4ecc-bf57-67f182249a63",
+                  "item_id": "run_0d7b096f-bec2-4ecc-bf57-67f182249a63",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.582014Z",
+                  "repetition": 1,
+                  "started_at": "2026-10-27T10:27:18.582014Z",
+                  "usefulness": "yes",
+                  "item_digest": "44a8fc981b496f6826ef3a6dc8026e1585544c7cb9c79ae94d5da1d068e012c8",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                },
+                {
+                  "mode": "scripted",
+                  "state": "scored",
+                  "usage": {
+                    "state": "not_incurred",
+                    "price_id": null,
+                    "input_tokens": 0,
+                    "cost_nano_usd": 0,
+                    "output_tokens": 0,
+                    "reserved_nano_usd": 0
+                  },
+                  "reason": "Authored scripted supported example.",
+                  "run_id": "run_0d7b096f-bec2-4ecc-bf57-67f182249a63",
+                  "item_id": "run_0d7b096f-bec2-4ecc-bf57-67f182249a63",
+                  "support": "yes",
+                  "ended_at": "2026-10-27T10:27:18.582014Z",
+                  "repetition": 2,
+                  "started_at": "2026-10-27T10:27:18.582014Z",
+                  "usefulness": "yes",
+                  "item_digest": "44a8fc981b496f6826ef3a6dc8026e1585544c7cb9c79ae94d5da1d068e012c8",
+                  "evidence_ids": [],
+                  "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+                  "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+                }
+              ],
+              "run_id": "run_0d7b096f-bec2-4ecc-bf57-67f182249a63",
+              "case_id": "r03",
+              "artifact_digest": "3ee48e3fd5b50f55fe9265fac3f0414c02b88f25a3d92f66e37e48ffaa506ce9"
+            }
+          ],
+          "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+          "usage_complete": true,
+          "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+          "subject_version": "candidate",
+          "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7"
+        },
+        "policy_digest": "266910bf3f54961082e6d5f4c5e89ddd019b4877b79d4f1490c320aaf3ef0789",
+        "qualification": {
+          "status": "pass",
+          "metrics": [
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 1,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            },
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 2,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            }
+          ],
+          "study_mode": "scripted",
+          "label_digest": "e948dcd5e01962c4b977dbd11c88a2624c3cb0a82a5c895ca1a78241f8ed1d1e",
+          "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+          "evidence_digest": "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde",
+          "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+        },
+        "manifest_digest": "2b14efd635939255864cf69126ff99b340ecdfb9b5e844ee59ee2baa71df23a3",
+        "evaluator_digest": "07a3317a79c1bd8416620ce4c0cc59c219f96e07601b6462a5f636110404b3b7",
+        "comparison_issues": [],
+        "expected_case_ids": [
+          "r01",
+          "r02",
+          "r03",
+          "r04"
+        ],
+        "target_identities": {
+          "baseline": {
+            "settings": {
+              "model": "scripted-v1",
+              "tools": "project13-locked",
+              "prompt": "baseline",
+              "prompt_digest": "1e166e690b15dd20fc296b757255d65945cf37d24d981032139a3fe53575c588",
+              "compiled_digest": "e22d415e0de0b747ad61cb7b61919171319bddbb87727f63212ded1d3c180b80"
+            },
+            "source_digest": "55535d671c12abbed6f86195432fcf1698d1a9f8ce42a1f36c57511e97ade924",
+            "adapter_digest": "03fa6e91674dd4b31dde55351ad041f3c529fd5f0c42447c1b309819bf2ebb79",
+            "subject_commit": "774e4df2d1d05342623ef2b10c42ec69238877f5"
+          },
+          "candidate": {
+            "settings": {
+              "model": "scripted-v1",
+              "tools": "project13-locked",
+              "prompt": "candidate",
+              "prompt_digest": "fb50ea2b627be83bbbca3283affaa28d05c43767020087e1844b97c8143d380b",
+              "compiled_digest": "e22d415e0de0b747ad61cb7b61919171319bddbb87727f63212ded1d3c180b80"
+            },
+            "source_digest": "55535d671c12abbed6f86195432fcf1698d1a9f8ce42a1f36c57511e97ade924",
+            "adapter_digest": "03fa6e91674dd4b31dde55351ad041f3c529fd5f0c42447c1b309819bf2ebb79",
+            "subject_commit": "774e4df2d1d05342623ef2b10c42ec69238877f5"
+          }
+        }
+      },
+      "metrics": {
+        "scope": "saved-run evaluation; scripted labels/judges are not human/live evidence",
+        "observations": [
+          {
+            "version": "baseline",
+            "case_id": "r01",
+            "family_id": "r01",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 105.0,
+            "source_interval_ms": 105.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r02",
+            "family_id": "r02",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 103.0,
+            "source_interval_ms": 103.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r03",
+            "family_id": "r03",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 91.0,
+            "source_interval_ms": 91.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "baseline",
+            "case_id": "r04",
+            "family_id": "r04",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 102.0,
+            "source_interval_ms": 102.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              1.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r01",
+            "family_id": "r01",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 132.0,
+            "source_interval_ms": 132.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.998
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r02",
+            "family_id": "r02",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 94.0,
+            "source_interval_ms": 94.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "version": "candidate",
+            "case_id": "r03",
+            "family_id": "r03",
+            "mode": "scripted",
+            "derived_control": false,
+            "agent_elapsed_ms": 108.0,
+            "source_interval_ms": 108.0,
+            "usage": {
+              "state": "not_incurred",
+              "price_id": null,
+              "input_tokens": 0,
+              "cost_nano_usd": 0,
+              "output_tokens": 0,
+              "reserved_nano_usd": 0
+            },
+            "exact_checks": {
+              "money": "pass",
+              "outcome": "pass",
+              "category": "pass",
+              "complete": "pass",
+              "originals": "pass",
+              "references": "pass",
+              "stale_review": "pass",
+              "case_identity": "pass",
+              "duplicate_review": "pass",
+              "approval_boundary": "pass"
+            },
+            "judge_elapsed_ms": [
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "natural_case_runs": 7,
+        "case_families": 4,
+        "qualification": {
+          "status": "pass",
+          "metrics": [
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 1,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            },
+            {
+              "items": 16,
+              "agreement": 16,
+              "repetition": 2,
+              "abstentions": 0,
+              "true_accepts": 8,
+              "true_rejects": 8,
+              "false_accepts": 0,
+              "false_rejects": 0,
+              "human_acceptable": 8,
+              "false_accept_rate": 0.0,
+              "support_agreement": 16,
+              "human_unacceptable": 8,
+              "dangerous_negatives": 6,
+              "repeat_disagreement": 0,
+              "usefulness_agreement": 16,
+              "dangerous_false_accepts": 0
+            }
+          ],
+          "study_mode": "scripted",
+          "label_digest": "e948dcd5e01962c4b977dbd11c88a2624c3cb0a82a5c895ca1a78241f8ed1d1e",
+          "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+          "evidence_digest": "b1582cc754ae499d94ad334761007f48ee8cb43a3cec0f65c7d3a06f4891cfde",
+          "settings_digest": "57f540013aa965d929f6e272493ae0ddd7ca672588fa052783554c81770fcf3f"
+        },
+        "derived_control_costs": "Parent capture usage is retained for provenance, excluded from new-inference totals.",
+        "known_agent_cost_nano_usd": 0,
+        "unknown_agent_charges": 0,
+        "reserved_agent_cost_nano_usd": 0
+      }
+    }
+  }
+}

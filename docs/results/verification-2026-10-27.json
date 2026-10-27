@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-27",
+  "timezone": "Australia/Brisbane",
+  "source_commit": "d3f3959da40844879ff88f0f2099bf128771c8d0",
+  "scope": "scripted offline demonstration",
+  "python_tests": 95,
+  "node_tests": 9,
+  "skipped_tests": 0,
+  "human_labels": 0,
+  "scripted_labels_per_demo": 24,
+  "real_provider_calls": 0,
+  "provider_spend": "not incurred",
+  "hosted_uploads": 0,
+  "independent_reviews": 1,
+  "important_findings_fixed": 7,
+  "deferred_minors": 0,
+  "docker_build": "passed",
+  "fresh_volume_import_readback": "passed",
+  "api_restart_readback": "passed",
+  "linux_windows_compiled_identity": "e22d415e0de0b747ad61cb7b61919171319bddbb87727f63212ded1d3c180b80",
+  "python": "3.12.11",
+  "node": "24.14.0",
+  "postgres": "16.15",
+  "langsmith_sdk": "0.14.13",
+  "cli_exits": {
+    "pass": 0,
+    "exact_reject": 1,
+    "semantic_reject": 1,
+    "incomplete": 2
+  },
+  "limitations": [
+    "All model replies, judge verdicts and labels are scripted",
+    "No actual human or real-model agreement result",
+    "No actual hosted LangSmith or hosted CI result",
+    "Public repository not created or pushed"
+  ]
+}
