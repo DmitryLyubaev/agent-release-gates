@@ -94,3 +94,16 @@ class SyncRecord(Base):
     __tablename__ = "sync_states"
     id: Mapped[str] = mapped_column(String, primary_key=True)
     payload: Mapped[dict] = mapped_column(JSONB)
+
+
+class LiveStudyRecord(Base):
+    __tablename__ = "live_studies"
+    id: Mapped[str] = mapped_column(String, primary_key=True)
+    config_digest: Mapped[str] = mapped_column(String)
+    payload: Mapped[dict] = mapped_column(JSONB)
+    calibration_label_id: Mapped[str | None] = mapped_column(
+        ForeignKey("label_revisions.id"), nullable=True
+    )
+    heldout_label_id: Mapped[str | None] = mapped_column(
+        ForeignKey("label_revisions.id"), nullable=True
+    )

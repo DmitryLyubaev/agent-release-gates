@@ -48,12 +48,21 @@ def test_scripted_labels_and_results_never_claim_human_live():
     assert qualify(labels, results, manifest).study_mode == "scripted"
 
 
-def test_freeze_refuses_third_revision_and_post_holdout_tuning():
+def test_freeze_allows_initial_plus_two_changes_and_refuses_post_holdout_tuning():
     frozen = StudyFreeze()
     frozen.revise("a" * 64)
     frozen.revise("b" * 64)
+    frozen.revise("c" * 64)
     with pytest.raises(ValueError, match="REVISION_LIMIT"):
-        frozen.revise("c" * 64)
-    frozen.begin_holdout("b" * 64)
+        frozen.revise("d" * 64)
+    frozen.begin_holdout("c" * 64)
     with pytest.raises(ValueError, match="FROZEN"):
         frozen.revise("d" * 64)
+
+
+def test_legacy_freeze_state_conversion_preserves_initial_and_frozen_identity():
+    state = StudyFreeze(revisions=["a" * 64, "b" * 64], frozen="b" * 64)
+    assert state.initial == "a" * 64
+    assert state.revisions == ["b" * 64]
+    with pytest.raises(ValueError, match="FROZEN"):
+        state.revise("c" * 64)

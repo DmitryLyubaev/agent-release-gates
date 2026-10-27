@@ -89,8 +89,8 @@ def test_ambiguous_judge_call_preserves_reservation_and_cannot_score(tmp_path):
     assert result.usage.reserved_nano_usd == 2_010_240_000
     assert not result.accepts
     assert "credential-value" not in json.dumps(result.model_dump(mode="json"))
-    again = judge_saved_item(live_item(), judge, 2)
-    assert not again.accepts
+    with pytest.raises(ValueError, match="ATTEMPT_REFUSED|UNSETTLED"):
+        judge_saved_item(live_item(), judge, 2)
     assert len(ledger(allowance(tmp_path)).summary()["calls"]) == 1
 
 
@@ -163,3 +163,20 @@ await judgeMessage({...JSON.parse(text),apiKey:'test-crash-key',transport:async(
     assert journal["request"]["model"] == "claude-sonnet-5-5"
     assert journal["response"] is None
     assert "test-crash-key" not in journals[0].read_text()
+
+
+def test_predispatch_budget_refusal_halts_instead_of_creating_an_abstention(tmp_path):
+    from agent_release_gates.live.judge import AnthropicJudge
+
+    approval = allowance(tmp_path, cap_nano_usd=2_010_240_000)
+    judge = AnthropicJudge(
+        settings={"stage": "calibration"},
+        approval=approval,
+        ledger_path=Path(approval["config"]["ledger_path"]),
+        artifact_root=tmp_path / "artifacts",
+        transport=judge_transport(judge_reply()),
+    )
+    assert judge_saved_item(live_item(), judge, 1).accepts
+    with pytest.raises(ValueError, match="ATTEMPT_REFUSED|BUDGET_LIMIT"):
+        judge_saved_item(live_item(), judge, 2)
+    assert len(ledger(approval).summary()["calls"]) == 1

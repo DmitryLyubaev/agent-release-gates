@@ -5,14 +5,19 @@ from agent_release_gates.contracts.scores import JudgeResult, QualificationResul
 
 
 class StudyFreeze:
-    def __init__(self, revisions=None, frozen=None):
-        self.revisions = list(revisions or [])
+    def __init__(self, revisions=None, frozen=None, initial=None, state_version=1):
+        entries = list(revisions or [])
+        self.initial = entries[0] if state_version == 1 and entries else initial
+        self.revisions = entries[1:] if state_version == 1 else entries
         self.frozen = frozen
 
     def revise(self, rubric_digest: str):
         if self.frozen:
             raise ValueError("STUDY_FROZEN")
-        if self.revisions and self.revisions[-1] == rubric_digest:
+        if self.initial is None:
+            self.initial = rubric_digest
+            return
+        if (self.revisions[-1] if self.revisions else self.initial) == rubric_digest:
             return
         if len(self.revisions) >= 2:
             raise ValueError("REVISION_LIMIT")
@@ -21,7 +26,10 @@ class StudyFreeze:
     def begin_holdout(self, rubric_digest: str):
         if self.frozen and self.frozen != rubric_digest:
             raise ValueError("STUDY_FROZEN")
-        if self.revisions and self.revisions[-1] != rubric_digest:
+        if (
+            self.initial
+            and (self.revisions[-1] if self.revisions else self.initial) != rubric_digest
+        ):
             raise ValueError("RUBRIC_MISMATCH")
         self.frozen = rubric_digest
 

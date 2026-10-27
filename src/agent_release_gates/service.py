@@ -125,9 +125,22 @@ class EvaluationService:
         if len(identities) != 1:
             raise ValueError("MIXED_TARGET_IDENTITIES")
         cases = []
+        stopped = False
         for bundle in bundles:
             item = self._item(bundle)
-            judges = [judge_saved_item(item, self.judge, r) for r in [1, 2]]
+            judges = []
+            for repetition in [1, 2]:
+                try:
+                    result = judge_saved_item(item, self.judge, repetition)
+                except ValueError:
+                    if self.judge.mode != "live":
+                        raise
+                    stopped = True
+                    break
+                judges.append(result)
+                if result.usage.state == "unknown":
+                    stopped = True
+                    break
             cases.append(
                 CaseEvaluation(
                     case_id=bundle.manifest.case_id,
@@ -137,13 +150,16 @@ class EvaluationService:
                     judges=judges,
                 )
             )
+            if stopped:
+                break
         version = VersionEvaluation(
             subject_version=bundles[0].manifest.subject_version,
             mode=bundles[0].manifest.mode,
             manifest_digest=self.dataset_record.id,
             evaluator_digest=self.evaluator_digest,
             policy_digest=self.policy_digest,
-            usage_complete=all(b.manifest.usage.state != "unknown" for b in bundles)
+            usage_complete=not stopped
+            and all(b.manifest.usage.state != "unknown" for b in bundles)
             and all(j.usage.state != "unknown" for c in cases for j in c.judges),
             cases=cases,
         )

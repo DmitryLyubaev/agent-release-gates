@@ -20,6 +20,7 @@ from .models import (
     EvaluationRecord,
     EvaluationRun,
     LabelRevision,
+    LiveStudyRecord,
     PacketRecord,
     QualificationRecord,
     QualificationRun,
@@ -295,7 +296,12 @@ class Repository:
             record = session.get(StudyRecord, study_id)
             state = StudyFreeze(**record.payload) if record else StudyFreeze()
             state.begin_holdout(identity_digest) if holdout else state.revise(identity_digest)
-            payload = {"revisions": state.revisions, "frozen": state.frozen}
+            payload = {
+                "state_version": 2,
+                "initial": state.initial,
+                "revisions": state.revisions,
+                "frozen": state.frozen,
+            }
             if record:
                 record.payload = payload
             else:
@@ -311,6 +317,29 @@ class Repository:
             if value is None:
                 raise KeyError("STUDY_NOT_FOUND")
             return value
+
+    def live_study(self, study_id, config_digest, payload=None, expected_revision=None):
+        with self.sessions.begin() as session:
+            session.execute(
+                text("SELECT pg_advisory_xact_lock(hashtext(:identity))"),
+                {"identity": "live:" + study_id},
+            )
+            record = session.get(LiveStudyRecord, study_id)
+            if record and record.config_digest != config_digest:
+                raise ValueError("STUDY_CONFIG_CHANGED")
+            if record is None:
+                if payload is None:
+                    raise KeyError("LIVE_STUDY_MISSING")
+                record = LiveStudyRecord(id=study_id, config_digest=config_digest, payload=payload)
+                session.add(record)
+            elif payload is not None:
+                if record.payload["revision"] != expected_revision:
+                    raise ValueError("STUDY_CONCURRENT_OR_REPLAYED_TRANSITION")
+                record.payload = payload
+            if payload is not None:
+                record.calibration_label_id = payload.get("calibration_label_id")
+                record.heldout_label_id = payload.get("heldout_label_id")
+            return record.payload
 
     def sync_state(self, identity: str, action: str, remote_ids=None) -> dict:
         with self.sessions.begin() as session:

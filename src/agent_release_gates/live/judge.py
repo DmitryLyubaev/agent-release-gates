@@ -99,7 +99,14 @@ class AnthropicJudge:
         row = next(
             (r for r in self.ledger.summary()["calls"] if r["attempt_key"] == attempt_key), None
         )
-        unknown = row is not None and row["charge"] is None
+        if row is None:
+            code = outcome.get("error", "PROVIDER_NOT_DISPATCHED")
+            raise ValueError(
+                code
+                if isinstance(code, str) and code.isupper() and code.replace("_", "").isalpha()
+                else "PROVIDER_NOT_DISPATCHED"
+            )
+        unknown = row["charge"] is None
         raw_usage = row["usage"] if row and row["usage"] else {}
         usage = Usage(
             state="unknown" if unknown else "known",

@@ -46,7 +46,9 @@ class ScriptedJudge:
         return value
 
 
-def judge_saved_item(item: ReviewItem, judge: JudgePort | LiveJudgePort, repetition: int) -> JudgeResult:
+def judge_saved_item(
+    item: ReviewItem, judge: JudgePort | LiveJudgePort, repetition: int
+) -> JudgeResult:
     if judge.mode == "live":
         attempt = judge.evaluate_attempt(
             {**item.visible(), "rubric_digest": item.rubric_digest},
