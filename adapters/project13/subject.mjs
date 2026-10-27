@@ -37,5 +37,5 @@ export async function loadSubject(root, expectedCommit) {
     ...await load('workflow/graph.js'), ...await load('workflow/decisions.js'),
     ...await load('workflow/runner.js'), ...await load('storage/store.js'),
     ...await load('storage/imports.js'), ...await load('investigation/fake-model.js'),
-    ...await load('investigation/live-config.js') };
+    ...await load('investigation/live-config.js'), ...await load('investigation/anthropic-model.js') };
 }

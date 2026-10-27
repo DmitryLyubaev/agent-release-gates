@@ -1,5 +1,6 @@
 """Validate consumed observations without normalizing retained evidence bytes."""
 
+from datetime import datetime
 from typing import Annotated, Literal
 
 from pydantic import (
@@ -10,9 +11,10 @@ from pydantic import (
     StrictBool,
     StrictStr,
     StringConstraints,
+    field_validator,
 )
 
-from .artifacts import Difference, Digest, Identifier, Money, TraceEvent
+from .artifacts import Difference, Digest, Identifier, Money, TraceEvent, utc
 
 Nonempty = Annotated[StrictStr, StringConstraints(min_length=1)]
 Version = Annotated[int, Field(strict=True, gt=0)]
@@ -93,6 +95,17 @@ class Capture(OpenObservation):
     error: StrictStr | None
 
 
+class ProviderReceipt(OpenObservation):
+    reservation_id: Nonempty
+    request: dict
+    response: JsonValue | None
+    request_id: Nonempty | None
+    error: Nonempty | None
+    started_at: datetime
+    ended_at: datetime
+    _utc = field_validator("started_at", "ended_at", mode="before")(utc)
+
+
 class ConsumedDocuments(OpenObservation):
     evidence: Snapshot | None
     final_sources: list[Source]
@@ -100,6 +113,7 @@ class ConsumedDocuments(OpenObservation):
     events: list[TraceEvent]
     capture: Capture
     raw_proposals: list[JsonValue] = Field(default_factory=list)
+    provider_receipts: list[ProviderReceipt] = Field(default_factory=list)
 
 
 class ModelRequest(OpenObservation):
