@@ -2,7 +2,7 @@ import { spawnSync } from 'node:child_process';
 import { resolve, delimiter } from 'node:path';
 import { relative, isAbsolute, join, dirname, basename } from 'node:path';
 import { mkdirSync,realpathSync,existsSync,openSync,writeFileSync,fsyncSync,closeSync,renameSync } from 'node:fs';
-import { randomUUID } from 'node:crypto';
+import { randomUUID, createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 
 export const ENDPOINT='https://api.anthropic.com/v1/messages';
@@ -78,14 +78,23 @@ export async function recordedFetch({url,init,kind,reservationId,receipts,apiKey
       if(size>131072){await reader.cancel();throw new Error('RESPONSE_LIMIT');}
       chunks.push(value);
     }
-    const text=Buffer.concat(chunks).toString('utf8');
-    let body;try{body=JSON.parse(text);}catch{body={invalid_json_text:text};}
-    receipt.response=clean(body);
-    const requestId=String(response.headers.get('request-id')??body.id??'unavailable');
+    const bytes=Buffer.concat(chunks),text=bytes.toString('utf8');
+    let body;try{body=JSON.parse(text);}catch{body=null;}
+    const diagnostic=!response.ok || !body || body.type==='error';
+    // Provider error prose can contain account/org IDs under innocuous keys.
+    // Retain only an allowlisted classifier and a binding to the bounded raw body.
+    const errorTypes=['invalid_request_error','authentication_error','permission_error','not_found_error','request_too_large','rate_limit_error','api_error','overloaded_error'];
+    const projected=diagnostic?{
+      type:'provider_error',http_status:response.status,
+      error_type:errorTypes.includes(body?.error?.type)?body.error.type:'unclassified',
+      body_sha256:createHash('sha256').update(bytes).digest('hex'),body_bytes:bytes.length,
+    }:body;
+    receipt.response=clean(projected);
+    const requestId=String(response.headers.get('request-id')??(!diagnostic?body.id:null)??'unavailable');
     receipt.request_id=/^[A-Za-z0-9_-]{1,200}$/.test(requestId)?requestId:'unavailable';
     receipt.ended_at=new Date().toISOString();
     persist();
-    return new Response(text,{status:response.status,headers:{'request-id':receipt.request_id}});
+    return new Response(diagnostic?JSON.stringify(projected):text,{status:response.status,headers:{'request-id':receipt.request_id}});
   } catch {
     receipt.error='PROVIDER_UNCERTAIN';receipt.ended_at=new Date().toISOString();
     try{persist();}catch{/* never dispatch when the receipt cannot be persisted */}

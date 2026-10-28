@@ -35,6 +35,28 @@ def live_judge(root, response=None, fail=False):
     )
 
 
+def test_parser_only_source_change_invalidates_judge_identity_and_cached_attempt(
+    tmp_path, monkeypatch
+):
+    from agent_release_gates.live import judge as implementation
+
+    before = live_judge(tmp_path)
+    payload = {**live_item().visible(), "rubric_digest": before.rubric_digest}
+    before.evaluate_attempt(payload, attempt_key="parser-change")
+    parser = Path(implementation.__file__).resolve()
+    read_bytes = Path.read_bytes
+
+    def changed_source(path):
+        raw = read_bytes(path)
+        return raw + b"\n# simulated parser revision\n" if path.resolve() == parser else raw
+
+    monkeypatch.setattr(Path, "read_bytes", changed_source)
+    after = live_judge(tmp_path)
+    assert after.settings_digest != before.settings_digest
+    with pytest.raises(ValueError, match="CONFLICT"):
+        after.evaluate_attempt(payload, attempt_key="parser-change")
+
+
 def test_actual_judge_worker_records_cost_and_receipt_binding_without_another_send(tmp_path):
     judge = live_judge(tmp_path)
     result = judge_saved_item(live_item(), judge, 1)

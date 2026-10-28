@@ -2,6 +2,9 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { harness } from './live-support.mjs';
 import { mutateBundle } from '../mutate.mjs';
+import { createHash } from 'node:crypto';
+import { readFile, readdir } from 'node:fs/promises';
+import { join } from 'node:path';
 
 globalThis.fetch=()=>{throw new Error('NETWORK_FORBIDDEN');};
 
@@ -59,4 +62,26 @@ test('approval or pin failure has no provider side effects', async()=>{
     await assert.rejects(h.capture({expectedCommit:'0'.repeat(40)}),/SUBJECT_PIN/);
     assert.equal(h.calls,0);
   } finally {await h.close();}
+});
+
+for(const structured of [true,false])test(`HTTP error privacy covers ${structured?'JSON':'non-JSON'} diagnostics and durable journal`,async()=>{
+  const h=await harness();
+  const message='account acct_private_123 organization org_private_456 test-secret-never-export';
+  const raw=structured?JSON.stringify({type:'error',id:'acct_private_123',error:{type:'permission_error',message}}):`<html>${message}</html>`;
+  try {
+    const b=await h.capture({transport:async()=>new Response(raw,{status:403})});
+    assert.equal(b.documents.capture.status,'failed');
+    assert.equal(b.manifest.usage.state,'unknown');
+    const receipt=b.documents.provider_receipts[0];
+    const exported=JSON.stringify(b);
+    assert.ok(!exported.includes('acct_private_123'));
+    assert.ok(!exported.includes('org_private_456'));
+    assert.equal(receipt.response.http_status,403);
+    assert.equal(receipt.response.body_sha256,createHash('sha256').update(raw).digest('hex'));
+    assert.equal(receipt.response.body_bytes,Buffer.byteLength(raw));
+    const directory=join(h.root,'captures/provider-receipts');
+    const journal=await readFile(join(directory,(await readdir(directory))[0]),'utf8');
+    assert.ok(!journal.includes('acct_private_123'));
+    assert.ok(!journal.includes('org_private_456'));
+  }finally{await h.close();}
 });

@@ -192,8 +192,17 @@ class SdkLangSmithSink:
         if not approved_payload_digest:
             raise ValueError("HOSTED_NOT_CONFIGURED")
         from langsmith import Client
+        from urllib3.util.retry import Retry
 
-        client = Client(
+        class SingleWriteClient(Client):
+            def request_with_retries(self, method, pathname, **kwargs):
+                # The SDK has its own retry loop in addition to requests/urllib3.
+                # In particular create_feedback otherwise requests ten attempts.
+                if method.upper() != "GET":
+                    kwargs["stop_after_attempt"] = 1
+                return super().request_with_retries(method, pathname, **kwargs)
+
+        client = SingleWriteClient(
             api_url=api_url,
             api_key=api_key,
             workspace_id=workspace_id,
@@ -201,6 +210,7 @@ class SdkLangSmithSink:
             tracing_sampling_rate=1.0,
             omit_traced_runtime_info=True,
             tracing_mode="langsmith",
+            retry_config=Retry(total=0, connect=0, read=0, redirect=0, status=0, other=0),
         )
         return cls(client, approved_payload_digest)
 

@@ -17,6 +17,7 @@ from agent_release_gates.contracts.scores import (
 from agent_release_gates.evaluation.exact import check_exact
 from agent_release_gates.evaluation.gate import decide_release
 from agent_release_gates.evaluation.judge import JudgePort, LiveJudgePort, judge_saved_item
+from agent_release_gates.identity import implementation_digest
 from agent_release_gates.review.packet import export_packet
 
 
@@ -37,13 +38,7 @@ class EvaluationService:
         self.policy_digest = hashlib.sha256(
             Path("policies/release-v1.json").read_bytes()
         ).hexdigest()
-        evaluation = Path(__file__).parent / "evaluation"
-        self.evaluator_digest = digest(
-            {
-                p.name: hashlib.sha256(p.read_bytes()).hexdigest()
-                for p in sorted(evaluation.glob("*.py"))
-            }
-        )
+        self.evaluator_digest = implementation_digest()
 
     def import_run(self, raw: dict):
         bundle = validate_bundle(raw)
@@ -107,7 +102,7 @@ class EvaluationService:
             value = value.model_copy(update={"checks": {**value.checks, "references": "fail"}})
         return value
 
-    def evaluate(self, run_ids):
+    def evaluate(self, run_ids, *, run_judges=True):
         bundles = [self.read_run(r) for r in run_ids]
         if not bundles:
             raise ValueError("RUNS_REQUIRED")
@@ -124,9 +119,21 @@ class EvaluationService:
         }
         if len(identities) != 1:
             raise ValueError("MIXED_TARGET_IDENTITIES")
-        cases = []
-        stopped = False
-        for bundle in bundles:
+        # Exact contracts are free and independent of judge availability.
+        cases = [
+            CaseEvaluation(
+                case_id=bundle.manifest.case_id,
+                run_id=bundle.manifest.run_id,
+                artifact_digest=digest(bundle.model_dump(mode="json")),
+                exact=self._exact(bundle),
+                judges=[],
+            )
+            for bundle in bundles
+        ]
+        stopped = not run_judges
+        for index, bundle in enumerate(bundles):
+            if stopped:
+                break
             item = self._item(bundle)
             judges = []
             for repetition in [1, 2]:
@@ -141,17 +148,7 @@ class EvaluationService:
                 if result.usage.state == "unknown":
                     stopped = True
                     break
-            cases.append(
-                CaseEvaluation(
-                    case_id=bundle.manifest.case_id,
-                    run_id=bundle.manifest.run_id,
-                    artifact_digest=digest(bundle.model_dump(mode="json")),
-                    exact=self._exact(bundle),
-                    judges=judges,
-                )
-            )
-            if stopped:
-                break
+            cases[index] = cases[index].model_copy(update={"judges": judges})
         version = VersionEvaluation(
             subject_version=bundles[0].manifest.subject_version,
             mode=bundles[0].manifest.mode,

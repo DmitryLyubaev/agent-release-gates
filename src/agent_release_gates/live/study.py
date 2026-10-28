@@ -85,6 +85,7 @@ class LiveStudy:
                     "calibration_label_id": None,
                     "heldout_label_id": None,
                     "frozen": None,
+                    "used_families": [],
                 },
             )
 
@@ -92,13 +93,25 @@ class LiveStudy:
     def state(self):
         return self.repository.live_study(self.id, self.config_digest)
 
-    def _write(self, _expected=None, **updates):
+    def _write(self, _expected=None, _claim_split=None, **updates):
         before = self.state if _expected is None else _expected
+
+        def families(split):
+            return [
+                {"family_id": case.family_id, "fixture_digest": case.fixture_digest}
+                for case in self.service.dataset.cases
+                if case.split == split
+            ]
+
         return self.repository.live_study(
             self.id,
             self.config_digest,
             {**before, **updates, "revision": before["revision"] + 1},
             before["revision"],
+            claim_families=families(_claim_split) if _claim_split else None,
+            heldout_families=families("heldout")
+            if _claim_split in ["calibration", "heldout"]
+            else None,
         )
 
     def _operation(self, key, allowed, next_status, work):
@@ -107,7 +120,12 @@ class LiveStudy:
             return state["results"][key]
         if state["pending"] or state["status"] not in allowed:
             raise ValueError("STUDY_STAGE_REQUIRED_OR_INTERRUPTED")
-        self._write(_expected=state, pending=key)
+        split = {
+            "capture_calibration": "calibration",
+            "capture_heldout": "heldout",
+            "capture_release": "release",
+        }.get(key)
+        self._write(_expected=state, _claim_split=split, pending=key)
         try:
             result = work()
         except Exception as error:
@@ -502,8 +520,7 @@ process.stdout.write(JSON.stringify(mutateBundle(r.bundle,r.recipe)));
             service = EvaluationService(self.repository, self.root, self._judge("release"))
             baseline_record = service.evaluate(baseline)
             self._write(evaluations={"baseline": baseline_record["id"]})
-            if not baseline_record["evaluation"]["usage_complete"]:
-                raise ValueError("LIVE_EVALUATION_INCOMPLETE")
+            complete = baseline_record["evaluation"]["usage_complete"]
             base = baseline_record["id"]
             decisions = {}
             for name, runs in [
@@ -511,13 +528,15 @@ process.stdout.write(JSON.stringify(mutateBundle(r.bundle,r.recipe)));
                 ("exact_control", exact),
                 ("semantic_control", semantic),
             ]:
-                evaluated = service.evaluate(runs)
+                evaluated = service.evaluate(runs, run_judges=complete)
                 self._write(
                     evaluations={**self.state.get("evaluations", {}), name: evaluated["id"]}
                 )
-                if not evaluated["evaluation"]["usage_complete"]:
-                    raise ValueError("LIVE_EVALUATION_INCOMPLETE")
+                complete = complete and evaluated["evaluation"]["usage_complete"]
                 decisions[name] = service.compare(base, evaluated["id"], qualification["id"])
+                self._write(release_decisions=dict(decisions))
+            if not complete:
+                raise ValueError("LIVE_EVALUATION_INCOMPLETE")
             return decisions
 
         return self._operation("capture_release", ["qualified"], "released", work)

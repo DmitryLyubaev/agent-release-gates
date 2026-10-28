@@ -3,6 +3,8 @@ import os
 import subprocess
 import sys
 
+import pytest
+
 from tests.study_support import calibrated, labels_file, make_study, study_config
 
 
@@ -39,3 +41,36 @@ def test_operator_cli_refuses_out_of_order_stage_before_key_or_provider_access(t
     assert result.returncode == 2
     assert "APPROVAL" in result.stdout
     assert "ambient-test-key-never-send" not in result.stdout + result.stderr
+
+
+def test_unresolved_release_judge_still_records_exact_control_rejection(repo, tmp_path):
+    from tests.live_support import ledger
+    from tests.study_support import synthetic_judge
+
+    study = make_study(repo, tmp_path)
+    calibrated(study)
+    packet = study.capture_holdout()
+    study.qualify_holdout(packet["packet_id"], labels_file(packet))
+    sends = []
+
+    def uncertain(request):
+        if request["stage"] != "release":
+            return synthetic_judge(request)
+        sends.append(request["attemptKey"])
+        ledger(request["approval"]).reserve(
+            attempt_key=request["attemptKey"],
+            kind="judge",
+            investigation_id=None,
+            metadata={"stage": "release"},
+        )
+        return {"ok": False, "error": "PROVIDER_WORKER_INTERRUPTED"}
+
+    study.judge_transport = uncertain
+    with pytest.raises(ValueError, match="LIVE_EVALUATION_INCOMPLETE"):
+        study.capture_release()
+    report = study.report()
+    assert report["status"] == "incomplete"
+    assert report["release_decisions"]["exact_control"]["decision"]["status"] == "reject"
+    assert report["release_decisions"]["candidate"]["decision"]["status"] == "inconclusive"
+    assert len(report["evaluations"]) == 4
+    assert len(sends) == 1

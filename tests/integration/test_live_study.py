@@ -142,3 +142,89 @@ def test_stale_state_revision_cannot_claim_another_stage(repo, tmp_path):
             initial["revision"],
         )
     assert study.state["pending"] == "capture_calibration"
+
+
+def test_parser_only_revision_invalidates_frozen_study_before_holdout(repo, tmp_path, monkeypatch):
+    from agent_release_gates.live import judge
+    from agent_release_gates.service import EvaluationService
+
+    study = make_study(repo, tmp_path)
+    calibrated(study)
+    parser = Path(judge.__file__).resolve()
+    original = Path.read_bytes
+
+    def changed(path):
+        raw = original(path)
+        return raw + b"\n# changed parser\n" if path.resolve() == parser else raw
+
+    monkeypatch.setattr(Path, "read_bytes", changed)
+    assert (
+        EvaluationService(repo, study.root, study.service.judge).evaluator_digest
+        != study.service.evaluator_digest
+    )
+    with pytest.raises(ValueError, match="FROZEN_IDENTITY"):
+        study.capture_holdout()
+    assert study.report()["ledger"]["subject_attempts"] == 4
+
+
+def test_new_study_id_cannot_make_exposed_holdout_families_fresh(repo, tmp_path):
+    from agent_release_gates.artifacts.store import digest
+
+    first = make_study(repo, tmp_path / "first")
+    calibrated(first)
+    packet = first.capture_holdout()
+    second_config = study_config(tmp_path / "second")
+    second_config["approval"]["config"]["study_id"] = "different-study"
+    second_config["approval"]["config_digest"] = digest(second_config["approval"]["config"])
+    second = make_study(repo, tmp_path / "second", second_config)
+    with pytest.raises(ValueError, match="HELDOUT_FAMILIES_PREVIOUSLY_USED"):
+        second.capture_calibration()
+    assert second.report()["ledger"]["subject_attempts"] == 0
+    assert first.capture_holdout() == packet
+
+
+def test_holdout_claim_rechecks_other_study_exposure_after_parallel_calibrations(repo, tmp_path):
+    from agent_release_gates.artifacts.store import digest
+
+    first = make_study(repo, tmp_path / "first")
+    second_config = study_config(tmp_path / "second")
+    second_config["approval"]["config"]["study_id"] = "different-study"
+    second_config["approval"]["config_digest"] = digest(second_config["approval"]["config"])
+    second = make_study(repo, tmp_path / "second", second_config)
+    calibrated(first)
+    calibrated(second)
+    first.capture_holdout()
+    with pytest.raises(ValueError, match="HELDOUT_FAMILIES_PREVIOUSLY_USED"):
+        second.capture_holdout()
+    assert second.report()["ledger"]["subject_attempts"] == 4
+
+
+@pytest.mark.parametrize("legacy", [False, True])
+def test_interrupted_exposure_cannot_be_hidden_by_family_rename(repo, legacy):
+    dataset = repo.register_dataset(Path("datasets/manifest.json").read_bytes())
+    case = next(case for case in dataset.payload["cases"] if case["split"] == "heldout")
+    family = {key: case[key] for key in ["family_id", "fixture_digest"]}
+    first = {"revision": 0, "pending": None, "results": {}, "captures": {}}
+    if legacy:
+        first.update(pending="capture_heldout", frozen={"dataset": dataset.id})
+    repo.live_study("first", "a" * 64, first)
+    if not legacy:
+        repo.live_study(
+            "first",
+            "a" * 64,
+            {**first, "revision": 1, "pending": "capture_heldout"},
+            0,
+            claim_families=[family],
+            heldout_families=[family],
+        )
+    repo.live_study("second", "b" * 64, {"revision": 0, "used_families": []})
+    renamed = {**family, "family_id": "renamed-heldout-family"}
+    with pytest.raises(ValueError, match="HELDOUT_FAMILIES_PREVIOUSLY_USED"):
+        repo.live_study(
+            "second",
+            "b" * 64,
+            {"revision": 1, "pending": "capture_heldout"},
+            0,
+            claim_families=[renamed],
+            heldout_families=[renamed],
+        )

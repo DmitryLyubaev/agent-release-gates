@@ -318,8 +318,53 @@ class Repository:
                 raise KeyError("STUDY_NOT_FOUND")
             return value
 
-    def live_study(self, study_id, config_digest, payload=None, expected_revision=None):
+    def _used_live_families(self, session, record):
+        state = record.payload
+        if "used_families" in state:
+            return state["used_families"]
+        # Preserve exposures from pre-guard records, including interrupted captures.
+        markers = [
+            state.get("pending") or "",
+            *state.get("results", {}),
+            *state.get("captures", {}),
+        ]
+        splits = {
+            split
+            for split in ["calibration", "heldout", "release"]
+            if any(key.startswith(("capture_" + split, split + "_")) for key in markers)
+        }
+        if not splits:
+            return []
+        dataset_id = (state.get("frozen") or {}).get("dataset")
+        if not dataset_id:
+            for runs in state.get("captures", {}).values():
+                if runs and (run := session.get(RunRecord, runs[0])):
+                    dataset_id = run.payload["dataset_digest"]
+                    break
+        dataset = session.get(DatasetRecord, dataset_id) if dataset_id else None
+        if dataset is None:
+            raise ValueError("HELDOUT_EXPOSURE_HISTORY_INCOMPLETE")
+        return [
+            {"family_id": case["family_id"], "fixture_digest": case["fixture_digest"]}
+            for case in dataset.payload["cases"]
+            if case["split"] in splits
+        ]
+
+    def live_study(
+        self,
+        study_id,
+        config_digest,
+        payload=None,
+        expected_revision=None,
+        *,
+        claim_families=None,
+        heldout_families=None,
+    ):
         with self.sessions.begin() as session:
+            if claim_families is not None:
+                session.execute(
+                    text("SELECT pg_advisory_xact_lock(hashtext('live-family-exposure'))")
+                )
             session.execute(
                 text("SELECT pg_advisory_xact_lock(hashtext(:identity))"),
                 {"identity": "live:" + study_id},
@@ -335,6 +380,24 @@ class Repository:
             elif payload is not None:
                 if record.payload["revision"] != expected_revision:
                     raise ValueError("STUDY_CONCURRENT_OR_REPLAYED_TRANSITION")
+                if claim_families is not None:
+                    for other in session.scalars(
+                        select(LiveStudyRecord).where(LiveStudyRecord.id != study_id)
+                    ):
+                        used = self._used_live_families(session, other)
+                        if any(
+                            fresh["family_id"] == old["family_id"]
+                            or fresh["fixture_digest"] == old["fixture_digest"]
+                            for fresh in (heldout_families or [])
+                            for old in used
+                        ):
+                            raise ValueError("HELDOUT_FAMILIES_PREVIOUSLY_USED")
+                    previous = self._used_live_families(session, record)
+                    payload = {
+                        **payload,
+                        "used_families": previous
+                        + [case for case in claim_families if case not in previous],
+                    }
                 record.payload = payload
             if payload is not None:
                 record.calibration_label_id = payload.get("calibration_label_id")
