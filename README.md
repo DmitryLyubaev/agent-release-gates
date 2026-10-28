@@ -2,19 +2,29 @@
 
 A small Python service that evaluates saved synthetic agent runs and records why a version is accepted, rejected or inconclusive. It demonstrates exact checks, a human-review workflow, judge calibration, PostgreSQL audit records and LangSmith integration.
 
-The current milestone is **offline**. The reconciliation workflow is real; model replies, judge verdicts and test labels are authored scripts. They intentionally encode the fixture exercises. No real-model accuracy, actual human agreement, hosted LangSmith operation or production adoption is established.
+Two dated demonstrations are available. The [offline study](docs/offline-report.md) uses scripted model replies, judge verdicts and labels to exercise the release mechanics. The [real-model study, 28 October 2026](docs/live-report-2026-10-28.md) finished with **failed judge qualification and a blocked release**.
 
-The current corrected cohort is in `examples/scripted`. The first cohort is retained in `examples/historical-scripted-v1` with its known request-observation defect documented; it is not used by the current demonstration.
+| Real-model result | Measured outcome |
+| --- | --- |
+| Held-out agreement | 9/16 in each repetition; 14/16 required |
+| Dangerous false accepts | 0/6 dangerous negatives per repetition |
+| Other held-out outcomes | 4 false rejections and 3 abstentions per repetition |
+| Cumulative usage | 85 requests, USD0.709166 before tax/FX |
+| Reference provenance | 24 assistant-generated labels; zero actual human labels |
 
-The live capture, judge and staged-study boundaries are implemented and tested with stubbed HTTPS replies and synthetic test labels. Initial real calibration captures are retained privately. An explicit assistant-reviewed mode measures agreement with AI reference labels and makes no human-validation claim; the default human-qualified policy remains separate. Full live outcomes and hosted LangSmith acceptance must be reported from their actual evidence. Existing scripted captures and dated reports remain unchanged.
+The gate retained the failed outcome and refused further release capture. No tuning or favourable rerun followed. These figures measure agreement with assistant references, not human accuracy or independent validation. No live baseline/candidate comparison or hosted LangSmith operation is established. See the [full report](docs/live-report-2026-10-28.md) and [aggregate evidence](docs/evidence/live-2026-10-28-summary.json).
 
-To prepare the next milestone without contacting a provider:
+The corrected scripted cohort is in `examples/scripted`. The first cohort remains byte-preserved in `examples/historical-scripted-v1` with its known request-observation defect documented. Historical scripted reports remain unchanged.
+
+Live capture, judging and staged review are implemented. Explicit assistant review has a separately named policy; the default human-qualified policy remains distinct. Paid calls occur only through the approved operator workflow. The ordinary API and Docker service remain offline.
+
+To prepare a new study without contacting a provider:
 
 ```sh
-uv run python scripts/live_study.py --config .local/live/p15-live-20261028/proposal.json prepare --study-id p15-live-20261028
+uv run python scripts/live_study.py --config .local/live/p15-new-study/proposal.json prepare --study-id p15-new-study
 ```
 
-This creates a disabled allowance proposal and prints its configuration digest. It neither opens the database nor reads a key. A separately approved allowance and account/budget readiness precede four calibration captures; eight actual human labels precede judge calibration and freezing. Sixteen held-out labels and a fixed release comparison follow. Follow the staged commands in [live readiness](docs/live-readiness.md). Paid calls occur only through the operator workflow; the ordinary API and Docker service remain offline.
+This creates a disabled allowance proposal and prints its digest. It neither opens the database nor reads a key. New paid work requires its own explicit scope/account/budget approval; exposed held-out cases do not become fresh evidence under a new study ID. Follow [live readiness](docs/live-readiness.md) for the human or explicitly authorized assistant-reference path.
 
 ## Run locally
 
@@ -70,4 +80,4 @@ docker compose down
 
 Tests require real PostgreSQL and refuse destructive setup against a database whose name does not end in `_test`. They create and remove dedicated random schemas, not application tables. Stop containers between sessions; named volumes preserve local evidence. Do not remove volumes if that evidence is still needed.
 
-See [architecture](docs/architecture.md), [evaluation method](docs/evaluation.md), [offline evidence](docs/offline-report.md), and [live readiness](docs/live-readiness.md). The later milestone needs actual human labels, a new approved model allowance and an explicitly configured hosted LangSmith destination. The completed subject's historical fixtures, reports and budget remain unchanged.
+See [architecture](docs/architecture.md), [evaluation method](docs/evaluation.md), [offline evidence](docs/offline-report.md), [live results](docs/live-report-2026-10-28.md), and [live readiness](docs/live-readiness.md). Human-calibrated validation and hosted LangSmith operation remain unproven. The completed subject's historical fixtures, reports and budget remain unchanged.

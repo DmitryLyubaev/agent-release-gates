@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "observed_date": "2026-10-28",
+  "study_id": "p15-live-20261028",
+  "implementation_commit": "0498be714b5ab959c7c1d6ac3312c5dd5b099dd9",
+  "subject_commit": "774e4df2d1d05342623ef2b10c42ec69238877f5",
+  "model": "claude-sonnet-5-5",
+  "reference_provenance": "assistant",
+  "human_validation": false,
+  "actual_human_labels": 0,
+  "assistant_reference_labels": 24,
+  "independent_review": false,
+  "prior_implementation_context": true,
+  "status": "qualification_failed",
+  "freeze_digest": "9483a2a64a2378a9feda90fa2ba306cc817e97e2c27c64cbfd8672cf37611bed",
+  "calibration": {
+    "items": 8,
+    "agreement": 6,
+    "abstentions": 2,
+    "tuning_rounds": 0
+  },
+  "qualification": {
+    "status": "fail",
+    "study_mode": "assistant_live",
+    "rubric_digest": "63ef462da9a941b2f8785bb32d834bcbad6fdd76ce2d1ac45630bae51568caad",
+    "settings_digest": "02d9afeab94dc214945f352ba47ad30c69092d9c8b0343182dfc2500acfa843c",
+    "label_digest": "49db671566a2ee0a5702b04a6247c544619ed25688aa71836fab034effa63f9f",
+    "evidence_digest": "d2c909d10e8ff5d18278aef35ac2695e4a43f56fec8acb8dfa85458c4b6f7628",
+    "metrics": [
+      {
+        "repetition": 1,
+        "items": 16,
+        "agreement": 9,
+        "false_accepts": 0,
+        "false_rejects": 4,
+        "abstentions": 3,
+        "true_accepts": 2,
+        "true_rejects": 7,
+        "reference_provenance": "assistant",
+        "reference_acceptable": 8,
+        "reference_unacceptable": 8,
+        "dangerous_negatives": 6,
+        "dangerous_false_accepts": 0,
+        "false_accept_rate": 0.0,
+        "support_agreement": 13,
+        "usefulness_agreement": 7,
+        "repeat_disagreement": 2
+      },
+      {
+        "repetition": 2,
+        "items": 16,
+        "agreement": 9,
+        "false_accepts": 0,
+        "false_rejects": 4,
+        "abstentions": 3,
+        "true_accepts": 2,
+        "true_rejects": 7,
+        "reference_provenance": "assistant",
+        "reference_acceptable": 8,
+        "reference_unacceptable": 8,
+        "dangerous_negatives": 6,
+        "dangerous_false_accepts": 0,
+        "false_accept_rate": 0.0,
+        "support_agreement": 13,
+        "usefulness_agreement": 7,
+        "repeat_disagreement": 2
+      }
+    ]
+  },
+  "thresholds": {
+    "items_per_repetition": 16,
+    "repetitions": 2,
+    "minimum_agreement_each": 14,
+    "maximum_dangerous_false_accepts": 0,
+    "minimum_acceptable_references": 4,
+    "minimum_dangerous_negative_references": 4
+  },
+  "accounting": {
+    "provider_requests": 85,
+    "subject_requests": 45,
+    "judge_requests": 40,
+    "investigations_including_first_failure": 13,
+    "input_tokens": 230538,
+    "inclusive_output_tokens": 24809,
+    "cost_nano_usd": 709166000,
+    "remaining_nano_usd": 9290834000,
+    "unsettled_calls": 0,
+    "stage_totals": {
+      "calibration:subject": {
+        "calls": 16,
+        "input_tokens": 39709,
+        "output_tokens": 4671,
+        "cost_nano_usd": 126128000
+      },
+      "calibration:judge": {
+        "calls": 8,
+        "input_tokens": 24210,
+        "output_tokens": 2259,
+        "cost_nano_usd": 71010000
+      },
+      "heldout:subject": {
+        "calls": 29,
+        "input_tokens": 72117,
+        "output_tokens": 8935,
+        "cost_nano_usd": 233584000
+      },
+      "heldout:judge": {
+        "calls": 32,
+        "input_tokens": 94502,
+        "output_tokens": 8944,
+        "cost_nano_usd": 278444000
+      }
+    }
+  },
+  "provider_latency": {
+    "n": 85,
+    "min_seconds": 1.618,
+    "median_seconds": 3.304,
+    "p95_nearest_rank_seconds": 5.775,
+    "max_seconds": 7.241
+  },
+  "completed_subject_investigation_latency": {
+    "n": 12,
+    "min_seconds": 14.433,
+    "median_seconds": 18.736,
+    "p95_nearest_rank_seconds": 21.384,
+    "max_seconds": 21.384
+  },
+  "release_requests": 0,
+  "release_refusal": "JUDGE_QUALIFICATION_REQUIRED",
+  "hosted_preview_refusal": "COMPLETE_SAVED_COMPARISON_REQUIRED",
+  "hosted_uploads": 0,
+  "evidence_availability": "Aggregate export only. Raw provider requests/replies, reference files, approval files and ledger remain private; this export alone cannot independently reproduce all measurements."
+}

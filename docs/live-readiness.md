@@ -1,6 +1,6 @@
 # Live study: implementation and remaining acceptance
 
-Updated 28 October 2026. Provider requests and hosted transfers below are **not authorized by software/plan approval**. Tests use stubbed HTTPS boundaries and synthetic test labels. The public scripted milestone and its historical reports are preserved.
+Updated 28 October 2026. The [automated-only real-model study](live-report-2026-10-28.md) is complete with failed qualification and a blocked release. Its references are assistant-generated; human validation and hosted LangSmith operation remain unproven. Instructions below describe the operator workflow for separately approved studies. Provider requests and hosted transfers are **not authorized by software/plan approval**. Automated tests use stubbed HTTPS boundaries and synthetic test labels; historical scripted reports are preserved.
 
 The [dated implementation record](live-implementation-2026-10-28.md) records the independent review, regression evidence and remaining limits. Frozen identities cover production Python, the dependency lock, subject/adapter sources and request settings. Any implementation change requires renewed qualification. Capture claims retain family IDs and fixture hashes across study IDs in the project database; exposed held-out families cannot qualify again as fresh evidence. The owner remains responsible for avoiding semantically duplicated families with different identifiers and content hashes.
 
@@ -12,7 +12,7 @@ Before LangSmith upload, select the personal account/workspace, region, retentio
 
 Local SDK evaluation is real SDK execution with upload disabled and tracing explicitly disabled, tested against ambient tracing credentials and network prohibition. Hosted synchronization tests use an injected fake destination. They do not establish an actual hosted experiment or successful account/retention configuration. Ambiguous uploads remain unknown and reconcile deterministic remote IDs before any write retry.
 
-Final project completion still requires actual human labels, a real-model baseline/candidate comparison, a passing natural version if it qualifies, a rejected fault control, hosted comparison/trace inspection, honest costs/latencies and separately approved publication of new live evidence. The offline foundation is already public. There is no cloud deployment or production operation in this scope.
+The bounded automated-only experiment finished at its planned failure branch. The original human-calibrated and hosted acceptance criteria remain unproven: actual human labels, a qualified live baseline/candidate comparison and hosted comparison/trace inspection were not completed. Further work on those criteria would require a separately bounded scope and any relevant paid/transfer approval. There is no cloud deployment or production operation in this scope.
 
 ## One operator stage per command
 
