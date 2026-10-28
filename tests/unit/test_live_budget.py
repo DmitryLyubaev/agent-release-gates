@@ -6,6 +6,48 @@ import pytest
 from tests.live_support import allowance, ledger, reserve
 
 
+@pytest.mark.parametrize("details", [None, {"thinking_tokens": 0}, {"thinking_tokens": 3}])
+def test_standard_usage_breakdown_preserves_receipt_without_double_charging(tmp_path, details):
+    value = ledger(allowance(tmp_path))
+    identity = reserve(value)
+    usage = {
+        "input_tokens": 100,
+        "output_tokens": 10,
+        "speed": "standard",
+        "output_tokens_details": details,
+    }
+    value.settle(identity, usage, "req_current_standard")
+    value.settle(identity, usage, "req_current_standard")
+    summary = value.summary()
+    assert summary["spent_nano_usd"] == 300_000
+    assert summary["unsettled_calls"] == 0
+    assert summary["calls"][0]["usage"] == usage
+
+
+@pytest.mark.parametrize(
+    "extra",
+    [
+        {"speed": "fast"},
+        {"speed": "unknown"},
+        {"speed": None},
+        {"output_tokens_details": {"thinking_tokens": True}},
+        {"output_tokens_details": {"thinking_tokens": 1.5}},
+        {"output_tokens_details": {"thinking_tokens": -1}},
+        {"output_tokens_details": {"thinking_tokens": 11}},
+        {"output_tokens_details": {"thinking_tokens": 0, "unknown_tokens": 0}},
+        {"output_tokens_details": {}},
+        {"output_tokens_details": []},
+    ],
+)
+def test_premium_speed_or_invalid_breakdown_keeps_reservation_unsettled(tmp_path, extra):
+    value = ledger(allowance(tmp_path))
+    identity = reserve(value)
+    with pytest.raises(ValueError, match="USAGE"):
+        value.settle(identity, {"input_tokens": 100, "output_tokens": 10, **extra}, "req_invalid")
+    assert value.summary()["unsettled_calls"] == 1
+    assert value.summary()["committed_nano_usd"] == 2_040_960_000
+
+
 @pytest.mark.parametrize("field", ["approved", "personal_account_confirmed", "budget_alert_ready"])
 def test_no_allowance_is_opened_without_explicit_readiness(tmp_path, field):
     approval = allowance(tmp_path)

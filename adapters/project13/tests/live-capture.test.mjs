@@ -8,6 +8,19 @@ import { join } from 'node:path';
 
 globalThis.fetch=()=>{throw new Error('NETWORK_FORBIDDEN');};
 
+test('standard speed and thinking breakdown settle through the real ledger bridge',async()=>{
+  const h=await harness({usage:{speed:'standard',output_tokens_details:{thinking_tokens:0}}});
+  try {
+    const b=await h.capture();
+    assert.equal(b.documents.capture.status,'awaiting_review');
+    assert.equal(b.manifest.usage.state,'known');
+    assert.equal(b.manifest.usage.cost_nano_usd,1200000);
+    assert.equal(h.calls,4);
+    assert.equal(b.documents.provider_receipts[0].response.usage.speed,'standard');
+    assert.equal(b.documents.provider_receipts[0].response.usage.output_tokens_details.thinking_tokens,0);
+  }finally{await h.close();}
+});
+
 test('stubbed provider uses real live subject and settles every recorded turn exactly once', async()=>{
   const h=await harness();
   try {

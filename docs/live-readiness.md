@@ -18,6 +18,10 @@ Final project completion still requires actual human labels, a real-model baseli
 
 Run from the checkout with the pinned subject built and local PostgreSQL running. On this Windows setup Docker is available through `wsl -d Ubuntu -- docker compose -f /mnt/e/Projects/agent-release-gates/compose.yaml up -d --wait db`; native Python/Node execute the study. Use `uv run --native-tls` if the machine needs native certificate trust. TLS verification must remain enabled.
 
+If Node reports `UNABLE_TO_VERIFY_LEAF_SIGNATURE` on this Windows machine, set `$env:NODE_USE_SYSTEM_CA='1'` in the operator process before the stage command. This uses the Windows system trust store for Node and its children while retaining certificate verification. A read-only Models API lookup can confirm account/model access before inference; never put keys in arguments or output. See [Node system CA documentation](https://nodejs.org/api/cli.html#node_use_system_ca1).
+
+Current standard-tier receipts may contain `speed: "standard"` and `output_tokens_details.thinking_tokens`. The ledger preserves and validates them. Thinking tokens are already included in the authoritative billed `output_tokens` total and are not charged again. Fast/unknown speeds, invalid breakdowns and unknown usage categories retain their reservation. See [Anthropic token accounting](https://platform.claude.com/docs/en/build-with-claude/thinking-steering-and-cost).
+
 First prepare a private disabled proposal:
 
 ```sh

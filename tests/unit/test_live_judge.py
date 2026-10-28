@@ -58,7 +58,17 @@ def test_parser_only_source_change_invalidates_judge_identity_and_cached_attempt
 
 
 def test_actual_judge_worker_records_cost_and_receipt_binding_without_another_send(tmp_path):
-    judge = live_judge(tmp_path)
+    judge = live_judge(
+        tmp_path,
+        judge_reply(
+            usage={
+                "input_tokens": 100,
+                "output_tokens": 10,
+                "speed": "standard",
+                "output_tokens_details": {"thinking_tokens": 0},
+            }
+        ),
+    )
     result = judge_saved_item(live_item(), judge, 1)
     assert result.accepts and result.mode == "live"
     assert result.usage.cost_nano_usd == 300_000

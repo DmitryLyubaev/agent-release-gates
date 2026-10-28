@@ -23,7 +23,7 @@ export async function harness(options = {}) {
     const body=JSON.parse(request.body); bodies.push(body);
     const step=script.steps[calls++];
     const content=step.type==='tools' ? step.calls.map(c=>({type:'tool_use',id:c.id,name:c.name,input:c.args})) : [{type:'tool_use',id:'submit',name:'submitProposal',input:step.proposal}];
-    return new Response(JSON.stringify({id:'msg_test',type:'message',role:'assistant',model:'claude-sonnet-5-5',stop_reason:'tool_use',content,usage:{input_tokens:100,output_tokens:10}}),{status:200,headers:{'request-id':`req_test_${calls}`}});
+    return new Response(JSON.stringify({id:'msg_test',type:'message',role:'assistant',model:'claude-sonnet-5-5',stop_reason:'tool_use',content,usage:{input_tokens:100,output_tokens:10,...options.usage}}),{status:200,headers:{'request-id':`req_test_${calls}`}});
   };
   return {
     root,approval,bodies,get calls(){return calls;},

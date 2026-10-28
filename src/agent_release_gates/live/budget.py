@@ -250,6 +250,8 @@ class BudgetLedger:
                 "inference_geo",
                 "server_tool_use",
                 "cache_creation",
+                "speed",
+                "output_tokens_details",
             }
             if not isinstance(usage, dict) or set(usage) - allowed:
                 raise ValueError("INVALID_USAGE")
@@ -264,6 +266,16 @@ class BudgetLedger:
                 for k in ["cache_creation_input_tokens", "cache_read_input_tokens"]
             ):
                 raise ValueError("UNPRICED_USAGE")
+            if usage.get("speed", "standard") != "standard":
+                raise ValueError("UNPRICED_USAGE")
+            details = usage.get("output_tokens_details")
+            if details is not None and (
+                not isinstance(details, dict)
+                or set(details) != {"thinking_tokens"}
+                or type(details["thinking_tokens"]) is not int
+                or not 0 <= details["thinking_tokens"] <= usage["output_tokens"]
+            ):
+                raise ValueError("INVALID_USAGE")
             if (
                 usage.get("service_tier", "standard") != "standard"
                 or usage.get("inference_geo", "global") != "global"
@@ -279,6 +291,7 @@ class BudgetLedger:
                 r"[A-Za-z0-9_-]{1,200}", request_id
             ):
                 raise ValueError("INVALID_USAGE_RECEIPT")
+            # output_tokens is the inclusive billed total; thinking is a breakdown.
             charge = usage["input_tokens"] * 2000 + usage["output_tokens"] * 10000
             serialized = canonical(usage).decode()
             if row["charge"] is not None and (row["charge"], row["usage"], row["request_id"]) != (
