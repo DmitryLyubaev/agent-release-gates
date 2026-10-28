@@ -31,6 +31,8 @@ Final source/review-fix commit: `0316c760be40f99be76c1044a5b2447ab079f9b2`. Resu
 
 Owned Compose containers are stopped after verification; named volumes retain evidence. No cloud resource was created.
 
+Scratch cleanup: automatic approval review rejected removal of the verified plan-owned `.superpowers/sdd/2026-10-28-agent-release-gates-live` directory, giving only "blocked by policy". It remains local and ignored. The earlier offline scratch was not targeted. No alternative deletion mechanism was attempted; the committed execution ledger preserves the handoff record.
+
 ## Rulings and limits
 
 | Ruling | Consequence or cost |
