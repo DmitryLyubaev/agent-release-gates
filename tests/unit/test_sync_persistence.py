@@ -40,9 +40,13 @@ def test_sdk_wrapper_confirms_only_reconciled_records(monkeypatch, write_mode):
         def create_project(self, *args, **kwargs):
             return SimpleNamespace(id="project")
 
+        def read_project(self, **kwargs):
+            return SimpleNamespace(id="project", reference_dataset_id="dataset")
+
         def read_example(self, example_id):
             return SimpleNamespace(
-                inputs=next(e["inputs"] for e in data.examples if e["id"] == example_id)
+                inputs=next(e["inputs"] for e in data.examples if e["id"] == example_id),
+                dataset_id="dataset",
             )
 
         def read_run(self, run_id):
@@ -58,7 +62,7 @@ def test_sdk_wrapper_confirms_only_reconciled_records(monkeypatch, write_mode):
                 self.queue.append(run)
 
         def flush(self):
-            self.remote.update({r["id"]: r for r in self.queue})
+            self.remote.update({r["id"]: {**r, "session_id": "project"} for r in self.queue})
             self.queue = []
 
     destination = DestinationClient()

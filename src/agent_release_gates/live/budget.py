@@ -1,3 +1,4 @@
+import hashlib
 import json
 import re
 import sqlite3
@@ -13,6 +14,44 @@ from agent_release_gates.artifacts.store import canonical, digest
 from agent_release_gates.contracts.artifacts import Digest, Identifier, StrictModel, utc
 
 Stage = Literal["calibration", "calibration_development", "heldout", "release"]
+
+
+def prepare_allowance(root: Path, study_id: str) -> dict:
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,70}", study_id):
+        raise ValueError("STUDY_ID_REQUIRED")
+    root = Path(root).resolve()
+    config = {
+        "allowance_id": study_id,
+        "study_id": study_id,
+        "project_root": str(root),
+        "ledger_path": str(root / ".local/live" / study_id / "budget.sqlite"),
+        "provider": "anthropic",
+        "model": "claude-sonnet-5-5",
+        "price_id": "anthropic-global-2026-10-28",
+        "input_nano_usd_per_token": 2000,
+        "output_nano_usd_per_token": 10000,
+        "cap_nano_usd": 10_000_000_000,
+        "max_subject_attempts": 168,
+        "max_judge_attempts": 96,
+        "max_investigations": 28,
+        "max_calibration_development": 8,
+        "dataset_digest": hashlib.sha256(
+            (root / "datasets/manifest.json").read_bytes()
+        ).hexdigest(),
+    }
+    return {
+        "approval": {
+            "config": config,
+            "config_digest": digest(config),
+            "approved": False,
+            "approved_by": "",
+            "approved_at": None,
+            "personal_account_confirmed": False,
+            "budget_alert_ready": False,
+            "allowed_stages": ["calibration"],
+        },
+        "subject_root": str(root / ".local/subject"),
+    }
 
 
 class AllowanceConfig(StrictModel):

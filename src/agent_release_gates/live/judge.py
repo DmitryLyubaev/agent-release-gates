@@ -50,6 +50,7 @@ class AnthropicJudge:
             input=json.dumps(request),
             capture_output=True,
             text=True,
+            encoding="utf-8",
             timeout=70,
             check=False,
         )

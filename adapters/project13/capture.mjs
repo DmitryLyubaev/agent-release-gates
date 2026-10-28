@@ -88,7 +88,7 @@ export async function captureCase({subjectRoot,caseDefinition,script,subjectVers
 if (process.argv[1] && import.meta.url===pathToFileURL(resolve(process.argv[1])).href) {
   const {values}=parseArgs({options:{'subject-root':{type:'string',default:'.local/subject'},mode:{type:'string',default:'scripted'},split:{type:'string',default:'release'},output:{type:'string',default:'artifacts/scripted'},version:{type:'string',default:'baseline'},'approval-file':{type:'string'},ledger:{type:'string'},python:{type:'string'},'case-id':{type:'string'},'investigation-id':{type:'string'}}});
   if(!['scripted','live'].includes(values.mode)||(values.mode==='live'&&!values['approval-file'])) throw new Error('LIVE_MODE_NOT_CONFIGURED');
-  if(values.mode==='live'&&values.split!=='calibration')throw new Error('LIVE_STUDY_REQUIRED');
+  if(values.mode==='live')throw new Error('LIVE_STUDY_REQUIRED');
   const approval=values.mode==='live'?JSON.parse(await readFile(values['approval-file'])):null;
   const manifest=JSON.parse(await readFile('datasets/manifest.json'));
   for(const caseDefinition of manifest.cases.filter(c=>c.split===values.split&&(!values['case-id']||c.case_id===values['case-id']))) {

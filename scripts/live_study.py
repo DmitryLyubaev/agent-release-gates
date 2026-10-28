@@ -4,7 +4,7 @@ import re
 import sys
 from pathlib import Path
 
-from agent_release_gates.live.budget import validate_approval
+from agent_release_gates.live.budget import prepare_allowance, validate_approval
 
 
 def main():
@@ -15,6 +15,7 @@ def main():
     parser.add_argument(
         "action",
         choices=[
+            "prepare",
             "capture-calibration",
             "import-calibration-labels",
             "judge-calibration",
@@ -31,8 +32,24 @@ def main():
     parser.add_argument("--labels", type=Path)
     parser.add_argument("--settings", type=Path)
     parser.add_argument("--round", type=int, default=1)
+    parser.add_argument("--study-id")
     args = parser.parse_args()
     try:
+        if args.action == "prepare":
+            config = prepare_allowance(Path(__file__).resolve().parents[1], args.study_id or "")
+            args.config.parent.mkdir(parents=True, exist_ok=True)
+            with args.config.open("x", encoding="utf-8") as output:
+                output.write(json.dumps(config, indent=2) + "\n")
+            print(
+                json.dumps(
+                    {
+                        "status": "proposal_not_approved",
+                        "config_digest": config["approval"]["config_digest"],
+                        "file": str(args.config),
+                    }
+                )
+            )
+            return 0
         config = json.loads(args.config.read_bytes())
         validate_approval(config["approval"])
         from agent_release_gates.db.repository import Repository

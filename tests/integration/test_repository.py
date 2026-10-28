@@ -20,7 +20,10 @@ def test_migration_and_run_reimport_conflict_are_atomic(repo, database):
         repo.put_run(validate_bundle(seal(raw)))
     assert len(repo.list_runs()) == 1
     with database[0].begin() as c:
-        assert c.execute(text("select version_num from alembic_version")).scalar() == "0002_live_studies"
+        assert (
+            c.execute(text("select version_num from alembic_version")).scalar()
+            == "0002_live_studies"
+        )
 
 
 def test_upgrading_existing_offline_schema_preserves_audit_records(repo, database):
@@ -35,7 +38,10 @@ def test_upgrading_existing_offline_schema_preserves_audit_records(repo, databas
     assert repo.get_run(saved.id).digest == saved.digest
     assert repo.get_run(saved.id).payload == artifact.manifest.model_dump(mode="json")
     with database[0].begin() as connection:
-        assert connection.execute(text("SELECT to_regclass('live_studies')")).scalar() == "live_studies"
+        assert (
+            connection.execute(text("SELECT to_regclass('live_studies')")).scalar()
+            == "live_studies"
+        )
 
 
 def test_foreign_keys_refuse_unregistered_dataset(repo):

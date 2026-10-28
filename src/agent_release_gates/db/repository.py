@@ -341,6 +341,13 @@ class Repository:
                 record.heldout_label_id = payload.get("heldout_label_id")
             return record.payload
 
+    def get_live_study(self, study_id):
+        with self.sessions() as session:
+            record = session.get(LiveStudyRecord, study_id)
+            if record is None:
+                raise KeyError("LIVE_STUDY_MISSING")
+            return record
+
     def sync_state(self, identity: str, action: str, remote_ids=None) -> dict:
         with self.sessions.begin() as session:
             session.execute(

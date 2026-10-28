@@ -166,6 +166,8 @@ def sync_experiment(payload: SyncPayload, sink, state) -> dict:
     try:
         existing = sink.reconcile(payload)
         if existing is None:
+            if current["state"] == "unknown":
+                return {"state": "unknown", "remote_ids": None}
             sink.upload(payload)
             existing = sink.reconcile(payload)
         if existing is None:
@@ -209,11 +211,48 @@ class SdkLangSmithSink:
             return None
 
     def reconcile(self, payload):
+        def field(value, key):
+            return value.get(key) if isinstance(value, dict) else getattr(value, key, None)
+
+        datasets = list(self.client.list_datasets(dataset_name=payload.dataset_name))
+        if len(datasets) != 1:
+            return None
+        dataset_id = str(datasets[0].id)
+        project = self._exists(
+            lambda name: self.client.read_project(project_name=name), payload.experiment_name
+        )
+        if project is None or str(field(project, "reference_dataset_id")) != dataset_id:
+            return None
+        project_id = str(field(project, "id"))
+        for example in payload.examples:
+            saved = self._exists(self.client.read_example, example["id"])
+            if (
+                saved is None
+                or field(saved, "inputs") != example["inputs"]
+                or str(field(saved, "dataset_id")) != dataset_id
+            ):
+                return None
         for run in payload.runs:
-            if self._exists(self.client.read_run, run["id"]) is None:
+            saved = self._exists(self.client.read_run, run["id"])
+            if saved is None or str(field(saved, "session_id")) != project_id:
+                return None
+            if any(
+                field(saved, key) != run.get(key)
+                for key in ["inputs", "outputs", "name", "run_type"]
+            ):
+                return None
+            if any(
+                str(field(saved, key)) != str(run.get(key))
+                for key in ["parent_run_id", "trace_id", "reference_example_id"]
+            ):
                 return None
         for feedback in payload.feedback:
-            if self._exists(self.client.read_feedback, feedback["id"]) is None:
+            saved = self._exists(self.client.read_feedback, feedback["id"])
+            if (
+                saved is None
+                or any(field(saved, key) != feedback[key] for key in ["key", "score"])
+                or str(field(saved, "run_id")) != feedback["run_id"]
+            ):
                 return None
         return {"experiment": payload.experiment_name, "runs": [r["id"] for r in payload.runs]}
 

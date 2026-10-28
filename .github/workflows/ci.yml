@@ -33,7 +33,7 @@ jobs:
         run: |
           uv run ruff check .
           uv run ruff format --check .
-          node --test adapters/project13/tests/capture.test.mjs
+          node --test --test-concurrency=1 adapters/project13/tests/*.test.mjs
           uv run pytest -q
       - name: Scripted process demonstration
         run: bash scripts/demo.sh

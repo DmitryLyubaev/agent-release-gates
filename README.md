@@ -6,6 +6,16 @@ The current milestone is **offline**. The reconciliation workflow is real; model
 
 The current corrected cohort is in `examples/scripted`. The first cohort is retained in `examples/historical-scripted-v1` with its known request-observation defect documented; it is not used by the current demonstration.
 
+The live capture, judge and staged-study boundaries are implemented and tested with stubbed HTTPS replies and synthetic test labels. They have not yet established actual provider execution, human agreement or hosted LangSmith acceptance. Existing scripted captures and dated reports remain unchanged.
+
+To prepare the next milestone without contacting a provider:
+
+```sh
+uv run python scripts/live_study.py --config .local/live/p15-live-20261028/proposal.json prepare --study-id p15-live-20261028
+```
+
+This creates a disabled allowance proposal and prints its configuration digest. It neither opens the database nor reads a key. A separately approved allowance and account/budget readiness precede four calibration captures; eight actual human labels precede judge calibration and freezing. Sixteen held-out labels and a fixed release comparison follow. Follow the staged commands in [live readiness](docs/live-readiness.md). Paid calls occur only through the operator workflow; the ordinary API and Docker service remain offline.
+
 ## Run locally
 
 Requirements: Python 3.12, uv 0.10.7, Node 24, Git and a working Docker engine with Compose.
@@ -53,7 +63,7 @@ The Windows validation used an existing Ubuntu Docker engine through WSL and nat
 ```sh
 uv run ruff check .
 uv run ruff format --check .
-node --test adapters/project13/tests/capture.test.mjs
+node --test --test-concurrency=1 adapters/project13/tests/*.test.mjs
 uv run pytest -q
 docker compose down
 ```

@@ -29,6 +29,7 @@ export function redact(value,key='',secret=process.env.ANTHROPIC_API_KEY) {
 }
 
 export function validateRequest(body,kind) {
+  if(process.env.NODE_TLS_REJECT_UNAUTHORIZED==='0')throw new Error('TLS_VERIFICATION_REQUIRED');
   const keys=['model','max_tokens','thinking','output_config','tools','tool_choice','system','messages'];
   if(Object.keys(body).some(k=>!keys.includes(k)) || body.model!=='claude-sonnet-5-5' || body.max_tokens!==(kind==='subject'?4096:1024))throw new Error('UNPRICED_REQUEST');
   if(body.thinking?.type!=='between_tools'||Object.keys(body.thinking).length!==1||body.output_config?.effort!=='low'||Object.keys(body.output_config).some(k=>!['effort','format'].includes(k)))throw new Error('UNPRICED_REQUEST');
