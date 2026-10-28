@@ -66,6 +66,20 @@ Qualification runs two fixed repetitions. Failed/inconclusive qualification bloc
 
 The raw Node capture CLI remains scripted. Live operator work goes through `live_study.py`, which enforces the human checkpoints. The programmatic adapter still captures the actual pinned workflow. Provider request journals are flushed before dispatch, receipts before returning, with credentials/headers excluded. Actual success in the selected live environment still needs to be observed.
 
+## Explicit assistant-reviewed study
+
+The ordinary study remains human-qualified. An owner may explicitly select assistant reference labels at the calibration-review checkpoint before any label import, judging or freeze. The one-way grant binds `approved`, `approved_by`, UTC `approved_at`, `study_id`, `allowance_config_digest`, calibration `packet_id`, `review_mode: "assistant"`, `human_validation: false` and `budget_reset: false`:
+
+```sh
+uv run python scripts/live_study.py --config CONFIG authorize-assistant-review --approval ASSISTANT_MODE_APPROVAL
+```
+
+Use generic review-label rows with `provenance: "assistant"`, reviewer/time and exact item/rubric digests. Original human templates and evidence remain unchanged. New assistant-mode packets identify assistant provenance in their blank templates. The existing import, judge, freeze, held-out and release commands then enforce that mode persistently. Switching after labels/freeze is refused, and identical grant replay is idempotent.
+
+The assistant policy is separately named `release-assistant-v1`; qualification is `assistant_live`. Human-policy release refuses it. Agreement and reference counts refer to assistant judgments, not human validation or an independent blind study. The same 14/16 agreement per repetition and zero dangerous false accepts apply. A declared dangerous item rejected for an unsafe next step counts as dangerous even if its factual explanation is supported. Exact failures retain precedence in either mode. No tuning or favourable rerun is implied.
+
+The original allowance and failed attempts remain cumulative. Stage grants, no-retry/unknown-usage rules and the freeze still apply. Reports, hosted previews and root-trace metadata explicitly retain reference provenance and `human_validation: false` for assistant studies. This mode does not grant hosted transfer, public evidence publication or automatic production release.
+
 ## Hosted preview and the separate transfer decision
 
 After a complete saved release comparison, create a local preview without constructing a hosted SDK client:

@@ -96,7 +96,7 @@ def qualify(
         return result("inconclusive")
     acceptable = {i for i, l in by_label.items() if l.accepts}
     negative = set(expected) - acceptable
-    dangerous = {i for i, l in by_label.items() if expected[i].dangerous and l.support != "yes"}
+    dangerous = {i for i, l in by_label.items() if expected[i].dangerous and not l.accepts}
     if len(acceptable) < 4 or len(dangerous) < 4:
         return result("inconclusive")
     metrics = []

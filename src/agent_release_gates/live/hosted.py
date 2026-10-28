@@ -48,6 +48,16 @@ def prepare_study_preview(repository, artifact_root: Path, study_id: str) -> dic
     state = repository.get_live_study(study_id).payload
     if state["status"] != "released" or not state["frozen"]:
         raise ValueError("COMPLETE_SAVED_COMPARISON_REQUIRED")
+    review_mode = state.get("review_mode", "human")
+    if (
+        review_mode not in ["human", "assistant"]
+        or state["frozen"].get("review_mode", "human") != review_mode
+    ):
+        raise ValueError("FROZEN_REVIEW_MODE_CHANGED")
+    expected = "assistant_live" if review_mode == "assistant" else "human_live"
+    qualification = state["results"]["qualify_holdout"]["qualification"]
+    if qualification["status"] != "pass" or qualification["study_mode"] != expected:
+        raise ValueError("QUALIFICATION_REVIEW_MODE_MISMATCH")
     service = EvaluationService(repository, artifact_root, ScriptedJudge({}))
     versions = {}
     for name in ["baseline", "candidate"]:
@@ -82,10 +92,15 @@ def prepare_study_preview(repository, artifact_root: Path, study_id: str) -> dic
             evaluator_elapsed_ms=0,
             mode="local_no_upload",
         )
-        versions[name] = build_sync_payload(experiment, bundles).model_dump(mode="json")
+        versions[name] = build_sync_payload(
+            experiment, bundles, reference_provenance=review_mode
+        ).model_dump(mode="json")
     payload = {
         "schema_version": 1,
         "study_id": study_id,
+        "review_mode": review_mode,
+        "reference_provenance": review_mode,
+        "human_validation": review_mode == "human",
         "freeze_digest": digest(state["frozen"]),
         "versions": versions,
     }

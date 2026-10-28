@@ -6,7 +6,7 @@ The current milestone is **offline**. The reconciliation workflow is real; model
 
 The current corrected cohort is in `examples/scripted`. The first cohort is retained in `examples/historical-scripted-v1` with its known request-observation defect documented; it is not used by the current demonstration.
 
-The live capture, judge and staged-study boundaries are implemented and tested with stubbed HTTPS replies and synthetic test labels. They have not yet established actual provider execution, human agreement or hosted LangSmith acceptance. Existing scripted captures and dated reports remain unchanged.
+The live capture, judge and staged-study boundaries are implemented and tested with stubbed HTTPS replies and synthetic test labels. Initial real calibration captures are retained privately. An explicit assistant-reviewed mode measures agreement with AI reference labels and makes no human-validation claim; the default human-qualified policy remains separate. Full live outcomes and hosted LangSmith acceptance must be reported from their actual evidence. Existing scripted captures and dated reports remain unchanged.
 
 To prepare the next milestone without contacting a provider:
 

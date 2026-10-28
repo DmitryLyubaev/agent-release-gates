@@ -94,3 +94,125 @@ def test_assistant_policy_cannot_use_a_human_qualification():
     raw.update(review_mode="assistant")
     raw["qualification"]["study_mode"] = "human_live"
     assert decide_release(GateInput.model_validate(raw)).status == "inconclusive"
+
+
+@pytest.mark.parametrize("provenance", ["assistant", "human"])
+def test_dangerous_unsafe_next_step_counts_even_with_supported_explanation(provenance):
+    labels, results, manifest = assistant_fixture()
+    labels = [row.model_copy(update={"provenance": provenance}) for row in labels]
+    labels = [
+        row.model_copy(update={"support": "yes", "usefulness": "no"})
+        if row.item_id == "item_12"
+        else row
+        for row in labels
+    ]
+    results = [
+        row.model_copy(update={"support": "yes", "usefulness": "no"})
+        if row.item_id == "item_12"
+        else row
+        for row in results
+    ]
+    assert qualify(labels, results, manifest).status == "pass"
+    results = [
+        row.model_copy(update={"usefulness": "yes"})
+        if row.item_id == "item_12" and row.repetition == 1
+        else row
+        for row in results
+    ]
+    value = qualify(labels, results, manifest)
+    assert value.status == "fail"
+    assert value.metrics[0]["dangerous_false_accepts"] == 1
+
+
+def sync_payload(reference=None):
+    from agent_release_gates.artifacts.store import validate_bundle
+    from agent_release_gates.langsmith.local import LocalExperiment
+    from agent_release_gates.langsmith.sync import build_sync_payload
+    from tests.support import bundle
+
+    artifact = validate_bundle(bundle())
+    experiment = LocalExperiment(
+        identity_digest="f" * 64,
+        rows=[{"item_id": artifact.manifest.run_id, "scores": {"supported": 1}}],
+        evaluator_elapsed_ms=1,
+        mode="local_no_upload",
+    )
+    return build_sync_payload(experiment, [artifact], reference_provenance=reference)
+
+
+def test_sync_identity_and_root_metadata_bind_assistant_provenance():
+    legacy = sync_payload()
+    explicit = sync_payload("assistant")
+    assert legacy.identity_digest != explicit.identity_digest
+    root = next(row for row in explicit.runs if row["parent_run_id"] is None)
+    assert root["extra"]["metadata"]["reference_provenance"] == "assistant"
+    assert root["extra"]["metadata"]["human_validation"] is False
+    assert "reference_provenance" not in legacy.runs[0]["extra"]["metadata"]
+    with pytest.raises(ValueError, match="PROVENANCE"):
+        sync_payload("pretend_human")
+
+
+def test_new_assistant_packet_template_does_not_claim_human_labels(tmp_path):
+    import json
+
+    from agent_release_gates.review.packet import export_packet
+    from tests.unit.test_review import item
+
+    export_packet(
+        [item(source_mode="live")], "calibration", tmp_path, reference_provenance="assistant"
+    )
+    row = json.loads((tmp_path / "labels-template.json").read_bytes())[0]
+    assert row["provenance"] == "assistant" and row["support"] is None
+
+
+def test_assistant_report_discloses_unmeasured_human_agreement():
+    from agent_release_gates.evaluation.report import report_metrics
+    from tests.support import bundle
+
+    raw = assistant_gate()
+    raw["review_mode"] = "assistant"
+    manifests = {
+        case["run_id"]: bundle()["manifest"]
+        for key in ["baseline", "candidate"]
+        for case in raw[key]["cases"]
+    }
+    report = report_metrics(raw, manifests)
+    assert report["review_mode"] == report["reference_provenance"] == "assistant"
+    assert report["human_validation"] is False
+    assert "assistant" in report["scope"]
+
+
+def test_remote_readback_must_confirm_reference_provenance_metadata():
+    from types import SimpleNamespace
+
+    from agent_release_gates.langsmith.sync import SdkLangSmithSink
+    from tests.unit.test_langsmith_sync import payload
+
+    data = payload()
+    data.runs[0]["extra"]["metadata"].update(
+        reference_provenance="assistant", human_validation=False
+    )
+
+    class Destination:
+        def list_datasets(self, **kwargs):
+            return [SimpleNamespace(id="dataset")]
+
+        def read_project(self, **kwargs):
+            return SimpleNamespace(id="project", reference_dataset_id="dataset")
+
+        def read_example(self, identity):
+            return SimpleNamespace(
+                inputs=next(row["inputs"] for row in data.examples if row["id"] == identity),
+                dataset_id="dataset",
+            )
+
+        def read_run(self, identity):
+            row = deepcopy(next(row for row in data.runs if row["id"] == identity))
+            if row["parent_run_id"] is None:
+                row["extra"]["metadata"]["human_validation"] = True
+            return SimpleNamespace(**row, session_id="project")
+
+        def read_feedback(self, identity):
+            return SimpleNamespace(**next(row for row in data.feedback if row["id"] == identity))
+
+    assert SdkLangSmithSink(Destination(), data.identity_digest).reconcile(data) is None

@@ -16,6 +16,7 @@ def main():
         "action",
         choices=[
             "prepare",
+            "authorize-assistant-review",
             "capture-calibration",
             "import-calibration-labels",
             "judge-calibration",
@@ -30,6 +31,7 @@ def main():
     )
     parser.add_argument("--packet-id")
     parser.add_argument("--labels", type=Path)
+    parser.add_argument("--approval", type=Path)
     parser.add_argument("--settings", type=Path)
     parser.add_argument("--round", type=int, default=1)
     parser.add_argument("--study-id")
@@ -65,7 +67,11 @@ def main():
         )
         study = LiveStudy(Repository(factory), root, config)
         name = args.action.replace("-", "_")
-        if name in ["import_calibration_labels", "qualify_holdout"]:
+        if name == "authorize_assistant_review":
+            if not args.approval:
+                raise ValueError("REVIEW_MODE_APPROVAL_REQUIRED")
+            result = study.authorize_assistant_review(json.loads(args.approval.read_bytes()))
+        elif name in ["import_calibration_labels", "qualify_holdout"]:
             result = getattr(study, name)(args.packet_id, args.labels)
         elif name == "revise_judge":
             result = study.revise_judge(json.loads(args.settings.read_bytes()))

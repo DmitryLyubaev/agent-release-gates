@@ -10,7 +10,11 @@ from agent_release_gates.contracts.labels import PacketManifest, ReviewItem
 
 
 def export_packet(
-    items: list[ReviewItem], split: Literal["calibration", "heldout"], output: Path
+    items: list[ReviewItem],
+    split: Literal["calibration", "heldout"],
+    output: Path,
+    *,
+    reference_provenance=None,
 ) -> PacketManifest:
     if not items or any(i.split != split for i in items):
         raise ValueError("PACKET_SPLIT")
@@ -18,6 +22,11 @@ def export_packet(
         raise ValueError("DUPLICATE_ITEM")
     if len({i.rubric_digest for i in items}) != 1 or len({i.source_mode for i in items}) != 1:
         raise ValueError("PACKET_IDENTITY")
+    if reference_provenance not in [None, "human", "assistant", "scripted"]:
+        raise ValueError("REFERENCE_PROVENANCE")
+    provenance = reference_provenance or ("human" if items[0].source_mode == "live" else "scripted")
+    if items[0].source_mode == "scripted" and provenance != "scripted":
+        raise ValueError("REFERENCE_SOURCE_MISMATCH")
     visible = [
         {**i.visible(), "item_digest": digest(i.visible())}
         for i in sorted(items, key=lambda x: digest(x.item_id))
@@ -58,7 +67,7 @@ def export_packet(
             "reviewer": "",
             "labelled_at": None,
             "rubric_digest": manifest.rubric_digest,
-            "provenance": "human" if manifest.source_mode == "live" else "scripted",
+            "provenance": provenance,
         }
         for v in visible
     ]

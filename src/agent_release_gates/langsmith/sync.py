@@ -21,7 +21,11 @@ def uid(value):
     return str(uuid5(NAMESPACE_URL, value))
 
 
-def build_sync_payload(experiment: LocalExperiment, bundles: list[ArtifactBundle]) -> SyncPayload:
+def build_sync_payload(
+    experiment: LocalExperiment, bundles: list[ArtifactBundle], *, reference_provenance=None
+) -> SyncPayload:
+    if reference_provenance not in [None, "human", "assistant"]:
+        raise ValueError("REFERENCE_PROVENANCE")
     if (
         not bundles
         or len({b.manifest.dataset_digest for b in bundles}) != 1
@@ -30,6 +34,7 @@ def build_sync_payload(experiment: LocalExperiment, bundles: list[ArtifactBundle
         raise ValueError("ONE_VERSION_AND_DATASET_REQUIRED")
     identity = digest(
         {
+            **({"reference_provenance": reference_provenance} if reference_provenance else {}),
             "experiment": experiment.model_dump(mode="json", exclude={"evaluator_elapsed_ms"}),
             "artifacts": [digest(b.model_dump(mode="json")) for b in bundles],
         }
@@ -68,6 +73,14 @@ def build_sync_payload(experiment: LocalExperiment, bundles: list[ArtifactBundle
             "reference_example_id": example_id,
             "extra": {
                 "metadata": {
+                    **(
+                        {
+                            "reference_provenance": reference_provenance,
+                            "human_validation": reference_provenance == "human",
+                        }
+                        if reference_provenance
+                        else {}
+                    ),
                     "mode": manifest.mode,
                     "subject_version": manifest.subject_version,
                     "artifact_digest": digest(bundle.model_dump(mode="json")),
@@ -246,6 +259,14 @@ class SdkLangSmithSink:
             saved = self._exists(self.client.read_run, run["id"])
             if saved is None or str(field(saved, "session_id")) != project_id:
                 return None
+            expected_metadata = run.get("extra", {}).get("metadata", {})
+            if "reference_provenance" in expected_metadata:
+                saved_metadata = (field(saved, "extra") or {}).get("metadata", {})
+                if any(
+                    saved_metadata.get(key) != expected_metadata[key]
+                    for key in ["reference_provenance", "human_validation"]
+                ):
+                    return None
             if any(
                 field(saved, key) != run.get(key)
                 for key in ["inputs", "outputs", "name", "run_type"]

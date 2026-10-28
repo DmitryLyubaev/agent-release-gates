@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import pytest
 
@@ -89,6 +90,10 @@ def test_synthetic_assistant_study_is_persistent_and_never_claims_human_qualific
     with pytest.raises(ValueError, match="MODE|FROZEN|STAGE"):
         restarted.authorize_assistant_review({**approval, "approved_at": "2026-10-28T00:02:00Z"})
     heldout = restarted.capture_holdout()
+    assert all(
+        row["provenance"] == "assistant"
+        for row in json.loads((Path(heldout["directory"]) / "labels-template.json").read_bytes())
+    )
     result = restarted.qualify_holdout(heldout["packet_id"], assistant_labels(heldout))
     assert result["qualification"]["status"] == "pass"
     assert result["qualification"]["study_mode"] == "assistant_live"
@@ -97,6 +102,16 @@ def test_synthetic_assistant_study_is_persistent_and_never_claims_human_qualific
     assert release["candidate"]["inputs"]["review_mode"] == "assistant"
     assert release["exact_control"]["decision"]["status"] == "reject"
     assert release["semantic_control"]["decision"]["status"] == "reject"
+    from agent_release_gates.live.hosted import prepare_study_preview
+
+    preview = prepare_study_preview(repo, restarted.root, restarted.id)
+    assert preview["payload"]["reference_provenance"] == "assistant"
+    assert preview["payload"]["human_validation"] is False
+    for version in preview["payload"]["versions"].values():
+        for run in version["runs"]:
+            if run["parent_run_id"] is None:
+                assert run["extra"]["metadata"]["reference_provenance"] == "assistant"
+                assert run["extra"]["metadata"]["human_validation"] is False
     state = restarted.state
     default = EvaluationService(repo, restarted.root, restarted._judge("release"))
     refused = default.compare(
@@ -104,3 +119,56 @@ def test_synthetic_assistant_study_is_persistent_and_never_claims_human_qualific
     )
     assert refused["decision"]["status"] == "inconclusive"
     assert restarted.report()["ledger"]["subject_attempts"] == 20
+
+
+def test_cli_authorizes_assistant_mode_without_another_model_attempt(repo, database, tmp_path):
+    import os
+    import subprocess
+    import sys
+
+    from sqlalchemy import text
+
+    from agent_release_gates.live.study import LiveStudy
+    from tests.study_support import study_config, synthetic_capture, synthetic_judge
+
+    config = study_config(tmp_path)
+    study = LiveStudy(
+        repo,
+        tmp_path / "artifacts/live/study-test",
+        config,
+        capture_runner=lambda request: synthetic_capture(config, request),
+        judge_transport=synthetic_judge,
+    )
+    packet = study.capture_calibration()
+    config_file = tmp_path / "operator.json"
+    approval_file = tmp_path / "assistant-mode.json"
+    config_file.write_text(json.dumps(config))
+    approval_file.write_text(json.dumps(mode_approval(study, packet)))
+    with database[0].connect() as connection:
+        schema = connection.execute(text("SELECT current_schema()")).scalar_one()
+    url = database[0].url.update_query_dict({"options": f"-csearch_path={schema}"})
+    result = subprocess.run(
+        [
+            sys.executable,
+            "scripts/live_study.py",
+            "--config",
+            str(config_file),
+            "authorize-assistant-review",
+            "--approval",
+            str(approval_file),
+        ],
+        env={
+            **os.environ,
+            "GATES_DATABASE_URL": url.render_as_string(hide_password=False),
+            "ANTHROPIC_API_KEY": "must-not-send",
+        },
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=30,
+        check=False,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert json.loads(result.stdout)["review_mode"] == "assistant"
+    assert study.state["review_mode"] == "assistant"
+    assert study.report()["ledger"]["subject_attempts"] == 4

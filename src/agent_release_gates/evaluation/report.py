@@ -4,6 +4,10 @@ from datetime import datetime
 
 
 def report_metrics(inputs: dict, manifests: dict) -> dict:
+    qualification = inputs["qualification"]
+    provenance = {"assistant_live": "assistant", "human_live": "human", "scripted": "scripted"}.get(
+        qualification.get("study_mode"), "unqualified"
+    )
     observations = []
     for key in ["baseline", "candidate"]:
         version = inputs.get(key)
@@ -48,7 +52,14 @@ def report_metrics(inputs: dict, manifests: dict) -> dict:
     agent_cost = sum(r["usage"]["cost_nano_usd"] or 0 for r in natural.values())
     judge_cost = sum(j["usage"]["cost_nano_usd"] or 0 for j in judges.values())
     return {
-        "scope": "saved-run evaluation; scripted labels/judges are not human/live evidence",
+        "scope": (
+            "Saved-run evaluation against assistant-generated reference labels; human agreement is unmeasured."
+            if provenance == "assistant"
+            else "saved-run evaluation; scripted labels/judges are not human/live evidence"
+        ),
+        "review_mode": inputs.get("review_mode", "human"),
+        "reference_provenance": provenance,
+        "human_validation": provenance == "human" and qualification.get("status") == "pass",
         "observations": observations,
         "natural_case_runs": len(natural),
         "case_families": len({r["family_id"] for r in observations}),
