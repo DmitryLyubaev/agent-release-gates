@@ -6,7 +6,7 @@ from agent_release_gates.artifacts.manifest import load_dataset
 from agent_release_gates.artifacts.store import digest, import_bundle, validate_bundle
 from agent_release_gates.contracts.datasets import ExpectedCase
 from agent_release_gates.contracts.decisions import GateInput
-from agent_release_gates.contracts.labels import HumanLabel, PacketManifest, ReviewItem
+from agent_release_gates.contracts.labels import PacketManifest, ReviewItem, ReviewLabel
 from agent_release_gates.contracts.scores import (
     CHECKS,
     CaseEvaluation,
@@ -22,7 +22,17 @@ from agent_release_gates.review.packet import export_packet
 
 
 class EvaluationService:
-    def __init__(self, repository, artifact_root: Path, judge: JudgePort | LiveJudgePort):
+    def __init__(
+        self,
+        repository,
+        artifact_root: Path,
+        judge: JudgePort | LiveJudgePort,
+        *,
+        review_mode="human",
+    ):
+        if review_mode not in ["human", "assistant"]:
+            raise ValueError("REVIEW_MODE")
+        self.review_mode = review_mode
         self.repository = repository
         self.root = Path(artifact_root).resolve()
         self.root.mkdir(parents=True, exist_ok=True)
@@ -36,7 +46,11 @@ class EvaluationService:
             Path("rubrics/explanation-v1.json").read_bytes()
         ).hexdigest()
         self.policy_digest = hashlib.sha256(
-            Path("policies/release-v1.json").read_bytes()
+            Path(
+                "policies/release-assistant-v1.json"
+                if review_mode == "assistant"
+                else "policies/release-v1.json"
+            ).read_bytes()
         ).hexdigest()
         self.evaluator_digest = implementation_digest()
 
@@ -204,7 +218,7 @@ class EvaluationService:
         }
 
     def import_labels(self, packet_id, rows):
-        labels = [HumanLabel.model_validate(r) for r in rows]
+        labels = [ReviewLabel.model_validate(r) for r in rows]
         record = self.repository.append_labels(labels, packet_id)
         return {"id": record.id, "packet_id": record.packet_id}
 
@@ -293,6 +307,7 @@ class EvaluationService:
             )
         )
         inputs = GateInput(
+            review_mode=self.review_mode,
             expected_case_ids=[c.case_id for c in self.dataset.cases if c.split == "release"],
             baseline=baseline,
             candidate=candidate,

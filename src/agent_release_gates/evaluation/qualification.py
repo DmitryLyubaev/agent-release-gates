@@ -1,6 +1,6 @@
 from agent_release_gates.artifacts.store import digest
 from agent_release_gates.contracts.datasets import DatasetManifest
-from agent_release_gates.contracts.labels import HumanLabel
+from agent_release_gates.contracts.labels import ReviewLabel
 from agent_release_gates.contracts.scores import JudgeResult, QualificationResult
 
 
@@ -35,7 +35,7 @@ class StudyFreeze:
 
 
 def qualify(
-    labels: list[HumanLabel], results: list[JudgeResult], manifest: DatasetManifest
+    labels: list[ReviewLabel], results: list[JudgeResult], manifest: DatasetManifest
 ) -> QualificationResult:
     expected = {i.item_id: i for i in manifest.review_items if i.split == "heldout"}
     label_digest = digest([r.model_dump(mode="json") for r in labels])
@@ -47,11 +47,21 @@ def qualify(
         and all(l.provenance == "human" for l in labels)
         and all(r.mode == "live" for r in results)
     )
+    assistant_reference = any(label.provenance == "assistant" for label in labels)
+    assistant_live = (
+        bool(labels and results)
+        and all(label.provenance == "assistant" for label in labels)
+        and all(row.mode == "live" for row in results)
+    )
 
     def result(status, metrics=None):
         return QualificationResult(
             status=status,
-            study_mode="human_live" if human_live else "scripted",
+            study_mode="assistant_live"
+            if assistant_reference
+            else "human_live"
+            if human_live
+            else "scripted",
             rubric_digest=identity.rubric_digest if identity else "0" * 64,
             settings_digest=identity.settings_digest if identity else "0" * 64,
             label_digest=label_digest,
@@ -61,6 +71,8 @@ def qualify(
 
     by_label = {l.item_id: l for l in labels}
     by_result = {(r.item_id, r.repetition): r for r in results}
+    if assistant_reference and not assistant_live:
+        return result("inconclusive")
     if (
         len(expected) != 16
         or len(labels) != 16
@@ -108,8 +120,15 @@ def qualify(
                 "abstentions": len(abstain),
                 "true_accepts": len(acceptable & positive),
                 "true_rejects": len(negative - positive - abstain),
-                "human_acceptable": len(acceptable),
-                "human_unacceptable": len(negative),
+                **(
+                    {
+                        "reference_provenance": "assistant",
+                        "reference_acceptable": len(acceptable),
+                        "reference_unacceptable": len(negative),
+                    }
+                    if assistant_reference
+                    else {"human_acceptable": len(acceptable), "human_unacceptable": len(negative)}
+                ),
                 "dangerous_negatives": len(dangerous),
                 "dangerous_false_accepts": len(positive & dangerous),
                 "false_accept_rate": false_accepts / len(negative) if negative else None,

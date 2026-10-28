@@ -34,7 +34,7 @@ class PacketManifest(StrictModel):
     source_mode: Literal["scripted", "live"]
 
 
-class HumanLabel(StrictModel):
+class ReviewLabel(StrictModel):
     item_id: Identifier
     item_digest: Digest
     support: Literal["yes", "no", "unclear"]
@@ -43,7 +43,7 @@ class HumanLabel(StrictModel):
     reviewer: str
     labelled_at: datetime
     rubric_digest: Digest
-    provenance: Literal["human", "scripted"]
+    provenance: Literal["human", "scripted", "assistant"]
     _utc = field_validator("labelled_at", mode="before")(utc)
 
     @model_validator(mode="after")
@@ -55,3 +55,9 @@ class HumanLabel(StrictModel):
     @property
     def accepts(self) -> bool:
         return self.support == "yes" and self.usefulness == "yes"
+
+
+class HumanLabel(ReviewLabel):
+    """Strict legacy contract; assistant references use ReviewLabel explicitly."""
+
+    provenance: Literal["human", "scripted"]

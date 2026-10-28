@@ -1,8 +1,8 @@
-from agent_release_gates.contracts.labels import HumanLabel, PacketManifest
+from agent_release_gates.contracts.labels import PacketManifest, ReviewLabel
 
 
-def validate_labels(rows: list[dict], packet: PacketManifest) -> list[HumanLabel]:
-    labels = [HumanLabel.model_validate(row) for row in rows]
+def validate_labels(rows: list[dict], packet: PacketManifest) -> list[ReviewLabel]:
+    labels = [ReviewLabel.model_validate(row) for row in rows]
     if len(labels) != len(packet.item_digests) or {r.item_id for r in labels} != set(
         packet.item_digests
     ):

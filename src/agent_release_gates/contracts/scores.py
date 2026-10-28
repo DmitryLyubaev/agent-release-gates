@@ -65,7 +65,7 @@ class JudgeAttempt(StrictModel):
 
 class QualificationResult(StrictModel):
     status: Literal["pass", "fail", "inconclusive"]
-    study_mode: Literal["scripted", "human_live"]
+    study_mode: Literal["scripted", "human_live", "assistant_live"]
     rubric_digest: Digest
     settings_digest: Digest
     label_digest: Digest

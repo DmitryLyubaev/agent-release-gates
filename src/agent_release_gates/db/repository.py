@@ -8,7 +8,7 @@ from agent_release_gates.artifacts.store import digest, validate_bundle
 from agent_release_gates.contracts.artifacts import ArtifactBundle
 from agent_release_gates.contracts.datasets import DatasetManifest
 from agent_release_gates.contracts.decisions import Decision, GateInput, TargetIdentity
-from agent_release_gates.contracts.labels import HumanLabel, PacketManifest
+from agent_release_gates.contracts.labels import PacketManifest, ReviewLabel
 from agent_release_gates.contracts.scores import JudgeResult, VersionEvaluation
 from agent_release_gates.evaluation.gate import decide_release
 from agent_release_gates.evaluation.qualification import StudyFreeze, qualify
@@ -117,7 +117,7 @@ class Repository:
                 raise KeyError("PACKET_NOT_FOUND")
             return record
 
-    def append_labels(self, labels: list[HumanLabel], packet_digest: str) -> LabelRevision:
+    def append_labels(self, labels: list[ReviewLabel], packet_digest: str) -> LabelRevision:
         with self.sessions.begin() as session:
             packet = session.get(PacketRecord, packet_digest)
             if packet is None:
@@ -198,7 +198,7 @@ class Repository:
             revision = session.get(LabelRevision, label_revision_id)
             if revision is None:
                 raise KeyError("LABEL_REVISION_NOT_FOUND")
-            labels = [HumanLabel.model_validate(r) for r in revision.payload]
+            labels = [ReviewLabel.model_validate(r) for r in revision.payload]
             value = qualify(labels, results, manifest)
             raw = value.model_dump(mode="json")
             identity = digest(raw)

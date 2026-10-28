@@ -60,7 +60,10 @@ def decide_release(inputs: GateInput) -> Decision:
     if qualification.status != "pass":
         return result("inconclusive", "JUDGE_UNQUALIFIED")
     live = baseline.mode == "live" or candidate.mode == "live"
-    if (qualification.study_mode == "human_live") != live:
+    expected_mode = "assistant_live" if inputs.review_mode == "assistant" else "human_live"
+    if (live and qualification.study_mode != expected_mode) or (
+        not live and (inputs.review_mode != "human" or qualification.study_mode != "scripted")
+    ):
         return result("inconclusive", "STUDY_MODE_MISMATCH")
     for version in [baseline, candidate]:
         for case in version.cases:

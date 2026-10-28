@@ -9,7 +9,8 @@ import sys
 from pathlib import Path
 
 from agent_release_gates.artifacts.store import digest, validate_bundle
-from agent_release_gates.contracts.labels import HumanLabel
+from agent_release_gates.contracts.artifacts import utc
+from agent_release_gates.contracts.labels import ReviewLabel
 from agent_release_gates.evaluation.judge import ScriptedJudge, judge_saved_item
 from agent_release_gates.service import EvaluationService
 
@@ -88,10 +89,65 @@ class LiveStudy:
                     "used_families": [],
                 },
             )
+        if self.review_mode == "assistant":
+            self.service = EvaluationService(
+                repository, self.root, ScriptedJudge({}), review_mode="assistant"
+            )
 
     @property
     def state(self):
         return self.repository.live_study(self.id, self.config_digest)
+
+    @property
+    def review_mode(self):
+        return self.state.get("review_mode", "human")
+
+    def authorize_assistant_review(self, approval):
+        state = self.state
+        try:
+            utc(approval["approved_at"])
+            packet_id = state["results"]["capture_calibration"]["packet_id"]
+            if (
+                approval.get("approved") is not True
+                or not isinstance(approval.get("approved_by"), str)
+                or not approval["approved_by"].strip()
+                or approval.get("study_id") != self.id
+                or approval.get("allowance_config_digest") != self.approval["config_digest"]
+                or approval.get("packet_id") != packet_id
+                or approval.get("review_mode") != "assistant"
+                or approval.get("human_validation") is not False
+                or approval.get("budget_reset") is not False
+            ):
+                raise ValueError
+        except (KeyError, TypeError, ValueError) as error:
+            raise ValueError("REVIEW_MODE_APPROVAL_REQUIRED_OR_CHANGED") from error
+        binding = digest(approval)
+        if state.get("review_mode") == "assistant":
+            if state.get("review_mode_approval", {}).get("digest") != binding:
+                raise ValueError("REVIEW_MODE_APPROVAL_CHANGED")
+        else:
+            if (
+                state["status"] != "calibration_review"
+                or state["pending"]
+                or state["frozen"]
+                or state["calibration_label_id"]
+                or state["heldout_label_id"]
+                or any("heldout" in key for key in state["captures"])
+            ):
+                raise ValueError("REVIEW_MODE_STAGE_REQUIRED")
+            self._write(
+                _expected=state,
+                review_mode="assistant",
+                review_mode_approval={"digest": binding, "approval": approval},
+            )
+        self.service = EvaluationService(
+            self.repository, self.root, ScriptedJudge({}), review_mode="assistant"
+        )
+        return {
+            "review_mode": "assistant",
+            "policy_digest": self.service.policy_digest,
+            "approval_digest": binding,
+        }
 
     def _write(self, _expected=None, _claim_split=None, **updates):
         before = self.state if _expected is None else _expected
@@ -199,6 +255,7 @@ process.stdout.write(JSON.stringify({commit:s.commit,source:s.sourceDigest,compi
             ).encode()
         ).hexdigest()
         return {
+            "review_mode": self.review_mode,
             "subject": subject,
             "adapter": adapter,
             "dataset": self.service.dataset_record.id,
@@ -315,9 +372,14 @@ process.stdout.write(JSON.stringify(mutateBundle(r.bundle,r.recipe)));
         if packet_id != expected:
             raise ValueError("LABEL_PACKET_MISMATCH")
         rows = json.loads(Path(file).read_bytes())
-        labels = [HumanLabel.model_validate(row) for row in rows]
-        if any(label.provenance != "human" for label in labels):
-            raise ValueError("ACTUAL_HUMAN_LABELS_REQUIRED")
+        labels = [ReviewLabel.model_validate(row) for row in rows]
+        required = "assistant" if self.review_mode == "assistant" else "human"
+        if any(label.provenance != required for label in labels):
+            raise ValueError(
+                "ASSISTANT_LABELS_REQUIRED"
+                if required == "assistant"
+                else "ACTUAL_HUMAN_LABELS_REQUIRED"
+            )
         return rows, digest(rows)
 
     def import_calibration_labels(self, packet_id, file):
@@ -517,7 +579,9 @@ process.stdout.write(JSON.stringify(mutateBundle(r.bundle,r.recipe)));
             candidate = self._natural_batch("release", "candidate", "release", "release_candidate")
             exact = [self._derive(run, "change_money") for run in candidate]
             semantic = [self._derive(run, "unsupported_cause") for run in candidate]
-            service = EvaluationService(self.repository, self.root, self._judge("release"))
+            service = EvaluationService(
+                self.repository, self.root, self._judge("release"), review_mode=self.review_mode
+            )
             baseline_record = service.evaluate(baseline)
             self._write(evaluations={"baseline": baseline_record["id"]})
             complete = baseline_record["evaluation"]["usage_complete"]
@@ -552,5 +616,9 @@ process.stdout.write(JSON.stringify(mutateBundle(r.bundle,r.recipe)));
                 "subject_attempts": sum(r["kind"] == "subject" for r in summary["calls"]),
                 "judge_attempts": sum(r["kind"] == "judge" for r in summary["calls"]),
             },
-            "limits": "One human reviewer; paired controls are not independent observations. A failed qualification/candidate remains a measured failure.",
+            "limits": (
+                "Assistant reference labels; human agreement is unmeasured. Paired controls and prior implementation context limit independence. A failed qualification/candidate remains a measured failure."
+                if self.review_mode == "assistant"
+                else "One human reviewer; paired controls are not independent observations. A failed qualification/candidate remains a measured failure."
+            ),
         }

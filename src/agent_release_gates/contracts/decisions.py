@@ -19,6 +19,9 @@ class TargetIdentity(StrictModel):
 
 
 class GateInput(StrictModel):
+    review_mode: Literal["human", "assistant"] = Field(
+        default="human", exclude_if=lambda value: value == "human"
+    )
     expected_case_ids: list[Identifier]
     baseline: VersionEvaluation | None
     candidate: VersionEvaluation
