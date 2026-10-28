@@ -2,6 +2,8 @@
 
 Updated 28 October 2026. Provider requests and hosted transfers below are **not authorized by software/plan approval**. Tests use stubbed HTTPS boundaries and synthetic test labels. The public scripted milestone and its historical reports are preserved.
 
+The [dated implementation record](live-implementation-2026-10-28.md) records the independent review, regression evidence and remaining limits. Frozen identities cover production Python, the dependency lock, subject/adapter sources and request settings. Any implementation change requires renewed qualification. Capture claims retain family IDs and fixture hashes across study IDs in the project database; exposed held-out families cannot qualify again as fresh evidence. The owner remains responsible for avoiding semantically duplicated families with different identifiers and content hashes.
+
 The offline implementation does not authorize paid execution or hosted data transfer. Before the live milestone, choose exact agent/judge provider/model IDs, dated prices, token/attempt limits, a new project-owned USD cap and ledger, and the treatment of uncertain charges. The intended ceilings are 28 subject investigations and 96 judge calls, not a spending estimate. Project 13's historical budget database must remain untouched.
 
 Collect eight actual calibration labels before judge tuning, allow at most two revisions, freeze dataset/rubric/model/settings, then collect sixteen held-out labels without exposing judge results. Run two fixed judge repetitions. Preserve failures and report if qualification or the natural candidate fails; do not rerun until passing or present regression reuse as fresh holdout.

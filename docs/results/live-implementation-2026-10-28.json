@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-28",
+  "mode": "offline_implementation_verification",
+  "branch": "codex/live-acceptance",
+  "base_commit": "e723a6ecec8a2ee6b6ba31f1d7bd454d2ebc030a",
+  "source_commit": "0316c760be40f99be76c1044a5b2447ab079f9b2",
+  "independent_review": {
+    "range": "e723a6e..1896ded",
+    "reviewers": 1,
+    "critical": 0,
+    "important": 5,
+    "important_fixed_with_red_green_regressions": 5,
+    "minor": 0,
+    "fix_passes": 1,
+    "second_review": false
+  },
+  "tests": {
+    "python": {"passed": 166, "warnings": 14, "seconds": 440.61},
+    "node_serial": {"passed": 18, "seconds": 44.48},
+    "post_format_parser_identity_smoke": {"passed": 1},
+    "ruff_check": "pass",
+    "ruff_format_check": "pass",
+    "git_diff_check": "pass",
+    "database": "real PostgreSQL with disposable random test schemas",
+    "provider_transport": "stubbed; no actual provider requests",
+    "hosted_retry_transport": "actual LangSmith SDK against local HTTP 503/disconnect server"
+  },
+  "scripted_demo": {
+    "mode": "scripted_offline",
+    "scripted_labels": 24,
+    "decisions": [
+      {"id": "71cd28df-c226-5c9a-bc60-494ae9b07bbe", "status": "accept", "exit": 0},
+      {"id": "a6cb54b2-07ff-5285-a52e-e359eb7bf1f2", "status": "reject", "exit": 1},
+      {"id": "1b2d4c5a-7702-5454-a946-d15a015cbd8c", "status": "reject", "exit": 1},
+      {"id": "4da351b3-3688-55a5-8443-8c68f6c4fc4d", "status": "inconclusive", "exit": 2}
+    ]
+  },
+  "docker": {
+    "engine": "existing Ubuntu WSL Docker engine",
+    "build": "pass",
+    "api_health_import_readback": "pass",
+    "api_restart_readback": "pass",
+    "runtime_uid": 10001,
+    "native_python": "3.12.11",
+    "container_python": "3.12.16",
+    "native_container_implementation_digest_equal": true,
+    "implementation_digest": "b6d1b5050b4486f02e3849e2c4f938731de6a6dd89c5e85fd1452cc32d5c6bdf",
+    "containers_stopped": true,
+    "named_volumes_retained": ["agent-release-gates_gates-artifacts", "agent-release-gates_gates-data"]
+  },
+  "publication_checks": {
+    "pre_final_documentation_historical_blobs_scanned": 303,
+    "historical_selected_pattern_matches": 0,
+    "working_files_scanned": 240,
+    "working_selected_pattern_matches": 0,
+    "all_commit_authors_personal": true,
+    "git_fsck_full": "pass",
+    "historical_and_current_scripted_evidence_changed": false,
+    "branch_pushed": false,
+    "hosted_ci_for_this_branch": "not run",
+    "prior_public_ci_applies_to": "e723a6e"
+  },
+  "actual_study": {
+    "status": "not_started",
+    "provider_requests": 0,
+    "human_labels": 0,
+    "hosted_langsmith_uploads": 0,
+    "cloud_resources_created": 0,
+    "allowance_approved": false,
+    "personal_account_confirmed": false,
+    "budget_alert_ready": false,
+    "budget_database_exists": false,
+    "proposal_config_digest": "d1dd0eb13b248e84c6f1d23d48dd2d4c760e4b669e243205a85cad3ec4cf23f0"
+  },
+  "limits": "Synthetic tests establish implementation behavior only. No actual human agreement, live candidate quality, provider compatibility/current billing or hosted LangSmith acceptance is established. One human reviewer and paired controls cannot establish broad generalization. This is a bounded portfolio demonstration."
+}
